@@ -17,14 +17,10 @@ $link->setHref('index.php');
 $link->setName($text['home']);
 $link->build();
 
-$body->line();
-
 $link	= new Link;
 $link->setHref('config.php');
 $link->setName($text['config']);
 $link->build();
-
-$body->line();
 
 $link	= new Link;
 $link->setHref('changelog.php');
@@ -64,7 +60,6 @@ for($i=0;$i<sizeof($dbar);++$i)
 		$link->setHref('tables.php?name='.$dbar[$i]['name'].'&type='.$dbar[$i]['type']);
 		$link->setName($dbar[$i]['name']);
 		$link->build();
-		$body->line('- (type : '.$dbar[$i]['type'].')');
 	}
 
 	// show tables

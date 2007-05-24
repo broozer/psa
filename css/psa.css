@@ -61,6 +61,10 @@ td,th {
 	margin-top: 25px;
 }
 
+#navigation a {
+	display: block;
+}
+
 #content {
 	float: left;
 	width: 70%;
