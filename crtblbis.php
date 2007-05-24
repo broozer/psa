@@ -85,7 +85,11 @@ for($i=0;$i<sizeof($_POST);++$i)
 
 // die('tot hier en niet verder !');
 
-$sql	= new Sqlite3($datadir.'/'.$db_name,$db_type);
+if(!$sql	= new Sqlite3($datadir.'/'.$db_name,$db_type))
+{
+	die('hier stopt de pret');
+}
+
 $q	= "CREATE TABLE ".$table_name." (";
 
 $j	= sizeof($fields);
