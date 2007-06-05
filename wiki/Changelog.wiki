@@ -3,18 +3,20 @@
 
 - finished
 
-  create database
-  drop database
-  create table
+  * create database
+  * drop database
+  * create table
 
 - to do
   
-  vacuum (on database)
-  query (database/table)
-  show structure (table)
-  manage indexes (table)
-  RUD (on table)
-  search
+  * vacuum (on database)
+  * query (database/table)
+  * show structure (table)
+  * manage indexes (table)
+  * RUD (on table)
+  * search
   
+
+
 
 
