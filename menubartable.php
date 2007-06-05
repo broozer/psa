@@ -2,10 +2,10 @@
 
 /*
 ** [type] file
-** [name] menubar.php
+** [name] menubartable.php
 ** [author] Wim Paulussen
-** [since] 2007-03-25
-** [update] 2007-03-25 - start
+** [since] 2007-06-05
+** [update] 2007-06-05 - start
 ** [expl] menubar for tables.php
 ** [end]
 */
@@ -14,19 +14,15 @@ $query = new Link;
 $query->setHref('query.php');
 $query->setName($text['query']);
 
-$vacuum = new Link;
-$vacuum->setHref('vacuum.php');
-$vacuum->setName($text['vacuum']);
-
 $drop = new Link;
-$drop->setHref('dropdb.php?name='.$db_name);
+$drop->setHref('droptable.php?table='.$table_name.'&db='.$db_name);
 $drop->setName($text['drop']);
 $drop->setJs('onClick="return confirm(\''.$text['remove'].'\')"');
 
 $body->line('<p id="menubar">');
 
 $query->build();
-$vacuum->build();
+$body->line($text['search'].'&nbsp;'.$text['structure']);
 $drop->build();
 
 $body->line('</p>');
