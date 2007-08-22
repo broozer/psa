@@ -1,17 +1,20 @@
 #summary Changelog - road plan
 = Version 0.1 =
 
+update : 2007-08-22
+
 - finished
 
   * create database
   * drop database
   * create table
+  * drop table
+  * show structure
 
 - to do
   
   * vacuum (on database)
   * query (database/table)
-  * show structure (table)
   * manage indexes (table)
   * RUD (on table)
   * search
