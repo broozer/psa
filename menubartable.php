@@ -10,6 +10,10 @@
 ** [end]
 */
 
+$struct  = new Link;
+$struct->setHref('tabledisplay.php?table='.$table_name.'&db='.$db_name.'&type=0');
+$struct->setName($text['structure']);
+
 $query = new Link;
 $query->setHref('query.php');
 $query->setName($text['query']);
@@ -21,8 +25,9 @@ $drop->setJs('onClick="return confirm(\''.$text['remove'].'\')"');
 
 $body->line('<p id="menubar">');
 
+$struct->build();
 $query->build();
-$body->line($text['search'].'&nbsp;'.$text['structure']);
+$body->line($text['search']);
 $drop->build();
 
 $body->line('</p>');

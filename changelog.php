@@ -20,19 +20,6 @@ if($sessie->isS('db_current'))
 $language = new Language('changelog',$lang);
 $text = $language->getText();
 
-// DEBUG: var_dump($text);
-
-$newdb	= new Input;
-$newdb->setName('database');
-$newdb->setSize('25');
-$newdb->setMaxlength('128');
-
-$submit	= new Input;
-$submit->setName('submit');
-$submit->setType('submit');
-$submit->setSize('25');
-$submit->setValue($text['submit']);
-
 $html	= new Html;
 $html->setDoctype('xhtml-strict');
 $html->setLanguage('en');
@@ -61,11 +48,7 @@ $body->line('
 
 $body->line('</div>
 <div id="footer">
-	<p class="rechts">&copy; 
-		<a href="http://www.asgc.be">
-			www.asgc.be
-		</a>
-	</p>
+	
 </div>
 </div>');
 

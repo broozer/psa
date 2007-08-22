@@ -6,7 +6,10 @@
 ** [author] Wim Paulussen
 ** [since] 2007-05-21
 ** [update] 2007-05-21 = start
-** [expl] autoload 
+** [expl] this file extraxcts the parameters for direcrtory , lanuguage and extension
+** [expl] standard directory : ./
+** [expl] standard language : en (english)
+** [expl] standard extension : .sdb
 ** [end]
 */
 

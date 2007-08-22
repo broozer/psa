@@ -32,6 +32,8 @@ td,th {
 	clear: both;
 	background-color: #FFF;
 	border-bottom: 1px solid #999;
+	text-align: center;
+	/* margin-left: 260px; */	
 }
 
 #footer {
@@ -52,9 +54,9 @@ td,th {
 
 #navigation {
 	float: left;
-	width: 30%;
-	max-width: 250px;
-	min-width: 100px;
+	width: 25%;
+	/* max-width: 250px;
+	min-width: 100px; */
 	font: bold 15px "Helvetica Neue Narrow",Arial,Helvetica, sans-serif;
 	background-color: #E0FFFF;
 	margin-left: 10px;
@@ -69,8 +71,8 @@ td,th {
 	float: left;
 	width: 70%;
 	padding: 2%;
-	/* max_width: 756px; */
-	min-width: 200px;
+	/*max-width: 550px;
+	min-width: 200px;*/
 	border-left: 2px solid #ccc;
 	background-color: #fff;
 }
@@ -89,4 +91,14 @@ td,th {
 .lefter {
 	display: block;
 	margin-left: 20px;
+}
+
+.lefterbig {
+	display: block;
+	margin-left: 20px;
+	font-size: 1.4em;
+}
+
+#blueback {
+	background-color: powderblue;
 }

@@ -5,22 +5,20 @@
 ** [name] index.php
 ** [author] Wim Paulussen
 ** [since] 2007-05-21
-** [update] 2007-05-21 = start
+** [update] 2007-08-22 : redo initial layout
 ** [expl] startfile for psa (PHP-Sqlite-Admin)
 ** [end]
 */
 
 include_once('./autoload.php');
 
-// NOTE: op de homepage is geen enkele databank geselecteerd
+// NOTE: no databases selected on homepage
 if($sessie->isS('db_current'))
 {
 	$sessie->unsetS('db_current');
 }
 $language = new Language('index',$lang);
 $text = $language->getText();
-
-// DEBUG: var_dump($text);
 
 $newdb	= new Input;
 $newdb->setName('database');
@@ -48,9 +46,11 @@ $body->build();
 
 $body->line('
 <div class="page">
-<div id="header">
-		<!-- <p class="centraal">'.$text['header'].'<p> -->
-</div>');
+<div id="header">');
+include_once('./top.php');
+$body->line('</div>');
+
+include_once('./top.php');
 
 // DEBUG: include menuleft.php
 include_once('menuleft.php');
@@ -78,11 +78,6 @@ $form->close();
 
 $body->line('</div>
 <div id="footer">
-	<p class="rechts">&copy; 
-		<a href="http://www.asgc.be">
-			www.asgc.be
-		</a>
-	</p>
 </div>
 </div>');
 

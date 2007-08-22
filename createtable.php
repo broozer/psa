@@ -5,7 +5,7 @@
 ** [name] createtable.php
 ** [author] Wim Paulussen
 ** [since] 2007-03-25
-** [update] 2007-03-25 - start
+** [update] 2007-08-22 update layout
 ** [expl] create table
 ** [end]
 */

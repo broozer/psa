@@ -5,7 +5,7 @@
 ** [name] autoload.php
 ** [author] Wim Paulussen
 ** [since] 2007-05-21
-** [update] 2007-05-21 - start
+** [update] 2007-08-22 - update layout
 ** [expl] autoload 
 ** [end]
 */
@@ -20,12 +20,7 @@ function __autoload($class_name)
 
 $sessie = new Session;
 
-// NOTE: check existence of psa.xml 
-
-if(!file_exists('./xml/psalang.xml'))
-{
-	die("file 'psalang.xml' is needed. Get it to get this working !");
-}
+// NOTE: check existence of psa.xml. If it does not exist, it will be created with standards
 
 if(!file_exists('./xml/psa.xml'))
 {
@@ -42,13 +37,16 @@ if(!file_exists('./xml/psa.xml'))
 	
 include_once('./xml_parse.php');
 
+if(!file_exists('./xml/psalang_'.$lang.'.xml'))
+{
+	die("file 'psalang_".$lang.".xml' is needed. Download it from the project download page to get this working !");
+}
+
 if (!$sessie->isS('dbs'))
 {
 	$psa = new Psa;
 	$dbar = $psa->getDb($datadir,$ext);
-	// DEBUG: var_dump($dbar);
 	$sessie->setS('dbs',$dbar);
 }
 
-// DEBUG: echo $taal,$dir,$ext;
 ?>

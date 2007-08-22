@@ -66,11 +66,10 @@ $body->build();
 
 $body->line('
 <div class="page">
-<div id="header">
-		<!-- <p class="centraal">'.$text['header'].'<p> -->
-</div>');
+<div id="header">');
+include_once('./top.php');
+$body->line('</div>');
 
-// DEBUG: include menuleft.php
 include_once('menuleft.php');
 
 $body->line('

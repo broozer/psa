@@ -5,7 +5,7 @@
 ** [name] Language.php
 ** [author] Wim Paulussen
 ** [since] 2007-05-21
-** [update] 2007-05-21
+** [update] 2007-08-22 : new layout
 ** [todo] <none>
 ** [end]
 */
@@ -57,27 +57,20 @@ class Language extends Session
 	public function getText()
 	{
 		// NOTE: get text for given parameters
-		if( !$xml	= simplexml_load_file('./xml/psalang.xml'))
+		if( !$xml	= simplexml_load_file('./xml/psalang_'.$this->lang.'.xml'))
 		{
 			die('cannot read language file');
 		}
 		$this->ar = array();
 		foreach ($xml->xpath('//file') as $file) 
 		{
-			// DEBUG: echo $file['id'];
 			if($file['id'] == $this->file)
 			{
 				foreach($file->item as $item)
 				{
-					foreach($item->lang as $lang)
-					{
-						if((string)$lang['id'] == $this->lang)
-						{
-							$field = (string)$item['id'];
-							$content = (string)$lang;
-							$this->ar[$field] = $content;
-						}
-					}
+					$field = (string)$item['id'];
+					$content = (string)$item;
+					$this->ar[$field] = $content;
 				}
 			}
 		}

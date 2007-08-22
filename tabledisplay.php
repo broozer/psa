@@ -24,8 +24,6 @@ $db_name = $_GET['db'];
 $table_name = $_GET['table'];
 $db_type = $_GET['type'];
 
-echo $table_name;
-
 $language = new Language('tabledisplay',$lang);
 $text = $language->getText();
 
@@ -75,9 +73,9 @@ $body->build();
 
 $body->line('
 <div class="page">
-<div id="header">
-		<!-- <p class="centraal">'.$text['header'].'<p> -->
-</div>');
+<div id="header">');
+include_once('./top.php');
+$body->line('</div>');
 
 // DEBUG: include menuleft.php
 include_once('menuleft.php');
@@ -86,6 +84,78 @@ $body->line('
 <div id="content">');
 
 include_once('menubartable.php');
+
+if ($sql = new Sqlite3($datadir.'/'.$db_name,$db_type))
+{
+	$q	= "PRAGMA table_info(".$table_name.")";
+	$i = 0;
+	
+	foreach ($sql->query($q) as $row)
+	{
+		$field[$i]['name']	= $row['name'];
+		$type_length = $row['type'];
+		$pos = strpos($type_length,'(');
+		if($pos == 0)
+		{
+			$field[$i]['type'] = $type_length;
+			$field[$i]['length'] = '-';
+		}
+		else
+		{
+			$field[$i]['type'] = substr($type_length,0,$pos);
+			$field[$i]['length'] = substr($type_length,$pos+1,-1);
+		}
+		if($row['notnull'] == '0')
+		{
+			$field[$i]['null']	= 'NULL';
+		}
+		else
+		{
+			$field[$i]['null']	= 'NOT NULL';
+		}
+		if ($row['dflt_value'] == NULL)
+		{
+			$field[$i]['dflt']	= '-';
+		}
+		else
+		{
+			$field[$i]['dflt']	= $row['dflt_value'];
+		}
+		
+		$field[$i]['pk']		= $row['pk'];
+		++$i;
+	}
+}
+
+$table	= new Table;
+$table->build();
+
+$th = new Th;
+$th->addElement($text['column_name']);
+$th->addElement($text['col_type']);
+$th->addElement($text['col_length']);
+$th->addElement($text['col_null']);
+$th->addElement($text['col_default']);
+$th->addElement($text['col_primary']);
+
+$th->build();
+
+for($i=0;$i<sizeof($field);++$i)
+{
+	$tr	= new Tr;
+	$tr->addElement($field[$i]['name']);
+	$tr->addElement($field[$i]['type']);
+	$tr->setClas('rechts');
+	$tr->addElement($field[$i]['length']);
+	$tr->addElement($field[$i]['null']);
+	$tr->setClas('centraal');
+	$tr->addElement($field[$i]['dflt']);
+	$tr->setClas('centraal');
+	$tr->addElement($field[$i]['pk']);
+	$tr->build();
+}
+
+$table->close();;
 
 $body->line('</div>
 <div id="footer"
@@ -102,15 +172,6 @@ $body->close();
 $html->close();
 
 /*
-$table_name	= $_GET['table'];
-$db_name	= $_GET['db'];
-
-$sql	= new clsSqlite;
-$db = $sql->conn($dir."/".$db_name);
-$q	= "SELECT * FROM sqlite_master WHERE tbl_name = '".$table_name."' ";
-$rq	= $sql->query($db,$q);
-$row	= $sql->fetch($rq);
-$sqlstat  = $row['sql'];
 
 $q	= "PRAGMA table_info(".$table_name.")";
 $rq	= $sql->query($db,$q);
