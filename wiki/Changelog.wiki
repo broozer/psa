@@ -1,7 +1,8 @@
 #summary Changelog - road plan
 = Version 0.1 =
+revision 9
 
-update : 2007-08-22
+update : 2007-08-24
 
 - finished
 
@@ -16,10 +17,9 @@ update : 2007-08-22
   * vacuum (on database)
   * query (database/table)
   * manage indexes (table)
-  * RUD (on table)
+  * CRUD (on table)
   * search
   
-
 
 
 
