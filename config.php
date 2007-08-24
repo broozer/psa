@@ -21,9 +21,10 @@ $text = $language->getText();
 
 $langar[0]['short']		= 'en';
 $langar[0]['val']		= 'English';
+/*
 $langar[1]['short']		= 'nl';
 $langar[1]['val']		= 'Nederlands';
-
+*/
 $inp_dir	= new Input;
 $inp_dir->setName('directory');
 $inp_dir->setSize(50);

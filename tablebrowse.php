@@ -2,11 +2,11 @@
 
 /*
 ** [type] file
-** [name] tabledisplay.php
+** [name] tablebrowse.php
 ** [author] Wim Paulussen
-** [since] 2007-06-05
-** [update] 2007-08-22 update layout
-** [expl] display table info ( structure - size - indexes)
+** [since] 2007-08-24
+** [update] 2007-08-24 start
+** [expl] browse table (with edit and drop)
 ** [end]
 */
 
@@ -77,7 +77,6 @@ $body->line('
 include_once('./top.php');
 $body->line('</div>');
 
-// DEBUG: include menuleft.php
 include_once('menuleft.php');
 
 $body->line('
@@ -92,66 +91,47 @@ if ($sql = new Sqlite3($datadir.'/'.$db_name,$db_type))
 	
 	foreach ($sql->query($q) as $row)
 	{
-		$field[$i]['name']	= $row['name'];
-		$type_length = $row['type'];
-		$pos = strpos($type_length,'(');
-		if($pos == 0)
-		{
-			$field[$i]['type'] = $type_length;
-			$field[$i]['length'] = '-';
-		}
-		else
-		{
-			$field[$i]['type'] = substr($type_length,0,$pos);
-			$field[$i]['length'] = substr($type_length,$pos+1,-1);
-		}
-		if($row['notnull'] == '0')
-		{
-			$field[$i]['null']	= 'NULL';
-		}
-		else
-		{
-			$field[$i]['null']	= 'NOT NULL';
-		}
-		if ($row['dflt_value'] == NULL)
-		{
-			$field[$i]['dflt']	= '-';
-		}
-		else
-		{
-			$field[$i]['dflt']	= $row['dflt_value'];
-		}
-		
-		$field[$i]['pk']		= $row['pk'];
+		$field[$i]	= $row['name'];
 		++$i;
 	}
+	
+	/*
+	$q = "INSERT INTO tester (name,adres,pn) VALUES ('wim','hm 49','2110')";
+	$sql->query($q);
+	$q = "DELETE FROM email WHERE ROWID = 4";
+	$sql->query($q);
+	*/
 }
+
 
 $table	= new Table;
 $table->build();
 
 $th = new Th;
-$th->addElement($text['column_name']);
-$th->addElement($text['col_type']);
-$th->addElement($text['col_length']);
-$th->addElement($text['col_null']);
-$th->addElement($text['col_default']);
-$th->addElement($text['col_primary']);
+$th->addElement('ROWID');
+for($i=0;$i<sizeof($field);++$i)
+{
+	$th->addElement($field[$i]);
+}
 
 $th->build();
 
-for($i=0;$i<sizeof($field);++$i)
+$q	= "SELECT ROWID,* FROM ".$table_name;
+foreach ($sql->query($q) as $row)
 {
-	$tr	= new Tr;
-	$tr->addElement($field[$i]['name']);
-	$tr->addElement($field[$i]['type']);
-	$tr->setClas('centraal');
-	$tr->addElement($field[$i]['length']);
-	$tr->addElement($field[$i]['null']);
-	$tr->setClas('centraal');
-	$tr->addElement($field[$i]['dflt']);
-	$tr->setClas('centraal');
-	$tr->addElement($field[$i]['pk']);
+	$tr = new Tr;
+	if(isset($row['rowid']))
+	{
+		$tr->addElement($row['rowid']);
+	}
+	else
+	{
+		$tr->addElement($row['id']);
+	}
+	for($i=0;$i<sizeof($field);++$i)
+	{
+		$tr->addElement($row[$field[$i]]);	
+	}
 	$tr->build();
 }
 

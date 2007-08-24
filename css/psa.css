@@ -21,6 +21,10 @@ td,th {
 	white-space: nowrap;
 }
 
+th {
+	background-color: silver;
+}
+
 .page {
 	display: block;
 	width: 99%;
