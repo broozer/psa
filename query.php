@@ -13,16 +13,44 @@
 include_once('./autoload.php');
 
 // NOTE: op de homepage is geen enkele databank geselecteerd
+/*
 if($sessie->isS('db_current'))
 {
 	$sessie->unsetS('db_current');
 }
+*/
 $language = new Language('query',$lang);
 $text = $language->getText();
 
-$db_name = $_GET['db'];
-$table_name = $_GET['table'];
-$db_type = $_GET['type'];
+if(isset($_GET['db']))
+{
+	$db_name = $_GET['db'];
+	$menu_top = 'menubartable.php';
+}
+else
+{
+	$db_name = $sessie->getS('db_current');
+	$menu_top = 'menubar.php';
+}
+
+
+if(isset($_GET['table']))
+{
+	$table_name = $_GET['table'];
+}
+else
+{
+	$table_name = '';
+}
+
+if(isset($_GET['db_type']))
+{
+	$db_type = $_GET['type'];
+}
+else
+{
+	$db_type = 3;
+}
 
 if($sessie->getS('db_current') != $db_name)
 {
@@ -79,9 +107,61 @@ include_once('menuleft.php');
 $body->line('
 <div id="content">');
 
-include_once('menubartable.php');
+include_once($menu_top);
 
-$body->line('not yet implemented');
+// $body->line('not yet implemented');
+
+$textqs = new Textarea;
+$textqs->setRows(5);
+$textqs->setCols(80);
+$textqs->setName('querystring');
+
+$subber = new Input;
+$subber->setName('submit');
+$subber->setType('submit');
+$subber->setValue($text['execute']);
+
+$db_name_input = new Input;
+$db_name_input->setName('db_name');
+$db_name_input->setType('hidden');
+$db_name_input->setValue($db_name);
+//$db_name_input
+
+$db_table_input = new Input;
+$db_table_input->setName('table_name');
+$db_table_input->setType('hidden');
+$db_table_input->setValue($table_name);
+
+$db_type_input = new Input;
+$db_type_input->setName('db_type');
+$db_type_input->setType('hidden');
+$db_type_input->setValue($db_type);
+// $db_type_input
+
+$form = new Form;
+$form->setAction('query_do.php');
+$form->build();
+
+$table = new Table;
+$table->build();
+
+$tr = new Tr;
+$tr->addElement($text['qs']);
+$tr->addElement($textqs->build());
+$tr->addElement($db_name_input->build());
+$tr->addElement($db_type_input->build());
+$tr->addElement($db_table_input->build());
+
+$tr->build();
+
+$tr = new Tr;
+$tr->addElement('&nbsp');
+$tr->addElement($subber->build());
+$tr->build();
+
+$table->close();
+$form->close();
+
 $body->line('</div>
 <div id="footer"
 	

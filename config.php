@@ -10,12 +10,21 @@
 ** [end]
 */
 include_once('./autoload.php');
-
-// NOTE: reset table with dbs
+// var_dump($_SESSION);
+// NOTE: all table and database session variables
 if($sessie->isS('db_current'))
 {
 	$sessie->unsetS('db_current');
 }
+if($sessie->isS('tbls'))
+{
+	$sessie->unsetS('tbls');
+}
+if($sessie->isS('dbs'))
+{
+	$sessie->unsetS('dbs');
+}
+
 $language = new Language('config',$lang);
 $text = $language->getText();
 

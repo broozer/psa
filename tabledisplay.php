@@ -157,6 +157,14 @@ for($i=0;$i<sizeof($field);++$i)
 
 $table->close();;
 
+$q	= "SELECT * FROM sqlite_master WHERE tbl_name = '".$table_name."' ";
+foreach ($sql->query($q) as $row)
+{
+	$sqlstat  = $row['sql'];
+}
+
+echo '<hr />'.$sqlstat;
+
 $body->line('</div>
 <div id="footer"
 	

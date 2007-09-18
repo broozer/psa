@@ -17,14 +17,12 @@ if($sessie->isS('db_current'))
 {
 	$sessie->unsetS('db_current');
 }
-$language = new Language('tabledisplay',$lang);
-$text = $language->getText();
 
 $db_name = $_GET['db'];
 $table_name = $_GET['table'];
 $db_type = $_GET['type'];
 
-$language = new Language('tabledisplay',$lang);
+$language = new Language('tableinsert',$lang);
 $text = $language->getText();
 
 if($sessie->getS('db_current') != $db_name)
@@ -91,8 +89,25 @@ if ($sql = new Sqlite3($datadir.'/'.$db_name,$db_type))
 	
 	foreach ($sql->query($q) as $row)
 	{
-		$field[$i]	= $row['name'];
-		++$i;
+		if($row['pk'] == '1')
+		{
+			continue;
+		}
+		else
+		{
+			$field[$i]	= $row['name'];
+			$type_length = $row['type'];
+			$pos = strpos($type_length,'(');
+			if($pos == 0)
+			{
+				$fieldtype[$i] = $type_length;
+			}
+			else
+			{
+				$fieldtype[$i] = substr($type_length,0,$pos);
+			}
+			++$i;
+		}
 	}
 	
 }
@@ -101,16 +116,38 @@ if ($sql = new Sqlite3($datadir.'/'.$db_name,$db_type))
 $table	= new Table;
 $table->build();
 
-
-
 for($i=0;$i<sizeof($field);++$i)
 {
+	if($fieldtype[$i] == 'TEXT')
+	{
+		$inp = new Textarea;
+		$inp->setRows(3);
+		$inp->setCols(60);
+		$inp->setName($field[$i]);
+	}
+	else
+	{
+		$inp = new Input;
+		$inp->setName($field[$i]);
+		$inp->setSize(50);
+		$inp->setMaxlength(128);
+	}
+	
 	$tr = new Tr;
-	$tr->addElement($field[$i]);	
+	$tr->addElement($field[$i]);
+	$tr->addElement($inp->build());
 	$tr->build();
 }
 
+$sub	= new Input;
+$sub->setName('submit');
+$sub->setType('submit');
+$sub->setValue($text['submit']);
 
+$tr = new Tr;
+$tr->addElement('&nbsp');
+$tr->addElement($sub->build());
+$tr->build();
 
 $table->close();;
 

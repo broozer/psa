@@ -74,7 +74,7 @@ include_once('menuleft.php');
 
 $body->line('
 <div id="content">');
-
+//include_once('menubartable.php');
 include_once('menubar.php');
 // lijst met tabellen
 
