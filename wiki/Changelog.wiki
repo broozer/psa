@@ -1,8 +1,13 @@
-#summary Changelog - road plan
-= Version 0.1 =
-revision 12
+#summary Changelog
 
-update : 2007-09-19
+= Version 0.1 =
+
+revision 15
+
+update : 2007-09-28
+
+_Today I uploaded the necessary files and now basic CRUD functionality is achieved. If you want to try the code and need help in any way, do not hesitate to contact me._
+
 
 - finished
 
@@ -12,12 +17,12 @@ update : 2007-09-19
   * drop table
   * show structure
   * query (database/table)
+  * CRUD (on table)
 
 - to do
   
   * vacuum (on database)
   * manage indexes (table)
-  * CRUD (on table)
   * search
   
 
