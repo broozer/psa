@@ -65,7 +65,7 @@ class Form extends Body
 	{ 
 		if (!file_exists($data))
 		{
-			$this->setS('s_error','File for FORM redirection does not exist');
+			throw new FormException("File for redirect not set : ".$data);
 			return FALSE;
 		}
 		$this->_action	= $data; 
@@ -167,5 +167,32 @@ class Form extends Body
 		$this->html = "</form>\n";
 		$this->display();
 	}
+}
+
+/*
+** [class] FormException
+** [extend] Exception
+** [end]
+*/
+class FormException extends Exception
+{
+	/* 
+	** [type] method
+	** [name] __construct
+	** [scope] global
+	** [expl] exception function for class HTML
+	** [end]
+	*/
+	function __construct($eMessage)
+	{
+		$handlers = ob_list_handlers();
+		while ( ! empty($handlers) )    
+		{
+			ob_end_clean();
+			$handlers = ob_list_handlers();
+		}
+		parent::__construct('<b>[Form class error] '.$eMessage.'<hr />');
+	}
+	
 }
 ?>

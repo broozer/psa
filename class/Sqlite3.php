@@ -29,7 +29,7 @@ class Sqlite3 extends Session
 
 	function query($q)
 	{
-		if($this->rq = $this->db->query($q))
+		if($this->rq = $this->db->query($q, PDO::FETCH_ASSOC))
 		{
 			return $this->rq;
 		}
@@ -48,7 +48,7 @@ class Sqlite3 extends Session
 	function fetch($rq)
 	{
 		$this->rq = $rq;
-		return $this->rq->fetch();
+		return $this->db->fetch();
 	}
 }
 

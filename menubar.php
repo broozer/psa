@@ -21,7 +21,7 @@ $vacuum->setName($text['vacuum']);
 $drop = new Link;
 $drop->setHref('dropdb.php?name='.$db_name);
 $drop->setName($text['drop']);
-$drop->setJs('onClick="return confirm(\''.$text['remove'].'\')"');
+$drop->setJs('onClick="return confirm(\''.trim($text['remove']).'\')"');
 
 $body->line('<p id="menubar">');
 

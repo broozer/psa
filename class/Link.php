@@ -158,30 +158,30 @@ class Link extends Body
 
 		if ($this->getError() == "")
 		{
-			$toHtml = '<a href="'.$this->getHref();
+			$toHtml = '<a href="'.$this->getHref().'" ';
 			$adder = '';
 			
 			if ($this->_target != "_self")
 			{
-				$adder .= '" target="'.$this->_target;
+				$adder .= '" target="'.$this->_target.'" ';
 			}
 			
 			if ($this->getId() != "")
 			{
-				$adder .= '" id="'.$this->getId();
+				$adder .= ' id="'.$this->getId().'" ';
 			}
 			
 			if ($this->getJs() != "")
 			{
-				$adder.= '" '.$this->getJs();
+				$adder.= ' '.$this->getJs().' ';
 			}
 			
 			if ($this->getClas() != '')
 			{
-				$adder .= '" class="'.$this->getClas();
+				$adder .= ' class="'.$this->getClas().'" ';
 			}
 			
-			$total = $toHtml.$adder.'">'.$this->getName().'</a>';
+			$total = $toHtml.$adder.'>'.$this->getName().'</a>';
 			
 			$this->html = $total;
 			$this->display();

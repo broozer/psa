@@ -2,11 +2,11 @@
 
 /*
 ** [type] file
-** [name] tableinsert.php
+** [name] tableedit.php
 ** [author] Wim Paulussen
-** [since] 2007-08-24
-** [update] 2007-08-24 start
-** [expl] browse table (with edit and drop)
+** [since] 2007-09-28
+** [update] 2007-09-28 start
+** [expl] edit chosen record (with edit and drop)
 ** [end]
 */
 
@@ -21,6 +21,22 @@ if($sessie->isS('db_current'))
 $db_name = $_GET['db'];
 $table_name = $_GET['table'];
 $db_type = $_GET['type'];
+$record_id = $_GET['rowid'];
+
+$sql = new Sqlite3($datadir.'/'.$db_name,$db_type);
+$q = "SELECT * FROM ".$table_name." WHERE id = ".$record_id;
+
+foreach ($sql->query($q) as $row)
+{
+
+	$rowkeys = array_keys($row);
+	
+	for($i=0;$i<sizeof($rowkeys);++$i)
+	{
+		$keys[$i] = $rowkeys[$i];
+		$keysval[$i] = $row[$rowkeys[$i]];
+	}
+}
 
 $hidden_db_name = new Input;
 $hidden_db_name->setName('db');
@@ -46,28 +62,6 @@ if($sessie->getS('db_current') != $db_name)
 	if($sessie->isS('tbls'))
 	{
 		$sessie->unsetS('tbls');
-	}
-}
-
-if(!$sessie->isS('tbls'))
-{
-	if ($sql = new Sqlite3($datadir.'/'.$db_name,$db_type))
-	{
-		$q	= "SELECT * FROM sqlite_master";
-		$i = 0;
-		$tbls = array();
-		foreach ($sql->query($q) as $row)
-		{
-			if ($row['type'] == 'table')
-			{
-				$tbls[$i]['name'] = $row['name'];
-				++$i;
-			}
-		}
-		if(sizeof($tbls) != '0')
-		{
-			$sessie->setS('tbls',$tbls);
-		}
 	}
 }
 
@@ -100,38 +94,8 @@ $body->line('
 
 include_once('menubartable.php');
 
-if ($sql = new Sqlite3($datadir.'/'.$db_name,$db_type))
-{
-	$q	= "PRAGMA table_info(".$table_name.")";
-	$i = 0;
-	
-	foreach ($sql->query($q) as $row)
-	{
-		if($row['pk'] == '1')
-		{
-			continue;
-		}
-		else
-		{
-			$field[$i]	= $row['name'];
-			$type_length = $row['type'];
-			$pos = strpos($type_length,'(');
-			if($pos == 0)
-			{
-				$fieldtype[$i] = $type_length;
-			}
-			else
-			{
-				$fieldtype[$i] = substr($type_length,0,$pos);
-			}
-			++$i;
-		}
-	}
-	
-}
-
 $form = new Form;
-$form->setAction('./tableinsert_do.php');
+$form->setAction('./tableedit_do.php');
 $form->build();
 
 $table	= new Table;
@@ -143,27 +107,31 @@ $tr->addElement($hidden_table_name->build());
 $tr->addElement($hidden_db_type->build());
 $tr->build();
 
-for($i=0;$i<sizeof($field);++$i)
+for($i=0;$i<sizeof($keysval);++$i)
 {
-	if($fieldtype[$i] == 'TEXT')
+	
+	$inp = new Input;
+	$inp->setName($keys[$i]);
+	$inp->setValue($keysval[$i]);
+	$inp->setSize(50);
+	$inp->setMaxlength(128);
+	if($keys[$i] == 'id')
 	{
-		$inp = new Textarea;
-		$inp->setRows(3);
-		$inp->setCols(60);
-		$inp->setName($field[$i]);
+		
+		$inp->setType('hidden');
+		$tr = new Tr;
+		$tr->addElement($inp->build());
+		$tr->build();
+		
 	}
 	else
 	{
-		$inp = new Input;
-		$inp->setName($field[$i]);
-		$inp->setSize(50);
-		$inp->setMaxlength(128);
+		$tr = new Tr;
+		$tr->addElement($keys[$i]);
+		$tr->addElement($inp->build());
+		$tr->build();
 	}
 	
-	$tr = new Tr;
-	$tr->addElement($field[$i]);
-	$tr->addElement($inp->build());
-	$tr->build();
 }
 
 $sub	= new Input;

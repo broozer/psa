@@ -29,7 +29,7 @@ $query->setName($text['query']);
 
 $drop = new Link;
 $drop->setHref('droptable.php?table='.$table_name.'&db='.$db_name);
-$drop->setJs('onClick="return confirm(\''.$text['remove'].'\')');
+$drop->setJs('onClick="return confirm(\''.trim($text['remove']).'\')"');
 $drop->setName($text['drop']);
 
 

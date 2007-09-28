@@ -94,13 +94,6 @@ if ($sql = new Sqlite3($datadir.'/'.$db_name,$db_type))
 		$field[$i]	= $row['name'];
 		++$i;
 	}
-	
-	/*
-	$q = "INSERT INTO tester (name,adres,pn) VALUES ('wim','hm 49','2110')";
-	$sql->query($q);
-	$q = "DELETE FROM email WHERE ROWID = 4";
-	$sql->query($q);
-	*/
 }
 
 
@@ -108,7 +101,8 @@ $table	= new Table;
 $table->build();
 
 $th = new Th;
-$th->addElement('ROWID');
+$th->addElement('EDIT');
+$th->addElement('DEL');
 for($i=0;$i<sizeof($field);++$i)
 {
 	$th->addElement($field[$i]);
@@ -122,11 +116,25 @@ foreach ($sql->query($q) as $row)
 	$tr = new Tr;
 	if(isset($row['rowid']))
 	{
-		$tr->addElement($row['rowid']);
+		$add = new Link;
+		$add->setHref('tableedit.php?db='.$db_name.'&table='.$table_name.'&type='.$db_type.'&rowid='.$row['rowid']);
+		$add->setName('edit');
+		$tr->addElement($add->dump());
+		$add = new Link;
+		$add->setHref('tabledelete.php?db='.$db_name.'&table='.$table_name.'&type='.$db_type.'&rowid='.$row['rowid']);
+		$add->setName('del');
+		$tr->addElement($add->dump());
 	}
 	else
 	{
-		$tr->addElement($row['id']);
+		$add = new Link;
+		$add->setHref('tableedit.php?db='.$db_name.'&table='.$table_name.'&type='.$db_type.'&rowid='.$row['id']);
+		$add->setName('edit');
+		$tr->addElement($add->dump());
+		$add = new Link;
+		$add->setHref('tabledelete.php?db='.$db_name.'&table='.$table_name.'&type='.$db_type.'&rowid='.$row['id']);
+		$add->setName('del');
+		$tr->addElement($add->dump());
 	}
 	for($i=0;$i<sizeof($field);++$i)
 	{
