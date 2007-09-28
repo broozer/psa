@@ -31,57 +31,66 @@ $submit->setType('submit');
 $submit->setSize('25');
 $submit->setValue($text['submit']);
 
-$html	= new Html;
-$html->setDoctype('xhtml-strict');
-$html->setLanguage('en');
-$html->build();
-
-$head	= new Head;
-$head->setTitle($text['title']);
-$head->setCss('./css/psa.css');
-$head->build();
-
-$body	= new Body;
-$body->build();
-
-$body->line('
-<div class="page">
-<div id="header">');
-include_once('./top.php');
-$body->line('</div>');
-
-include_once('./top.php');
-
-// DEBUG: include menuleft.php
-include_once('menuleft.php');
-
-$body->line('
-<div id="content">'.$text['content'].'<hr />');
-
-$form	= new Form;
-$form->setAction('createdb.php');
-$form->build();
-
-$table	= new Table;
-$table->build();
-
-$tr	= new Tr;
-$tr->addElement($text['dbase']);
-$tr->setClas('nieuw');
-$tr->setId('oud');
-$tr->addElement($newdb->build());
-$tr->addElement($submit->build());
-$tr->build();
-
-$table->close();
-$form->close();
-
-$body->line('</div>
-<div id="footer">
-</div>
-</div>');
-
-
-$body->close();
-$html->close();
+try
+{
+	$html	= new Html;
+	$html->setDoctype('xhtml-strict');
+	$html->setLanguage('en');
+	$html->build();
+	
+	$head	= new Head;
+	$head->setTitle($text['title']);
+	$head->setCss('./css/psa.css');
+	$head->build();
+	
+	$body	= new Body;
+	$body->build();
+	
+	$body->line('
+	<div class="page">
+	<div id="header">');
+	include_once('./top.php');
+	$body->line('</div>');
+	
+	include_once('./top.php');
+	include_once('menuleft.php');
+	
+	$body->line('
+	<div id="content">'.$text['content'].'<hr />');
+	
+	$form	= new Form;
+	$form->setAction('createdb.php');
+	$form->build();
+	
+	$table	= new Table;
+	$table->build();
+	
+	$tr	= new Tr;
+	$tr->addElement($text['dbase']);
+	$tr->setClas('nieuw');
+	$tr->setId('oud');
+	$tr->addElement($newdb->build());
+	$tr->addElement($submit->build());
+	$tr->build();
+	
+	$table->close();
+	$form->close();
+	
+	$body->line('</div>
+	<div id="footer">
+	</div>
+	</div>');
+	
+	
+	$body->close();
+	$html->close();
+}
+catch(InputException $e) { echo $e->getMessage(); }
+catch(HeadException $e) { echo $e->getMessage(); }
+catch(HTMLException $e) { echo $e->getMessage(); }
+catch(Exception $e)
+{
+	echo "Fatal <br />";
+	echo "<blockqoute>".$e->getMessage()." [".$e->getCode()."]</blockquote>";
+}
 ?>

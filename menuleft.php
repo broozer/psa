@@ -78,7 +78,7 @@ for($i=0;$i<sizeof($dbar);++$i)
 				}
 			}
 		} 
-		echo '<hr />';
+		// echo '<hr />';
 
 	}
 	else

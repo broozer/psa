@@ -5,8 +5,9 @@
 ** [name] Table.php
 ** [author] Wim Paulussen
 ** [since] 2006-12-27
-** [update] 2007-01-05 - removed __destruct , replaced by close
-** [todo] ALL
+** [update] 2007-01-05 : removed __destruct , replaced by close
+** [update] 2007-09-27 : Exception handling added
+** [todo] 
 ** [end]
 */
 
@@ -68,7 +69,7 @@ class Table extends Body
 	*/
 	function close()
 	{
-		$this->html = "</table>";
+		$this->html = "</table>\r\n";
 		$this->display();
 	}
 	

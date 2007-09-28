@@ -1,20 +1,23 @@
 <?php
 
 /*
-** [type]
+** [type] file
 ** [name] Html.php
 ** [author] Wim Paulussen
 ** [since] 2006-12-02
 ** [update] 2007-01-05 - removed __destruct , replaced by close
 ** [update] 2007-05-11 : debugged errorreporting
 ** [update] 2007-05-21 : documentation
+** [update] 2007-09-27 : Exception handling added
 ** [todo] output to screen or file
+** [todo] errorhandling either in or out
 ** [end]
 */
 
 /*
 ** [class] Html
 ** [extend] Session
+** [end]
 */
 
 class Html extends Session
@@ -73,14 +76,23 @@ class Html extends Session
 	** [type] method
 	** [name] __construct
 	** [scope] global
-	** [expl] caching started
+	** [expl] output bufering started - attempt to clean the buffer with Exception
 	** [end]
 	*/
-	public function __construct()
-	{
-		ob_start();
+	public function __construct() 
+	{ 
+		ob_start();	
 	}
 
+	/* 
+	** [type] method
+	** [name] __destruct
+	** [scope] global
+	** [expl] end of html class
+	** [end]
+	*/
+	/*
+	public function __destruct() { echo '<!-- Class Html ended --></html>'; }
 	/*
 	** [type] method
 	** [name] close
@@ -98,7 +110,7 @@ class Html extends Session
 		{
 			$this->html = '</html>';
 		} 
-		ob_end_flush();
+		// ob_end_flush();
 
 		$this->display();
 	}
@@ -170,7 +182,7 @@ class Html extends Session
 	public function setLanguage($lang)
 	{
 		$this->language = $lang;
-		$this->html .= '<html lang="'.$this->language.'">'."\n";
+		$this->html .= '<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="'.$this->language.'" lang="'.$this->language.'">'."\n";
 	}
 
 	/*
@@ -247,25 +259,49 @@ class Html extends Session
 	*/
 	private function _pageError()
 	{
-		$this->pageError = "---\n";
 		if(!isset($this->doctype))
 		{
-			$this->pageError .= "Html.php : doctype not set -  setDoctype('xhtml-strict')\n";
+			throw new HTMLException("Doctype not set.</b><br> 
+				Usage \$objectname->setDoctype(\"&lt;doctype&gt;\")<br />
+				<ul>doctypes
+				<li>html4-strict</li>
+				<li>html4-loose</li>
+				<li>html4-frameset</li>
+				<li>xhtml-strict</li>
+				<li>xhtml-frameset</li>
+				<li>xhtml-loose</li></ul> ");
 		}
 		if(!isset($this->language))
 		{
-			$this->pageError .= "Html.php : language not set - setLanguage('nl')\n";
+			throw new HTMLException("Language not set  : usage \$&lt;objectname&gt;->setLanguage(\"&lt;language&gt;\")");
 		}
-	
-		if($this->pageError != "---\n")
-		{
-			$file = new File('errorPage.txt','a');
-			$file->writelines($this->pageError);
-			unset($file);
-			return TRUE;
-		}
-		return FALSE;
 	}
 }
 
+/*
+** [class] HtmlException
+** [extend] Exception
+** [end]
+*/
+class HtmlException extends Exception
+{
+	/* 
+	** [type] method
+	** [name] __construct
+	** [scope] global
+	** [expl] exception function for class HTML
+	** [end]
+	*/
+	function __construct($eMessage)
+	{
+		$handlers = ob_list_handlers();
+		while ( ! empty($handlers) )    
+		{
+			ob_end_clean();
+			$handlers = ob_list_handlers();
+		}
+		parent::__construct('<b>[HTML class error] '.$eMessage.'<hr />');
+	}
+	
+}
 ?>

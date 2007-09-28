@@ -72,7 +72,7 @@ class Head extends Html
 <meta http-equiv="Pragma" content="no-cache" />
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <meta name="author" content="Wim Paulussen" />
-<meta name="engine" content="Web - asgc 2006 - version 2" />'."\n";
+<meta name="engine" content="Web - asgc 2007 - version 3" />'."\n";
         // $this->display();
     }
 	
@@ -85,6 +85,8 @@ class Head extends Html
 	*/
     public function build()
     {
+		if(!isset($this->title)) { throw new HeadException("No page title."); }
+		
         $this->html .= '';
 
         if (isset($this->arMeta))
@@ -95,29 +97,11 @@ class Head extends Html
             }
         }
 
-        if ($this->title)
-        {
-            $this->html .= $this->title;
-        }
-        else
-        {
-            $this->html .="<title>No title</title>\n";
-        }
+        $this->html .= $this->title;
 
-        if (isset($this->css))
-        {
-            $this->html     .= $this->css;
-        }
-
-        if (isset($this->js))
-        {
-            $this->html     .= $this->js;
-        }
-
-        if (isset($this->loose))
-        {
-            $this->html     .= $this->loose;
-        }
+        if (isset($this->css)) { $this->html     .= $this->css; }
+        if (isset($this->js)) { $this->html     .= $this->js; }
+        if (isset($this->loose)) { $this->html     .= $this->loose; }
 
         $this->html .= "</head>\n";
        	$this->display();
@@ -165,7 +149,7 @@ class Head extends Html
         }
         else
         {
-            $this->setS('s_error','File CSS does not exist');
+            throw new HeadException("CSS File : ".$file." does not exist.");
             return FALSE;
         }
     }
@@ -187,7 +171,7 @@ class Head extends Html
         }
         else
         {
-            $this->SetS('s_error','File Javascript does not exist');
+            throw new HeadException("Javascript File : ".$file." does not exist.");
             return FALSE;
         }
     }
@@ -214,9 +198,34 @@ class Head extends Html
 	*/
 	function __destruct()
 	{
-		//void
+		// void
 	}
-
 }
 
+/*
+** [class] HeadException
+** [extend] Exception
+** [end]
+*/
+class HeadException extends Exception
+{
+	/* 
+	** [type] method
+	** [name] __construct
+	** [scope] global
+	** [expl] exception function for class HTML
+	** [end]
+	*/
+	function __construct($eMessage)
+	{
+		$handlers = ob_list_handlers();
+		while ( ! empty($handlers) )    
+		{
+			ob_end_clean();
+			$handlers = ob_list_handlers();
+		}
+		parent::__construct('<h2>[Head class error] '.$eMessage.'</h2><hr />');
+	}
+	
+}
 ?>

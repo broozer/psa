@@ -7,8 +7,9 @@
 ** [since] 2007-01-09
 ** [update] 2007-01-22 getJs iso getJava
 ** [update] 2007-02-03 setChecked debug/update
-** [update] 2007-05-21 documentation // getClas toegevoegd
-** [todo] All
+** [update] 2007-05-21 documentation // getClas added
+** [update] 2007-09-27 Exception handling added
+** [todo] 
 ** [end]
 */
 
@@ -148,25 +149,25 @@ class Input extends Body
 	*/
 	public function build()
 	{
-		// waarde element TYPE onderzoeken , indien niet gezet -> text
+		
 		if (!$this->_validtype($this->getType()))
 		{
-			$this->setError("No valid Input type.<br>");
+			throw new InputException("Input type given (".$this->getType().") is not a valid type.");
 		}
 
 		if ($this->getName() == '')
 		{
-			$this->setError("No value set for field name (compulsory)<br>");
+			throw new InputException("Input has no name attribute.");
 		}
 
 		if($this->getType() == "submit" && $this->getValue() == '')
 		{
-			$this->setError("Submit has no 'value'<br>");
+			throw new InputException("Input type submit needs value attribute.");
 		}
 
 		if($this->getType() == "reset" && $this->getValue() == '')
 		{
-			$this->setError("Reset has no 'value'<br>");
+			throw new InputException("Input type reset needs value attribute.");
 		}
 		
 		if ($this->getMaxlength() == '0')
@@ -236,10 +237,6 @@ class Input extends Body
 				return $this->html;
 			}
 		}
-		else
-		{
-			die ($this->getError());
-		}
 	}
 
 	/*
@@ -262,5 +259,32 @@ class Input extends Body
 			return false;
 		}
 	}
-}	
+}
+
+/*
+** [class] InputException
+** [extend] Exception
+** [end]
+*/
+class InputException extends Exception
+{
+	/* 
+	** [type] method
+	** [name] __construct
+	** [scope] global
+	** [expl] exception function for class Input
+	** [end]
+	*/
+	function __construct($eMessage)
+	{
+		$handlers = ob_list_handlers();
+		while ( ! empty($handlers) )    
+		{
+			ob_end_clean();
+			$handlers = ob_list_handlers();
+		}
+		parent::__construct('<h2>[Input class error] '.$eMessage.'</h2><hr />');
+	}
+	
+}
 ?>

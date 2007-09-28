@@ -19,9 +19,6 @@ class Sqlite3 extends Session
 		}
 		else
 		{
-			// DEBUG: echo $this->name;
-			// echo 'sqlite 2';
-			// echo $this->name;
 			if (!$this->db = new PDO('sqlite2:'.$this->name))
 			{
 				return false;
@@ -38,10 +35,6 @@ class Sqlite3 extends Session
 		}
 		else
 		{
-			/*
-			echo $this->db->errorCode();
-			var_dump($this->db->errorInfo()); // you want [2]
-			*/
 			return false;
 		}
 	}

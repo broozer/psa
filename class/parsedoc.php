@@ -96,7 +96,7 @@ while ($data->readlines())
 			break;
 
 		case 'update':
-			$update_text .= "\r\n".$lijn;
+			$update_text .= $lijn."\r\n";
 			
 			break;
 
@@ -106,7 +106,6 @@ while ($data->readlines())
 
 		case 'class':
 			$class = $lijn;
-			echo 'class : '.$class.'<br />';
 			break;
 
 		case 'expl':
@@ -114,46 +113,34 @@ while ($data->readlines())
 			break;
 
 		case 'extend':
-			$extend .= $lijn."#";
+			$extend .= $lijn." (link)";
 			break;
 
 		case 'end':
-			if (isset($type)) { echo 'type : '.$type.'<br />'; }
-			if (isset($name)) { echo 'name : '.$name.'<br />'; }
+			if (isset($name)) { echo 'name : <b>'.$name.'</b><br />'; }
+			if (isset($class)) { echo 'class : <b>'.$class.'</b><br />'; }
+			if (isset($type)) { echo 'type : <b>'.$type.'</b><br />'; }
 			if (isset($scope)) { echo 'scope : '.$scope.'<br />'; } 
 			if (isset($since)) { echo 'since : '.$since.'<br />'; }
 			if (isset($author)) { echo 'author : '.$author.'<br />'; }
 
 			if($expl_text != '') { echo 'expl : '.nl2br($expl_text).'<br />'; };
 			if($extend != '') { echo 'extends : '.$extend.'<br />'; }
-			if($update_text != '') {echo 'update_text : '.nl2br($update_text).'<br />'; }
-			if($todo_text != '') { echo 'todo_text : '.nl2br($todo_text).'<br />'; }
+			if($update_text != '') {echo 'updates : <br /> '.nl2br($update_text).'<br />'; }
+			if($todo_text != '') { echo 'todo : '.nl2br($todo_text).'<br />'; }
 			echo '<hr />';
 			
-			/*
-			switch($type)
-			{
-			case 'file':
-				break;
-			default:
-				break;
-				
-			}
-			*/
 			$expl_text = '';
 			$update_text = '';
 			$todo_text = '';
 			$extend = '';
+			unset($class);
 			unset($type);
 			unset($name);
 			unset($since);
 			unset($author);
 			unset($scope);
 			
-			// einde provisonele uitleg
-			/*
-			
-			*/
 			break;
 			
 		default:

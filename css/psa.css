@@ -26,17 +26,21 @@ th {
 }
 
 .page {
-	display: block;
-	width: 99%;
-	padding: 0px;
-	background-color: #E0FFFF;
+	width: 1070px;
+	margin: 0 auto;
+	font-family: "Lucida Grande", Tahoma, Arial, Helvetica, sans-serif; /* Lucida Grande voor Macs, Tahoma voor pc's */
+	font-size: 11px;
+	line-height: 1.6em;
+	color: #666;
+	background-color: #fff;
+
 }
 
 #header{
+	border-bottom: 4px solid #948979;
+	padding-top: 10px;
 	clear: both;
-	background-color: #FFF;
-	border-bottom: 1px solid #999;
-	text-align: center;
+	margin-bottom: 10px;
 	/* margin-left: 260px; */	
 }
 
@@ -58,13 +62,7 @@ th {
 
 #navigation {
 	float: left;
-	width: 25%;
-	/* max-width: 250px;
-	min-width: 100px; */
-	font: bold 15px "Helvetica Neue Narrow",Arial,Helvetica, sans-serif;
-	background-color: #E0FFFF;
-	margin-left: 10px;
-	margin-top: 25px;
+	width: 140px;
 }
 
 #navigation a {
@@ -105,4 +103,7 @@ th {
 
 #blueback {
 	background-color: powderblue;
+	padding-left: 5px;
+	padding-right: 5px;
+	font-weight: bold;
 }

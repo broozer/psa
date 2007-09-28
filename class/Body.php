@@ -7,7 +7,8 @@
 ** [since] 2006-12-22
 ** [update] 2007-01-05 : removed __destruct , replaced by close
 ** [update] 2007-05-21 : documentation
-** [todo] check checker function
+** [update] 2007-09-27 : Exception handling added
+** [todo] 
 ** [end]
 */
 
@@ -50,6 +51,8 @@ class Body extends Html
 	** [end]
 	*/
 	public $name; //	= '';
+	
+	// public function __destruct() { echo '<!-- body destruct --></body>'; }
 	
 	/*
 	** [type] method
@@ -125,6 +128,7 @@ class Body extends Html
 	*/
 	public function build()
 	{
+		// throw new BodyException("Just for the fun of it.");
 		$this->html = '<body ';
 		
 		if ($this->id != '')
@@ -137,7 +141,7 @@ class Body extends Html
 			$this->html .= $this->getJs();
 		}
 		
-		$this->html .= ">\n";
+		$this->html .= ">\r\n";
 
 		$this->display();
 	}
@@ -147,12 +151,13 @@ class Body extends Html
 	** [name] close
 	** [scope] public
 	** [expl] ends body rendering // inherited error handling with s_error
+	** [expl] deprecated ?? with new Exception class ??
 	** [end]
 	*/
 	public function close()
 	{
-		$this->_checker();
-		$this->html = "</body>";
+		// $this->_checker();
+		$this->html = "</body>\r\n";
 		$this->display();
 	}
 	
@@ -202,4 +207,30 @@ class Body extends Html
 	}
 }
 
+/*
+** [class] BodyException
+** [extend] Exception
+** [end]
+*/
+class BodyException extends Exception
+{
+	/* 
+	** [type] method
+	** [name] __construct
+	** [scope] global
+	** [expl] exception function for class HTML
+	** [end]
+	*/
+	function __construct($eMessage)
+	{
+		$handlers = ob_list_handlers();
+		while ( ! empty($handlers) )    
+		{
+			ob_end_clean();
+			$handlers = ob_list_handlers();
+		}
+		parent::__construct('<h2>[Body class error] '.$eMessage.'</h2><hr />');
+	}
+	
+}
 ?>

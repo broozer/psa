@@ -8,8 +8,20 @@ $text = $language->getText();
 // var_dump($_POST);
 
 $db_name = $_POST['db_name'];
-$table_name = $_POST['table_name'];
+// $table_name = $_POST['table_name'];
 $db_type = $_POST['db_type'];
+
+if(isset($_GET['db']))
+{
+	$db_name = $_GET['db'];
+	$menu_top = 'menubartable.php';
+}
+else
+{
+	$db_name = $sessie->getS('db_current');
+	$menu_top = 'menubar.php';
+}
+
 
 $html	= new Html;
 $html->setDoctype('xhtml-strict');
@@ -34,7 +46,9 @@ include_once('menuleft.php');
 
 $body->line('
 <div id="content">');
-$q = $_POST['querystring'];
+include_once($menu_top);
+
+$q = stripslashes($_POST['querystring']);
 
 $body->line('Requested query : '.$q.'<hr />');
 
@@ -66,5 +80,12 @@ if ($sql = new Sqlite3($datadir.'/'.$db_name,$db_type))
 	$table->close();
 }
 
+$body->line('</div>
+	<div id="footer">
+	</div>
+	</div>');
+
+$body->close();
+$html->close();
 
 ?>

@@ -10,7 +10,6 @@
 ** [end]
 */
 include_once('./autoload.php');
-// var_dump($_SESSION);
 // NOTE: all table and database session variables
 if($sessie->isS('db_current'))
 {
