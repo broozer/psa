@@ -12,6 +12,11 @@
 
 include_once('./autoload.php');
 
+if(!$sessie->isS('log_as'))
+{
+	header('location: login.php');
+	exit;
+}
 // NOTE: no databases selected on homepage
 if($sessie->isS('db_current'))
 {
