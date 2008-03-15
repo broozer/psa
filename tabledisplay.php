@@ -158,9 +158,14 @@ for($i=0;$i<sizeof($field);++$i)
 $table->close();;
 
 $q	= "SELECT * FROM sqlite_master WHERE tbl_name = '".$table_name."' ";
+
+// 2008-03-10 : display sql statement fix
 foreach ($sql->query($q) as $row)
 {
-	$sqlstat  = $row['sql'];
+	if($row['sql'] != NULL)
+	{
+		$sqlstat  = $row['sql'];
+	}
 }
 
 echo '<hr />'.$sqlstat;
