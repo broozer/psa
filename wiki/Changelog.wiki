@@ -19,17 +19,12 @@ _Complete change for source code_
 
 - to do
   
-  * vacuum (on database)
-  * manage indexes (table)
-  * search
-   * create table
-   * drop table
-   * add record
-   * indexes
-   * triggers
-   
-
-
-
- 
- 
+ * vacuum (on database)
+ * manage indexes (table)
+ * search
+ * create table
+ * drop table
+ * add record
+ * indexes
+ * triggers
+  
