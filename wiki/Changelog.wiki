@@ -1,30 +1,33 @@
 #summary Changelog
 
-= Version 0.1 =
+= Version 0.01=
 
-revision 15
+update : 2011-02-02
 
-update : 2007-09-28
-
-_Today I uploaded the necessary files and now basic CRUD functionality is achieved. If you want to try the code and need help in any way, do not hesitate to contact me._
+_Complete change for source code_
 
 
 - finished
 
   * create database
   * drop database
-  * create table
-  * drop table
   * show structure
+  * browse tables
+  * edit record
+  * delete record
   * query (database/table)
-  * CRUD (on table)
 
 - to do
   
   * vacuum (on database)
   * manage indexes (table)
   * search
-  
+   * create table
+   * drop table
+   * add record
+   * indexes
+   * triggers
+   
 
 
 

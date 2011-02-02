@@ -1,52 +1,55 @@
 <?php
 
-/*
-** [type] file
-** [name] autoload.php
-** [author] Wim Paulussen
-** [since] 2007-05-21
-** [update] 2007-08-22 - update layout
-** [expl] autoload 
-** [end]
+/**
+* [name] autoload.php
+* [type] file
+* [expl] autoload.php voor psa
+* [since] 2010-09-22
 */
-
-
-error_reporting(E_ALL | E_STRICT);	// NOTE: for development purposes
 
 function __autoload($class_name)
 {
-	require_once('./class/'.$class_name.'.php');
+	require_once('./classes/'.$class_name.'.php');
 }
+
+if(!file_exists('./data/base.sqlite')) {
+	header('location: setup.php');
+	exit;
+}
+
+define('LIMIT',100);
+
+$psa = new LitePDO('sqlite:./data/base.sqlite');
+$q = "SELECT * FROM base";
+$psa->qo($q);
+$result = $psa->fo_one();
+unset($psa);
 
 $sessie = new Session;
+date_default_timezone_set('Europe/Paris');
+/**
+* [comment] Logger directieven
+*/
+define('LOGGER_DEBUG', 100);
+define('LOGGER_INFO', 75);
+define('LOGGER_NOTICE', 50);
+define('LOGGER_WARNING', 25);
+define('LOGGER_ERROR', 10);
+define('LOGGER_CRITICAL', 5);
 
-// NOTE: check existence of psa.xml. If it does not exist, it will be created with standards
+$cfg['LOGGER_FILE'] = 'psa.log';
+$cfg['LOGGER_LEVEL'] = LOGGER_DEBUG;
+$log = Logger::getInstance();
 
-if(!file_exists('./xml/psa.xml'))
-{
-	$fp = new File('./xml/psa.xml','w');
-	$lijn = '<?xml version="1.0" ?>'."\n";
-	$lijn .= '<psa>'."\n";
-	$lijn .= "\t".'<param type="extension">sdb</param>'."\n";
-	$lijn .= "\t".'<param type="datadir">./</param>'."\n";
-	$lijn .= "\t".'<param type="language">en</param>'."\n";
-	$lijn .= '</psa>'."\n";
-	$fp->writelines($lijn);
-	unset($fp);
-}
-	
-include_once('./xml_parse.php');
+$req = new Request;
 
-if(!file_exists('./xml/psalang_'.$lang.'.xml'))
-{
-	die("file 'psalang_".$lang.".xml' is needed. Download it from the project download page to get this working !");
-}
+$submit = new Input;
+$submit->setName('submit');
+$submit->setType('submit');
 
-if (!$sessie->isS('dbs'))
-{
-	$psa = new Psa;
-	$dbar = $psa->getDb($datadir,$ext);
-	$sessie->setS('dbs',$dbar);
-}
+$cmd = new Input;
+$cmd->setName('cmd');
+$cmd->setType('hidden');
+
 
 ?>

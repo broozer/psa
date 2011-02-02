@@ -1,110 +1,147 @@
+/* psa.css */
 body {
-	font-size: 1.1em;
-	font-family: "Trebuchet MS", "Times New Roman", times, serif;
-	color: #000000;
-	background-color: #FFF;
-	margin: 0px;
+	margin: 0;
+	color: steelblue;
+	font-family: "Trebuchet MS",Helvetica,Jamrul,sans-serif;
 }
 
-a {
-	color: blue;
-	text-decoration: none;
-	padding-right: 15px;
+p {
+	margin: 0;
+	padding: 5px;
+	background-color: azure;
+	/* border: 1px solid steelblue; */
 }
 
-a:hover {
-	color: red;
-	text-decoration: underline;
+ul {
+	margin: 0;
+	background-color: azure;
 }
 
-td,th {
+table {
+	border-collapse: collapse;
+}
+
+th,td {
 	white-space: nowrap;
 }
 
-th {
+input {
+	background-color: lightyellow;
+	font-size: 1.3em;
+}
+
+input[readonly] {
 	background-color: silver;
-	padding: 3px;
 }
 
-.page {
-	width: 1070px;
-	margin: 0 auto;
-	font-family: "Lucida Grande", Tahoma, Arial, Helvetica, sans-serif; /* Lucida Grande voor Macs, Tahoma voor pc's */
-	font-size: 11px;
-	line-height: 1.6em;
-	color: #666;
-	background-color: #fff;
+/**/
+textarea {
+	background-color: lightyellow;
+	font-size: 1.3em;
+}
+/**/
 
+.rechts {
+	text-align: right;
 }
 
-#header{
-	border-bottom: 4px solid #948979;
-	padding-top: 10px;
-	clear: both;
-	margin-bottom: 10px;
-	/* margin-left: 260px; */	
-}
-
-#footer {
-	clear: both;
-	background-color: #FFF;
-	border-top: 2px solid #999;
-	font-size: 0.6em;
-}
-
-
-.centraal {
+.center {
 	text-align: center;
 }
 
-.rechts {
-	text-align: right;	
+/* p in tableinfo */
+.struct { 
+	padding: 10px;
+	color: steelblue;
+	background-color: white;
+	text-decoration: underline;
+	border: none;
+}
+.red {
+	color: red;
 }
 
-#navigation {
-	float: left;
-	width: 140px;
+.result table {
+	border-bottom: 1px solid steelblue;
 }
 
-#navigation a {
-	display: block;
+.result th {
+	white-space: nowrap;
+	padding: 3px;
+	border-left: 1px solid steelblue;
+	border-right: 1px solid steelblue;
+	background-color: black;
+	color: white;
+	font-weight: bold;
+}
+
+.result td.white {
+	white-space: nowrap;
+	padding: 5px;
+	border-left: 1px solid steelblue;
+	border-right: 1px solid steelblue;
+	vertical-align: top;
+	border-bottom: 1px solid steelblue;
+}
+
+.result td.yellow {
+	white-space: nowrap;
+	padding: 5px;
+	border-left: 1px solid steelblue;
+	border-right: 1px solid steelblue;
+	vertical-align: top;
+	border-bottom: 1px solid steelblue;
+	background-color: lightyellow;
+}
+
+#header {
+	font-size: 1.3em;
+	color: white;
+	text-align: center;
+	font-weight: bold;
+	background-color: steelblue;
+}
+
+#error {
+	color: white;
+	font-size: 1.3em;
+	padding-left: 20px;
+	font-weight: bold;
+	background-color: red;
+}
+
+#message {
+	color: white;
+	font-size: 1.3em;
+	padding-left: 20px;
+	font-weight: bold;
+	background-color: darkgreen;
+}
+
+#menu {
+	border-bottom: 2px dotted steelblue;
+}
+
+#menu ul li {
+	margin: 0;
+	display: inline;
 }
 
 #content {
-	float: left;
-	width: 70%;
-	padding-left: 5px;
-	/*max-width: 550px;
-	min-width: 200px;*/
-	border-left: 2px solid #ccc;
-	background-color: #fff;
+	margin: 15px;
 }
 
-#big {
-	font-size: 1.4em;
+.grey {
+	border: 1px solid black;
+	background-color: silver;
 }
 
-#menubar {
-	border-bottom: 1px solid #ccc;
-	padding: 5px;
-	margin: 0;
-	background-color: lightgrey;
-}
-
-.lefter {
-	display: block;
-	margin-left: 20px;
-}
-
-.lefterbig {
-	display: block;
-	margin-left: 20px;
-	font-size: 1.4em;
-}
-
-#blueback {
-	background-color: powderblue;
-	padding-left: 5px;
-	padding-right: 5px;
-	font-weight: bold;
+.qs {
+	/* margin-top: 3px; */
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	border: 1px solid black;
+	background-color: azure;
 }
