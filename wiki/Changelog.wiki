@@ -1,6 +1,6 @@
 #summary Changelog
 
-= Version 0.01=
+===Version 0.01===
 
 update : 2011-02-02
 
@@ -27,4 +27,5 @@ _Complete change for source code_
  * add record
  * indexes
  * triggers
+ * docs
   
