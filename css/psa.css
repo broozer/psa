@@ -94,6 +94,20 @@ textarea {
 	background-color: lightyellow;
 }
 
+#listing tr.even {
+	background-color: #f8f8f8;
+	border-bottom: 1px solid #eee;
+	border-top: 1px solid #eee;
+}
+
+#listing tr.odd td, table tr.even td {
+	padding: 3px 2px;
+}
+
+#listing tbody tr:hover {
+	background-color: #e0ffe0;
+}
+
 #header {
 	font-size: 1.3em;
 	color: white;

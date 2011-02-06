@@ -92,6 +92,7 @@ include_once('./inc/menubar.php');
 
 $body->line('<h3>Table : '.$req->get('table').'</h3>');
 
+$odd = FALSE;
 if(!$res) {
 	$body->line('Table does not contain records');
 } else {
@@ -134,6 +135,7 @@ if(!$res) {
 	
 	$table = new Table;
 	$table->setClas('result');
+	$table->setId('listing');
 	$table->build();
 	foreach($res as $item) {
 		/**/
@@ -153,7 +155,13 @@ if(!$res) {
 		}
 		/**/
 		$tr = new Tr;
-	
+		if($odd) {
+		$tr->setGlobalClass('even');
+		$odd = FALSE;
+		} else {
+			$tr->setGlobalClass('odd');
+			$odd = TRUE;
+		}
 		$edit = new Link;
 		$edit->setHref('index.php?cmd=edit_record&table='.$req->get('table').'&id='.$item->id);
 		$edit->setName('edit');

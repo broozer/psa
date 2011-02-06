@@ -32,7 +32,9 @@ $titles = FALSE;
 
 $table = new Table;
 $table->setClas('result');
+$table->setId('listing');
 $table->build();
+$odd = TRUE;
 
 foreach($res as $item) {
 	if(!$titles) {
@@ -45,6 +47,14 @@ foreach($res as $item) {
 		$titles = TRUE;
 	}
 	$tr = new Tr;
+	if($odd) {
+		$tr->setGlobalClass('even');
+		$odd = FALSE;
+	} else {
+		$tr->setGlobalClass('odd');
+		$odd = TRUE;
+	}
+	
 	foreach($item as $data) {
 		/* if(strlen($data) > 25) {
 			$tr->addElement(substr($data,0,25).'...');

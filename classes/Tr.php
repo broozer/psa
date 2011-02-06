@@ -9,6 +9,7 @@
 * [update] 2007-05-21 added new functionality for getId and getClas (needs testing)
 * [update] 2009-01-22 : exception
 * [update] 2009-10-08 : display with <eol> (\r\n)
+* [update] 2011-02-06 : global tr
 * [todo] documentation (partly)
 */
 
@@ -35,6 +36,15 @@ class Tr extends Web
 	* [expl] holds last number for array starting value is 0
 	*/
 	private $_pointer = 0;
+
+	/**
+	* [type] attribute
+	* [name] _globalClass
+	* [scope] private
+	* [expl] global class on row
+	*/
+	private $_globalClass = '';
+
 
 	/**
 	* [name] __construct
@@ -112,7 +122,12 @@ class Tr extends Web
 			$this->html = '<tbody>';
 			Table::$tbody_set = TRUE;
 		}
-		$this->html .= "<tr>";
+		if($this->_globalClass == '') {
+			$this->html .= "<tr>";
+		} else {
+			$this->html .= '<tr class="'.$this->_globalClass.'">';
+		}
+		
 		for($i=0;$i<sizeof($this->_array);++$i)
 		{
 			$this->html .= '<td';
@@ -133,5 +148,15 @@ class Tr extends Web
 		$this->html .= "</tr>"."\r\n";
 		$this->display();
 	}
+	/**
+	* [type] method
+	* [name] setGlobalClass
+	* [scope] public
+	* [expl] set global tag
+	*/
+	public function setGlobalClass($data) {
+		$this->_globalClass = $data;
+	}
+	
 }
 ?>
