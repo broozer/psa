@@ -2,6 +2,10 @@
 
 ===Version 0.01===
 
+update : 2011-02-06
+
+beautify layout form table browse and query results
+
 update : 2011-02-02
 
 _Complete change for source code_
