@@ -1,20 +1,20 @@
 /* psa.css */
 body {
 	margin: 0;
-	color: steelblue;
+	color: #4682B4;
 	font-family: "Trebuchet MS",Helvetica,Jamrul,sans-serif;
 }
 
 p {
 	margin: 0;
 	padding: 5px;
-	background-color: azure;
+	/* background-color: azure; */
 	/* border: 1px solid steelblue; */
 }
 
 ul {
 	margin: 0;
-	background-color: azure;
+	/* background-color: azure; */
 }
 
 table {
@@ -27,7 +27,20 @@ th,td {
 
 input {
 	background-color: lightyellow;
-	font-size: 1.3em;
+	font-size: 1em;
+}
+
+input[type="submit"] {
+	background-color: #B0C4DE;
+	border: 1px solid #6A5ACD;
+	padding-left: 5px;
+	padding-right: 5px
+	margin-left: 10px
+}
+
+input[type="submit"]:hover {
+	background-color: #FFA500;
+	border: 1px solid #6A5ACD;
 }
 
 input[readonly] {
@@ -39,6 +52,16 @@ textarea {
 	background-color: lightyellow;
 	font-size: 1.3em;
 }
+
+a {
+	color: #000080;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #FFA500;
+}
+
 /**/
 
 .rechts {
@@ -62,14 +85,14 @@ textarea {
 }
 
 .result table {
-	border-bottom: 1px solid steelblue;
+	border-bottom: 1px solid #4682B4;
 }
 
 .result th {
 	white-space: nowrap;
 	padding: 3px;
-	border-left: 1px solid steelblue;
-	border-right: 1px solid steelblue;
+	border-left: 1px solid #4682B4;
+	border-right: 1px solid 	#4682B4;
 	background-color: black;
 	color: white;
 	font-weight: bold;
@@ -78,19 +101,19 @@ textarea {
 .result td.white {
 	white-space: nowrap;
 	padding: 5px;
-	border-left: 1px solid steelblue;
-	border-right: 1px solid steelblue;
+	border-left: 1px solid 	#4682B4;
+	border-right: 1px solid 	#4682B4;
 	vertical-align: top;
-	border-bottom: 1px solid steelblue;
+	border-bottom: 1px solid 	#4682B4;
 }
 
 .result td.yellow {
 	white-space: nowrap;
 	padding: 5px;
-	border-left: 1px solid steelblue;
-	border-right: 1px solid steelblue;
+	border-left: 1px solid	#4682B4;
+	border-right: 1px solid 	#4682B4;
 	vertical-align: top;
-	border-bottom: 1px solid steelblue;
+	border-bottom: 1px solid 	#4682B4;
 	background-color: lightyellow;
 }
 
@@ -113,7 +136,7 @@ textarea {
 	color: white;
 	text-align: center;
 	font-weight: bold;
-	background-color: steelblue;
+	background-color: 	#4682B4;
 }
 
 #error {
@@ -133,7 +156,7 @@ textarea {
 }
 
 #menu {
-	border-bottom: 2px dotted steelblue;
+	border-bottom: 2px dotted 	#4682B4;
 }
 
 #menu ul li {

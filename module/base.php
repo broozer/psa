@@ -58,57 +58,13 @@ $body->build();
 
 include_once('./inc/menubar.php');
 
-if ($handle = opendir($sessie->getS('psa-dir')) ) {
-    while (false !== ($file = readdir($handle))) {
-        if ($file != "." && $file != "..") {
-            if(stristr($file,'.'.$sessie->getS('psa-ext'))) {
-            	$files[] = str_replace('.'.$sessie->getS('psa-ext'),'',$file);
-            }
-        }
-    }
-    closedir($handle);
-    sort($files);
-}
-
-if(!$files) {
-	$body->line('<p>No databases found in the given directory with the given extension.</p>');
-} else {
-	$table = new Table;
-	$table->build();
-
-	for($i=0;$i<sizeof($files);++$i) {
-		$link = new Link;
-		$link->setHref('index.php?cmd=table&db='.urlencode($files[$i]));
-		$link->setName($files[$i]);
-
-		$vacuum = new Link;
-		$vacuum->setHref('index.php?cmd=vacuum_db&db='.urlencode($files[$i]));
-		$vacuum->setName('Vacuum');
-		
-		$drop = new Link;
-		$drop->setHref('index.php?cmd=drop_db&db='.urlencode($files[$i]));
-		$drop->setName('Drop');
-		$drop->setJs(' onclick="return PSA.really_drop(\'database\');" ');
-		
-		$tr = new Tr;
-		$tr->addElement($link->dump());
-		$tr->addElement($vacuum->dump());
-		$tr->addElement($drop->dump());
-		$tr->build();
-		
-	} 
-
-	unset($table);
-}
-
-$body->line('<hr />');
-
 $inp_db = new Input;
 $inp_db->setName('newdb');
 $inp_db->setSize(25);
 $inp_db->setMaxlength(128);
 
 $submit->setValue('Create');
+$submit->setClas('button');
 $cmd->setValue('create_db');
 
 $form = new Form;
@@ -127,6 +83,63 @@ $tr->build();
 
 unset($table);
 unset($form);
+
+$body->line('<hr />');
+
+if ($handle = opendir($sessie->getS('psa-dir')) ) {
+    while (false !== ($file = readdir($handle))) {
+        if ($file != "." && $file != "..") {
+            if(stristr($file,'.'.$sessie->getS('psa-ext'))) {
+            	$files[] = str_replace('.'.$sessie->getS('psa-ext'),'',$file);
+            }
+        }
+    }
+    closedir($handle);
+    sort($files);
+}
+
+$odd = TRUE;
+
+if(!$files) {
+	$body->line('<p>No databases found in the given directory with the given extension.</p>');
+} else {
+	$table = new Table;
+	$table->setId('listing');
+	$table->build();
+
+	for($i=0;$i<sizeof($files);++$i) {
+		$link = new Link;
+		$link->setHref('index.php?cmd=table&amp;db='.urlencode($files[$i]));
+		$link->setName($files[$i]);
+
+		$vacuum = new Link;
+		$vacuum->setHref('index.php?cmd=vacuum_db&amp;db='.urlencode($files[$i]));
+		$vacuum->setName('Vacuum');
+		
+		$drop = new Link;
+		$drop->setHref('index.php?cmd=drop_db&amp;db='.urlencode($files[$i]));
+		$drop->setName('Drop');
+		$drop->setJs(' onclick="return PSA.really_drop(\'database\');" ');
+		
+		$tr = new Tr;
+		if($odd) {
+			$tr->setGlobalClass('even');
+			$odd = FALSE;
+		} else {
+			$tr->setGlobalClass('odd');
+			$odd = TRUE;
+		}
+		$tr->addElement($link->dump());
+		$tr->addElement($vacuum->dump());
+		$tr->addElement($drop->dump());
+		$tr->build();
+		
+	} 
+
+	unset($table);
+}
+
+
 
 $body->line('</div>');
 unset($body);

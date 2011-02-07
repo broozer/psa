@@ -40,6 +40,7 @@ include_once('./inc/menubar.php');
 $body->line('<p class="struct">Structure for table : <b>'.$req->get('table').'</b></p>');
 $table = new Table;
 $table->setClas('result');
+$table->setId('listing');
 $table->build();
 
 $th = new Th;
@@ -49,6 +50,8 @@ $th->addElement('size');
 $th->addElement('null allowed');
 $th->addElement('default');
 $th->build();
+
+$odd = TRUE;
 
 foreach($res as $item) {
 			
@@ -87,6 +90,13 @@ foreach($res as $item) {
 
 	
 	$tr = new Tr;
+	if($odd) {
+		$tr->setGlobalClass('even');
+		$odd = FALSE;
+	} else {
+		$tr->setGlobalClass('odd');
+		$odd = TRUE;
+	}
 	$tr->addElement($name);
 	$tr->addElement($type);
 	$tr->setClas('rechts');
@@ -106,6 +116,7 @@ $res = $sql->fo_one();
 
 echo $res->sql;
 
+$body->line('</div>');
 unset($body);
 unset($html);
 ?>

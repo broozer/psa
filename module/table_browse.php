@@ -97,23 +97,23 @@ if(!$res) {
 	$body->line('Table does not contain records');
 } else {
 	$firstlink = new Link;
-	$firstlink->setHref('index.php?cmd=table_browse&table='.$req->get('table').'&direction=first');
-	$firstlink->setName('[<<--]');
+	$firstlink->setHref('index.php?cmd=table_browse&amp;table='.$req->get('table').'&amp;direction=first');
+	$firstlink->setName('[&lt;&lt;--]');
 	$firstlink->build();
 	
 	$previous = new Link;
-	$previous->setHref('index.php?cmd=table_browse&table='.$req->get('table').'&direction=previous');
-	$previous->setName('[<]');
+	$previous->setHref('index.php?cmd=table_browse&amp;table='.$req->get('table').'&amp;direction=previous');
+	$previous->setName('[&lt;]');
 	$previous->build();
 	
 	$next = new Link;
-	$next->setHref('index.php?cmd=table_browse&table='.$req->get('table').'&direction=next');
-	$next->setName('[>]');
+	$next->setHref('index.php?cmd=table_browse&amp;table='.$req->get('table').'&amp;direction=next');
+	$next->setName('[&gt;]');
 	$next->build();
 	
 	$lastlink = new Link;
-	$lastlink->setHref('index.php?cmd=table_browse&table='.$req->get('table').'&direction=last');
-	$lastlink->setName('[-->>]');
+	$lastlink->setHref('index.php?cmd=table_browse&amp;table='.$req->get('table').'&amp;direction=last');
+	$lastlink->setName('[--&gt;&gt;]');
 	$lastlink->build();
 	
 	$low = $sessie->getS('bottom') + 1;
@@ -163,12 +163,12 @@ if(!$res) {
 			$odd = TRUE;
 		}
 		$edit = new Link;
-		$edit->setHref('index.php?cmd=edit_record&table='.$req->get('table').'&id='.$item->id);
+		$edit->setHref('index.php?cmd=edit_record&amp;table='.$req->get('table').'&amp;id='.$item->id);
 		$edit->setName('edit');
 		// $edit->setTarget('edit_del');
 	
 		$del = new Link;
-		$del->setHref('index.php?cmd=drop_record&table='.$req->get('table').'&id='.$item->id);
+		$del->setHref('index.php?cmd=drop_record&amp;table='.$req->get('table').'&amp;id='.$item->id);
 		$del->setName('del');
 		$del->setJs(' onclick="return PSA.really_drop(\'record\');" ');
 		
@@ -176,7 +176,7 @@ if(!$res) {
 		$tr->addElement($del->dump());
 		
 		foreach($item as $data) {
-			$tr->addElement($data);
+			$tr->addElement(htmlentities($data));
 		}
 		$tr->build();
 	}

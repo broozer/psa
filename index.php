@@ -61,10 +61,11 @@ else
 	<p>Databases will be selected based on the preset directory and extension. 
 	Currently the following are stored : </p>');
 	include_once('./forms/form_base.php');
-	$body->line('
+	$body->line('<hr />
 	<p>PSA stands for PHP - SQLite - Administration. This application lets you 
-	do the basic operations with SQLite<b>3</b> databases. The current version only
-	supports the very basics. The following issues are already implemented :
+	do the basic operations with SQLite3 databases. The current version only
+	supports the very basics. </p>
+	<p>	The following issues are already implemented :</p>
 	<ul>
 		<li>select directory and extension</li>
 		<li>list databases based on the above</li>
@@ -72,24 +73,27 @@ else
 		<li>perform random queries on the selected database</li>
 		<li>show table structure</li>
 		<li>browse table</li>
+		<li>update rows</li>
+		<li>delete rows</li>
 		<li>create database</li>
 		<li>drop database</li>
 		<li>vacuum database</li>
 	</ul>
-	<ul>Roadmap :
+	<p>Roadmap :</p>
+	<ul>
 		<li>create table</li> 
 		<li>drop table</li>
 		<li>insert rows</li>
-		<li>update rows</li>
-		<li>delete rows</li>
 		<li>list indexes</li>
 		<li>create indexes</li>
 		<li>drop indexes</li>
+		<li>CRUD views</li>
 	</ul>
-	<ul>Not yet planned :
+	<p>Not yet planned :</p>
+	<ul>
 		<li>stored procedures</li>
 		<li>triggers</li>
-	</ul></p>');
+	</ul>');
 	
 
 	$body->line('</div>');
