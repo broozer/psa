@@ -7,6 +7,8 @@
 * [since] 2010.09.22 - o
 */
 
+set_time_limit('600');
+
 if(trim($req->get('qs')) == '') {
 	$sessie->setS('psa-error','Query cannot be blank.');
 	header('location: index.php?cmd=query');
@@ -45,9 +47,11 @@ $sql = new LitePDO('sqlite:'
 	.$sessie->getS('psa-ext').'');
 $q = stripslashes($req->get('qs'));
 
+$sql->qo("BEGIN TRANSACTION");
 $sql->qo($q);
 $res = $sql->fo();
 
+$sql->qo("COMMIT");
 if(!$res) {
 
 	/**/
@@ -60,4 +64,6 @@ if(!$res) {
 	header('location: index.php?cmd=query_results');
 	exit;
 }
+
+
 ?>

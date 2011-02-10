@@ -42,8 +42,8 @@ $form->setAction('index.php');
 $form->build();
 
 $inp_text = new Textarea;
-$inp_text->setRows(10);
-$inp_text->setCols(80);
+$inp_text->setRows(15);
+$inp_text->setCols(100);
 $inp_text->setName('qs');
 $inp_text->setId('to_text');
 
