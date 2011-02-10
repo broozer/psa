@@ -2,6 +2,18 @@
 
 ===Version 0.01===
 
+CURRENTLY STILL A LOT TO BE DONE SO HANDLE WITH CARE !!!
+
+update : 2011.02.10
+
+- start background info
+- start add table
+- debug : query field made bigger due to limited input field size
+- debug : base.php - if $files is empty do not perform sort
+- debug : setup.php - do I use the log file ??
+- debug : record_de.php : file not being used - deleted
+- enhancement : queries are executed with Begin..commit in order to speed up development
+
 update : 2011-02-07
 
 - layout for input submits

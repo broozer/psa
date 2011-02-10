@@ -64,7 +64,8 @@ else
 	$body->line('<hr />
 	<p>PSA stands for PHP - SQLite - Administration. This application lets you 
 	do the basic operations with SQLite3 databases. The current version only
-	supports the very basics. </p>
+	supports the very basics. Check <a href="index.php?cmd=bts">here</a> for
+	more information.</p>
 	<p>	The following issues are already implemented :</p>
 	<ul>
 		<li>select directory and extension</li>

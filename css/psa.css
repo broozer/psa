@@ -56,6 +56,7 @@ textarea {
 a {
 	color: #000080;
 	text-decoration: none;
+	font-size: 1.1em;
 }
 
 a:hover {
@@ -63,6 +64,16 @@ a:hover {
 }
 
 /**/
+.xemel {
+	padding-left: 50px;
+	padding-right: 50px;
+	font-weight: 0.9em;
+	font-style: italic;
+}
+
+.xemel h3 {
+	padding-left: 100px;
+}
 
 .rechts {
 	text-align: right;
@@ -70,6 +81,12 @@ a:hover {
 
 .center {
 	text-align: center;
+}
+
+.vet {
+	font-weight: bold;
+	text-decoration: underline;
+	font-size: 1.1em;
 }
 
 /* p in tableinfo */
@@ -93,7 +110,7 @@ a:hover {
 	padding: 3px;
 	border-left: 1px solid #4682B4;
 	border-right: 1px solid 	#4682B4;
-	background-color: black;
+	background-color: steelblue;
 	color: white;
 	font-weight: bold;
 }

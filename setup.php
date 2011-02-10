@@ -26,10 +26,12 @@ $psa->qo($q);
 $q = "INSERT INTO base (directory,extension) VALUES ('./data','sqlite')";
 $psa->qo($q);
 
+/* 2011.02.10 - do I use this log file ??
 if(!file_exists('psa.log')) {
 	$file = new File('psa.log','w');
 	unset($file);
 }
+*/ 
 unset($psa);
 
 header('location: index.php');

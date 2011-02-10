@@ -4,7 +4,7 @@
 *¨[type] file
 * [name] base.php
 * [package] psa
-* [since] 2010.09.22 - ok
+* [since] 2010.09.22
 */
 
 if(!$sessie->isS('psa-ext')) {
@@ -86,6 +86,8 @@ unset($form);
 
 $body->line('<hr />');
 
+$files = Array();
+
 if ($handle = opendir($sessie->getS('psa-dir')) ) {
     while (false !== ($file = readdir($handle))) {
         if ($file != "." && $file != "..") {
@@ -95,7 +97,9 @@ if ($handle = opendir($sessie->getS('psa-dir')) ) {
         }
     }
     closedir($handle);
-    sort($files);
+    if('0' !== sizeof($files)) {
+    	sort($files);
+    }
 }
 
 $odd = TRUE;
