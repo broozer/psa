@@ -27,19 +27,6 @@ unset($psa);
 
 $sessie = new Session;
 date_default_timezone_set('Europe/Paris');
-/**
-* [comment] Logger directieven
-*/
-define('LOGGER_DEBUG', 100);
-define('LOGGER_INFO', 75);
-define('LOGGER_NOTICE', 50);
-define('LOGGER_WARNING', 25);
-define('LOGGER_ERROR', 10);
-define('LOGGER_CRITICAL', 5);
-
-$cfg['LOGGER_FILE'] = 'psa.log';
-$cfg['LOGGER_LEVEL'] = LOGGER_DEBUG;
-$log = Logger::getInstance();
 
 $req = new Request;
 

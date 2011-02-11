@@ -114,15 +114,15 @@ if(!$files) {
 	for($i=0;$i<sizeof($files);++$i) {
 		$link = new Link;
 		$link->setHref('index.php?cmd=table&amp;db='.urlencode($files[$i]));
-		$link->setName($files[$i]);
+		$link->setName('['.$files[$i].']');
 
 		$vacuum = new Link;
 		$vacuum->setHref('index.php?cmd=vacuum_db&amp;db='.urlencode($files[$i]));
-		$vacuum->setName('Vacuum');
+		$vacuum->setName('[vacuum]');
 		
 		$drop = new Link;
 		$drop->setHref('index.php?cmd=drop_db&amp;db='.urlencode($files[$i]));
-		$drop->setName('Drop');
+		$drop->setName('[drop]');
 		$drop->setJs(' onclick="return PSA.really_drop(\'database\');" ');
 		
 		$tr = new Tr;
@@ -143,7 +143,7 @@ if(!$files) {
 	unset($table);
 }
 
-
+$body->line('<hr />');
 
 $body->line('</div>');
 unset($body);

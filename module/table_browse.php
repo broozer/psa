@@ -164,12 +164,12 @@ if(!$res) {
 		}
 		$edit = new Link;
 		$edit->setHref('index.php?cmd=edit_record&amp;table='.$req->get('table').'&amp;id='.$item->id);
-		$edit->setName('edit');
+		$edit->setName('[edit]');
 		// $edit->setTarget('edit_del');
 	
 		$del = new Link;
 		$del->setHref('index.php?cmd=drop_record&amp;table='.$req->get('table').'&amp;id='.$item->id);
-		$del->setName('del');
+		$del->setName('[del]');
 		$del->setJs(' onclick="return PSA.really_drop(\'record\');" ');
 		
 		$tr->addElement($edit->dump());

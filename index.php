@@ -49,7 +49,7 @@ else
 	$body = new Body;
 	$body->build();
 
-	$body->line('<div id="header">PSA - homepage</div>');
+	$body->line('<div id="header">php-sqlite-admin homepage</div>');
 	if($sessie->isS('psa-error')) {
 		$body->line('<div id="error">'.$sessie->getS('psa-error').'</div>');
 		$sessie->unsetS('psa-error');
@@ -64,7 +64,7 @@ else
 	$body->line('<hr />
 	<p>PSA stands for PHP - SQLite - Administration. This application lets you 
 	do the basic operations with SQLite3 databases. The current version only
-	supports the very basics. Check <a href="index.php?cmd=bts">here</a> for
+	supports the very basics. Check <a href="index.php?cmd=bts">[here]</a> for
 	more information.</p>
 	<p>	The following issues are already implemented :</p>
 	<ul>
@@ -89,6 +89,7 @@ else
 		<li>create indexes</li>
 		<li>drop indexes</li>
 		<li>CRUD views</li>
+		<li>dump table/database</li>
 	</ul>
 	<p>Not yet planned :</p>
 	<ul>

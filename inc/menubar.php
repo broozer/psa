@@ -27,12 +27,12 @@ if($sessie->isS('psa-message')) {
 	
 $body->line('<div id="menu">
 <ul>
-	<li><a href="index.php">home</a></li>
-	<li><a href="index.php?cmd=base">databases</a></li>');
+	<li><a href="index.php">[home]</a></li>
+	<li><a href="index.php?cmd=base">[databases]</a></li>');
 	if($sessie->isS('psa-db')) {
 		$body->line('
-		<li><a href="index.php?cmd=table">tables</a></li>
-		<li><a href="index.php?cmd=query">query</a></li>');
+		<li><a href="index.php?cmd=table">[tables]</a></li>
+		<li><a href="index.php?cmd=query">[query]</a></li>');
 	}
 $body->line('</ul>
 </div>');

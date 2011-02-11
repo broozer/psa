@@ -70,6 +70,14 @@ $body->build();
 
 include_once('./inc/menubar.php');
 
+$link = new Link;
+$link->setHref('index.php?cmd=table_add');
+$link->setName('[add table]');
+
+$link->build();
+
+$body->line('<hr />');
+
 if(!$res) {
 	$body->line('No tables defined.');
 } else {
@@ -112,14 +120,6 @@ if(!$res) {
 }
 
 $body->line('<hr />');
-
-
-$link = new Link;
-$link->setHref('index.php?cmd=table_add');
-$link->setName('Add table');
-
-$link->build();
-
 
 $body->line('</div>');
 unset($body);
