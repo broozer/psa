@@ -1,0 +1,108 @@
+<?xml version="1.0" ?>
+<php-sqlite-admin>
+<item>
+	<caption>
+	<name>Introduction</name>
+	<para>
+	<![CDATA[
+	Php-sqlite-admin (I refer to it as PSA also) is an attempt to get an web-based
+	view on your sqlite databases, written in PHP.<br /><br />
+	]]>
+	</para>
+	
+	</caption>
+	<caption>
+	<name>Requirements</name>
+	<para><![CDATA[
+	Obviously you will need a webserver (I only have experience with Apache) and 
+	PHP. All development is done with PHP 5.3. You will need to have the PDO extension
+	activated.<br /><br />
+	I try to test as much as possible with different browsers, but usually the code will
+	be tested using either Firefox or Chrome. As of this writing [2011.02.10 ], I successfully 
+	used Internet Explorer, Opera and Safari.<br /><br />
+	]]>
+	</para>
+	</caption>
+	<caption>
+	<name>Installation</name>
+	<para>
+	<![CDATA[
+	After you copied the files in the directory of your liking, the program will
+	run a small setup script (runs in the background).<br /><br />
+	It will create a subdirectory 'data' and will create in this directory a 
+	database called 'base.sqlite'. The database has two tables, one for storing the
+	active directory and extension and another for storing queries executed.
+	After the installation process, the homepage will be opened and the entered 
+	values point to the directory	and extension just created.<br /><br />
+	]]>
+	</para>
+	</caption>
+	<caption>
+	<name>Home</name>
+	<para>
+	<![CDATA[
+	The homepage gives you two input fields:
+	<ul>
+		<li>
+		Directory : you can enter here the path of the directory where you want 
+		to scan for sqlite databases. I have the habit to store my databases
+		in a directory which does not fall under the directory structure of the 
+		webserver. Under linux and comparable you need to make sure that the
+		directory and files have the appropriate rights, in order to be able to 
+		work on them.<br /><br />
+		You can enter relative or absolute directories and PSA will check whether
+		the directory exists. If it exists, it will use the 'extension' value to
+		scan for all databases in the given directory.<br /><br />
+		On Windows both back- and forward slashes work.<br /><br />
+		</li>
+		<li>
+		Extension: I usually give my databases '.sqlite' as extension. PSA will
+		assume automatically a trailing dot.<br /><br />
+		E.g. to find the databases with the extension '.sqlite' under directory
+		/var/sqlitedb, you enter '/var/sqlitedb' in the 'directory' box and 
+		'sqlite' (NO DOT!) in the 'extension' box.<br /><br />
+		</li>
+	</ul>
+	]]>
+	</para>
+	<para>
+	<![CDATA[
+	The values you enter here, are stored in the base.sqlite databases (see Istallation)
+	and will be filled in automatically the next time you restart PSA.
+	]]>
+	</para>
+	</caption>
+	<caption>
+	<name>Databases</name>
+	<para>
+	<![CDATA[
+	The menu on top will appear and show you to possible values : home (homepage) and
+	databases. In addition, you will see the selected directory and extension value.<br /><br />
+	PSA will scan for existing databases and lists them. Clicking on the name of the database
+	'opens' the database and will switch to the 'Tables' page. In addtion you can create a
+	new database, vacuum and drop existing ones. When you click on the 'drop' link,
+	you will be asked for confimation first.
+	<br /><br />
+	]]>
+	</para>
+	</caption>
+	<caption>
+	<name>More</name>
+	<para><![CDATA[
+	I started working on a Sqlite PHP interface back in 2006. At that moment
+	only Sqlite2 type databases were supported. I still use this first version
+	for a few databases that are sqlite2 based.<br /><br />
+	With the advent of Sqlite3 and the improved functionality (think ALTER TABLE etc)
+	I restarted the project and hosted it on google code. Due to the usual time
+	constraints, I never really fully implemented the basic functionality. Also,
+	the setup at that time reflected my somewhat limited capabilities..<br /><br />
+	Along came the sqlite-manager plugin for Firefox. I immediately found out that
+	this tool fullfilled all your needs when developing on a local machine.<br /><br />
+	Since my needs to be able to work on remote databases grew, I recently restarted
+	with yet another project. By coincidence I found out that you can use git in
+	combination with subversion as a VCS. Et voila, I restarted this project.<br /><br />
+	]]>
+	</para>
+	</caption>
+</item>
+</php-sqlite-admin>
