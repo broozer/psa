@@ -4,6 +4,12 @@
 
 CURRENTLY STILL A LOT TO BE DONE SO HANDLE WITH CARE !!!
 
+update : 2011.02.14
+
+ * enhancement : PDO Exceptions in readalble format on query page when execution fails
+ * enhancement : update bts.xml - manual
+  
+ 
 update : 2011.02.11
 
  * debug : remove instances of psa.log

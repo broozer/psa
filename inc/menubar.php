@@ -24,7 +24,24 @@ if($sessie->isS('psa-message')) {
 	$body->line('<div id="message">'.$sessie->getS('psa-message').'</div>');
 	$sessie->unsetS('psa-message');
 }
-	
+
+if($sessie->isS('sqler')) {
+	$body->line('<div id="error">');
+	$class = $sessie->getS('sqler');
+	foreach($class->errorInfo as $key => $value) {
+		if($key == '2') {
+    			print "$value";
+		}
+	}
+	/*
+	echo '<hr />';
+	echo $class->errorInfo->2;
+	echo '<hr />';
+	*/
+	$body->line('</div>');
+	$sessie->unsetS('sqler');
+}
+
 $body->line('<div id="menu">
 <ul>
 	<li><a href="index.php">[home]</a></li>

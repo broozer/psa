@@ -34,6 +34,6 @@ if(!file_exists('psa.log')) {
 */ 
 unset($psa);
 
-header('location: index.php');
+header('location: index.php?cmd=bts');
 exit;
 ?>

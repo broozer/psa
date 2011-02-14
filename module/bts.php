@@ -29,7 +29,7 @@ $body->build();
 $link = new Link;
 
 $link->setHref('index.php');
-$link->setName('&nbsp;&nbsp;[Back]');
+$link->setName('&nbsp;&nbsp;[Home]');
 $link->build();
 
 $body->line('<div class="xemel">');

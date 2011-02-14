@@ -7,6 +7,8 @@
 	<![CDATA[
 	Php-sqlite-admin (I refer to it as PSA also) is an attempt to get an web-based
 	view on your sqlite databases, written in PHP.<br /><br />
+	This information assumes you have already a good foundation in PHP and SQLite-based
+	SQL syntax.
 	]]>
 	</para>
 	
@@ -20,6 +22,9 @@
 	I try to test as much as possible with different browsers, but usually the code will
 	be tested using either Firefox or Chrome. As of this writing [2011.02.10 ], I successfully 
 	used Internet Explorer, Opera and Safari.<br /><br />
+	<p id="error">CAUTION : some (critical) operations rely on Javascript , most notably 
+	dropping databases. Running this program without Javascript enabled, will take 
+	immediate effect ie. drop your database without further notice ! </p>
 	]]>
 	</para>
 	</caption>
@@ -67,7 +72,8 @@
 	</para>
 	<para>
 	<![CDATA[
-	The values you enter here, are stored in the base.sqlite databases (see Istallation)
+	After checking whether the directory exists, the values you enter here are stored 
+	in the base.sqlite databases (see Installation)
 	and will be filled in automatically the next time you restart PSA.
 	]]>
 	</para>
@@ -76,12 +82,14 @@
 	<name>Databases</name>
 	<para>
 	<![CDATA[
-	The menu on top will appear and show you to possible values : home (homepage) and
-	databases. In addition, you will see the selected directory and extension value.<br /><br />
-	PSA will scan for existing databases and lists them. Clicking on the name of the database
-	'opens' the database and will switch to the 'Tables' page. In addtion you can create a
+	The menu on top appears when you click 'Go' on the homepage and show you to possible 
+	values : home (homepage) and databases. In addition, you will see the selected directory 
+	and extension value.<br /><br />
+	PSA will scan for existing databases and list them. Clicking on the name of the database
+	'opens' the database and will switch to the 'Tables' page. In addition you can create a
 	new database, vacuum and drop existing ones. When you click on the 'drop' link,
-	you will be asked for confimation first.
+	you will be asked for confirmation first (javascript based !! if you run your browser 
+	with Javascript disabled, the database will be dropped without further notice ).
 	<br /><br />
 	]]>
 	</para>

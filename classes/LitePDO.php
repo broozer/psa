@@ -187,7 +187,7 @@ class LitePDO extends PDO
 			$this->sql = new PDO($data,$user,$pass);
 			$this->sql->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // , PDO::FETCH_OBJ);
 		}
-		catch(Exception $e)
+		catch(LitePDOException $e)
 		{
 			echo $e->getMessage();
 			die(' : no connection possible to database!');
@@ -213,14 +213,16 @@ class LitePDO extends PDO
 			$this->result = FALSE;
 			
 			$this->qo = $q;
-			if(!$this->stmt = $this->sql->prepare($this->qo))
-			{
-				throw new WebException("<b>LitePDO</b><br />Query cannnot be prepared</b><br />
+			$this->stmt = $this->sql->prepare($this->qo);
+			/*
+				echo ('throw');
+				die();
+				throw new LitePDOException("<b>LitePDO</b><br />Query cannnot be prepared</b><br />
 					Usage \$&lt;objectname&gt;->setLanguage(\"&lt;language&gt;\")");
 				var_dump($this->sql->errorInfo());
 				die('LitePDO query function : ERROR');
 			}
-			
+			*/
 			if(isset($this->bindField))
 			{
 				if(sizeof($this->bindField) > 0)
@@ -241,7 +243,7 @@ class LitePDO extends PDO
 			
 			if(!$this->stmt->execute())
 			{
-				throw new WebException("<b>LitePDO</b><br />Query cannnot be executed</b><br />
+				throw new LitePDOException("<b>LitePDO</b><br />Query cannnot be executed</b><br />
 					Usage \$&lt;objectname&gt;->setLanguage(\"&lt;language&gt;\")");
 				var_dump($this->sql->errorInfo());
 				die('LitePDO query function : ERROR');
@@ -250,9 +252,10 @@ class LitePDO extends PDO
 			$this->result = true;
 			return $this->result;
 		}
-		catch(WebException $e)
+		catch(PDOException $e)
 		{
-			echo $e->getMessage();
+			$_SESSION['sqler'] = $e;
+			// echo $e->getMessage();
 		}
 	}
 	
