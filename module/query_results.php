@@ -30,43 +30,47 @@ $body->line('<p class="qs">'.$sessie->getS('psa-query-results').'<hr />');
 $sessie->unsetS('psa-query-results');
 $titles = FALSE;
 
-$table = new Table;
-$table->setClas('result');
-$table->setId('listing');
-$table->build();
-$odd = TRUE;
-
-foreach($res as $item) {
-	if(!$titles) {
-		$tr = new Th;
-		$names = array_keys(get_object_vars($item));
-		foreach($names as $title) {
-			$tr->addElement($title);
+if(!$res) {
+	$body->line('no further feedback');
+} else {
+	$table = new Table;
+	$table->setClas('result');
+	$table->setId('listing');
+	$table->build();
+	$odd = TRUE;
+	
+	foreach($res as $item) {
+		if(!$titles) {
+			$tr = new Th;
+			$names = array_keys(get_object_vars($item));
+			foreach($names as $title) {
+				$tr->addElement($title);
+			}
+			$tr->build();
+			$titles = TRUE;
+		}
+		$tr = new Tr;
+		if($odd) {
+			$tr->setGlobalClass('even');
+			$odd = FALSE;
+		} else {
+			$tr->setGlobalClass('odd');
+			$odd = TRUE;
+		}
+		
+		foreach($item as $data) {
+			/* if(strlen($data) > 25) {
+				$tr->addElement(substr($data,0,25).'...');
+			} else {
+			*/
+				$tr->addElement($data);
+			// }
 		}
 		$tr->build();
-		$titles = TRUE;
-	}
-	$tr = new Tr;
-	if($odd) {
-		$tr->setGlobalClass('even');
-		$odd = FALSE;
-	} else {
-		$tr->setGlobalClass('odd');
-		$odd = TRUE;
 	}
 	
-	foreach($item as $data) {
-		/* if(strlen($data) > 25) {
-			$tr->addElement(substr($data,0,25).'...');
-		} else {
-		*/
-			$tr->addElement($data);
-		// }
-	}
-	$tr->build();
+	unset($table);
 }
-
-unset($table);
 
 $body->line('</div>');
 unset($body);
