@@ -4,6 +4,11 @@
 
 CURRENTLY STILL A LOT TO BE DONE SO HANDLE WITH CARE !!!
 
+update : 2011.03.07
+
+ * enhancement : multiple queries through query method, divided by semicolon
+ * enhancement : table dump : generates automatically sql statements for insert 
+
 update : 2011.02.14
 
  * enhancement : PDO Exceptions in readalble format on query page when execution fails

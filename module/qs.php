@@ -5,6 +5,7 @@
 * [name] qs.php
 * [package] psa
 * [since] 2010.09.22 - o
+* [update] 2011.03.07 : mulitple query statements divided by ;
 */
 
 set_time_limit('600');
@@ -47,23 +48,43 @@ $sql = new LitePDO('sqlite:'
 	.$sessie->getS('psa-ext').'');
 $q = stripslashes($req->get('qs'));
 
-$sql->qo("BEGIN TRANSACTION");
-$sql->qo($q);
-$res = $sql->fo();
+$q_ar = explode(";",$q);
 
-$sql->qo("COMMIT");
-if(!$res) {
+// var_dump($q_ar);
+// echo '<hr />';
+// die('check multiple');
 
-	/**/
+// $sql->qo("BEGIN TRANSACTION");
+
+$error = FALSE;
+
+for($i=0;$i<sizeof($q_ar);++$i) {
+	if(trim($q_ar[$i]) === '') {
+		continue;
+	}
+	// echo $q_ar[$i].'<hr />';
+	$sql->qo($q_ar[$i]);
+	$res = $sql->fo();
+	/* */
+
+	if(stristr($q_ar[$i],"NSERT INTO")) {
+		// echo 'insert statement -> check falsy';
+	} else {
+		if(!$res) {
+			$error = TRUE;
+			break;
+		}
+	}
+}
+
+if($error) {
 	header('location: index.php?cmd=query');
 	exit;
-	/**/
+	
 } else {
 	$sessie->setS('psa-results',serialize($res));
 	$sessie->setS('psa-query-results',$q);
 	header('location: index.php?cmd=query_results');
 	exit;
 }
-
-
 ?>

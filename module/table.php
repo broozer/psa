@@ -70,23 +70,12 @@ $body->build();
 
 include_once('./inc/menubar.php');
 
-$link = new Link;
-$link->setHref('index.php?cmd=table_add');
-$link->setName('[add table]');
-
-$link->build();
-
-$body->line('<hr />');
-
 if(!$res) {
 	$body->line('No tables defined.');
 } else {
 
-	$odd = TRUE;
-	
 	$table = new Table;
 	$table->setClas('result');
-	$table->setId('listing');
 	$table->build();
 	
 	foreach($res as $item) {
@@ -95,33 +84,28 @@ if(!$res) {
 			continue;
 		}
 		$struct = new Link;
-		$struct->setHref('index.php?cmd=tableinfo&amp;table='.$item->name);
+		$struct->setHref('index.php?cmd=tableinfo&table='.$item->name);
 		$struct->setName('Structure');
 
 		$browse = new Link;
-		$browse->setHref('index.php?cmd=table_browse&amp;table='.$item->name);
+		$browse->setHref('index.php?cmd=table_browse&table='.$item->name);
 		$browse->setName('Browse');
+
+		$dump = new Link;
+		$dump->setHref('index.php?cmd=table_dump&table='.$item->name);
+		$dump->setName('Dump');
 		
 		$tr = new Tr;
-		if($odd) {
-			$tr->setGlobalClass('even');
-			$odd = FALSE;
-		} else {
-			$tr->setGlobalClass('odd');
-			$odd = TRUE;
-		}
 		$tr->addElement($item->name);
 		$tr->addElement($struct->dump());
 		$tr->addElement($browse->dump());
+		$tr->addElement($dump->dump());
 		$tr->build();
 	}
 	
 	unset($table);
 }
 
-$body->line('<hr />');
-
-$body->line('</div>');
 unset($body);
 unset($html);
 ?>
