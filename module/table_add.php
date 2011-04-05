@@ -58,8 +58,9 @@ $th->addElement('null');
 $th->addElement('default');
 $th->build();
 
+// include js 
 $i = 0;
-for($i=0;$i<10;++$i) {
+for($i=0;$i<8;++$i) {
 	$colname = new Input;
 	$colname->setName('colname'.$i);
 	$colname->setSize(30);
