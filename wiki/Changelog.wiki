@@ -4,6 +4,10 @@
 
 CURRENTLY STILL A LOT TO BE DONE SO HANDLE WITH CARE !!!
 
+update : 2011.04.04
+
+ * feature : start with table add ajax based
+
 update : 2011.03.07
 
  * enhancement : multiple queries through query method, divided by semicolon
@@ -11,7 +15,7 @@ update : 2011.03.07
 
 update : 2011.02.14
 
- * enhancement : PDO Exceptions in readalble format on query page when execution fails
+ * enhancement : PDO Exceptions in readable format on query page when execution fails
  * enhancement : update bts.xml - manual
   
  
@@ -55,6 +59,7 @@ _Complete change for source code_
   * edit record
   * delete record
   * query (database/table)
+  * dump table
 
 - to do
   
@@ -67,5 +72,5 @@ _Complete change for source code_
  * indexes
  * triggers
  * docs
- * dump table/database
+ * dump database
   

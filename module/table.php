@@ -51,9 +51,6 @@ $sql->qo($q);
 $res = $sql->fo();
 unset($sql);
 
-// var_dump($res);
-// $tbl = new Sqliteparse;
-// die('tables filter');
 $html = new Html;
 $html->setDoctype('xhtml-strict');
 $html->setLanguage('nl_NL');
@@ -69,6 +66,11 @@ $body = new Body;
 $body->build();
 
 include_once('./inc/menubar.php');
+
+$link = new Link;
+$link->setHref('index.php?cmd=table_add');
+$link->setName('Add table');
+$link->build();
 
 if(!$res) {
 	$body->line('No tables defined.');
