@@ -4,6 +4,11 @@
 
 CURRENTLY STILL A LOT TO BE DONE SO HANDLE WITH CARE !!!
 
+
+update : 2011.04.06
+
+ * bug : LitePDO Exceptions not working as expected anymore
+
 update : 2011.04.04
 
  * feature : start with table add ajax based

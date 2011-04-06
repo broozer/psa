@@ -14,7 +14,7 @@ function __autoload($class_name)
 	require_once('../classes/'.$class_name.'.php');
 }
 
-$sessie = new Session;
+// $sessie = new Session;
 $req = new Request;
 
 

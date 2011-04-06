@@ -13,6 +13,7 @@
 * [update] 2009-08-12 : E_STRICT compliant
 * [update] 2009-08-20 : resultset geactiveerd as variable
 * [update] 2009-09-17 : resultset niet unsetten maar naar NULL
+* [update] 2011.04.06 : Exceptions works as it should (for now)
 * [todo] setAttribute 
 */
 
@@ -179,58 +180,52 @@ class LitePDO extends PDO
 	* [expl] get dsn
 	*/
 	private function getDsn() { return $this->dsn; }
-	
+
+	/**
+	* [name] __construct
+	* [type] method
+	* [scope] public
+	* [expl] create PDO connection
+	*/
 	public function __construct($data,$user='',$pass='')
 	{
 		try
 		{
-			$this->sql = new PDO($data,$user,$pass);
+			if(!$this->sql = new PDO($data,$user,$pass)) {
+				throw new PDOException("<hr />LitePDO construct error<hr />");
+			}
 			$this->sql->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // , PDO::FETCH_OBJ);
 		}
-		catch(LitePDOException $e)
+		catch(PDOException $e)
 		{
-			echo $e->getMessage();
-			die(' : no connection possible to database!');
+			$_SESSION['sqler'] = $e;
+			return false;
 		}
 		
 	}
 
-	/* no more getInstance
-	public static function getInstance($data,$user='',$pass='')
-		if (!self::$instance)
-		{
-		    self::$instance = new LitePDO($data,$user,$pass);
-		}
-
-		return self::$instance;
-	}
+	/**
+	* [name] qo
+	* [type] method
+	* [scope] public
+	* [expl] execute query
 	*/
-	
 	public function qo($q)
 	{
-		try
-		{
+		try {
+		
 			$this->result = FALSE;
-			
 			$this->qo = $q;
-			$this->stmt = $this->sql->prepare($this->qo);
-			/*
-				echo ('throw');
-				die();
-				throw new LitePDOException("<b>LitePDO</b><br />Query cannnot be prepared</b><br />
-					Usage \$&lt;objectname&gt;->setLanguage(\"&lt;language&gt;\")");
-				var_dump($this->sql->errorInfo());
-				die('LitePDO query function : ERROR');
+			
+			if(!$this->stmt = $this->sql->prepare($this->qo)) {
+				throw new PDOException("<hr />LitePDO prepare error<hr />");
 			}
-			*/
+			
+						
 			if(isset($this->bindField))
 			{
 				if(sizeof($this->bindField) > 0)
 				{
-					/*
-					var_dump($this->bindField);
-					var_dump($this->bindParam);
-					*/
 					
 					for($i=0;$i<sizeof($this->bindField);++$i)
 					{
@@ -243,10 +238,7 @@ class LitePDO extends PDO
 			
 			if(!$this->stmt->execute())
 			{
-				throw new LitePDOException("<b>LitePDO</b><br />Query cannnot be executed</b><br />
-					Usage \$&lt;objectname&gt;->setLanguage(\"&lt;language&gt;\")");
-				var_dump($this->sql->errorInfo());
-				die('LitePDO query function : ERROR');
+				throw new PDOException("<hr />LitePDO execute error<hr />");
 			}
 			
 			$this->result = true;
@@ -255,16 +247,29 @@ class LitePDO extends PDO
 		catch(PDOException $e)
 		{
 			$_SESSION['sqler'] = $e;
-			// echo $e->getMessage();
+			return false;
+			
 		}
 	}
-	
+
+	/**
+	* [name] binder
+	* [type] method
+	* [scope] public
+	* [expl] creates array to bind parameters , needs to be called before qo
+	*/
 	public function binder($field,$param)
 	{
 		$this->bindField[] = ':'.$field;
 		$this->bindParam[] = $param;
 	}
-	
+
+	/**
+	* [name] fo
+	* [type] method
+	* [scope] public
+	* [expl] fetchObject - complete resultset , to get one row use fo_one
+	*/
 	public function fo()
 	{
 		while($row = $this->stmt->fetchObject())
@@ -276,12 +281,19 @@ class LitePDO extends PDO
 		$this->resultset = NULL;
 		return $resdump;
 	}
-	
+
+	/**
+	* [name] fo_one
+	* [type] method
+	* [scope] public
+	* [expl] returns all in one set, use when querying for one record
+	*/
 	public function fo_one()
 	{
 		return $this->stmt->fetchObject();
 	}
 
 }
+
 
 ?>

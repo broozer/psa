@@ -63,10 +63,14 @@ for($i=0;$i<sizeof($q_ar);++$i) {
 		continue;
 	}
 	// echo $q_ar[$i].'<hr />';
-	$sql->qo($q_ar[$i]);
-	$res = $sql->fo();
-	/* */
-
+	if(!$sql->qo($q_ar[$i])) {
+		$error = TRUE;
+		break;
+	} else {
+		$res = $sql->fo();
+		/* */
+	}
+	
 	if(stristr($q_ar[$i],"NSERT INTO")) {
 		// echo 'insert statement -> check falsy';
 	} else {
