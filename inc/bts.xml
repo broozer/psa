@@ -95,6 +95,13 @@
 	</para>
 	</caption>
 	<caption>
+	<name>Changelog</name>
+	<para><![CDATA[
+	[2012.01.21] drop column added
+	]]>
+	</para>
+	</caption>
+	<caption>
 	<name>More</name>
 	<para><![CDATA[
 	I started working on a Sqlite PHP interface back in 2006. At that moment

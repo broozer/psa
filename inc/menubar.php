@@ -7,7 +7,7 @@
 * [since] 2010.09.22 - ok
 */
 
-$body->line('<div id="header"> current directory : '
+$body->line('<span id="top"></span><div id="header"> current directory : '
 	.$sessie->getS('psa-dir'). ' - current extension : '.$sessie->getS('psa-ext'));
 if($sessie->isS('psa-db')) {
 	$body->line(' - current database : '.$sessie->getS('psa-db'));
@@ -51,7 +51,8 @@ $body->line('<div id="menu">
 		<li><a href="index.php?cmd=table">[tables]</a></li>
 		<li><a href="index.php?cmd=query">[query]</a></li>');
 	}
-$body->line('</ul>
+	$body->line('<li><a href="index.php?cmd=bts">[more]</a></li>
+</ul>
 </div>');
 
 $body->line('<div id="content">');

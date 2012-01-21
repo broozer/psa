@@ -24,23 +24,38 @@ $head->build();
 $body = new Body;
 $body->build();
 
-// include_once('./inc/menubar.php');
+include_once('./inc/menubar.php');
 
+/*
 $link = new Link;
 
 $link->setHref('index.php');
 $link->setName('&nbsp;&nbsp;[Home]');
 $link->build();
-
+*/
 $body->line('<div class="xemel">');
 
 $xml = simplexml_load_file('./inc/bts.xml');
 
+// menu
 foreach($xml->item->caption as $cap) {
-	echo '<h3>'.$cap->name.'</h3>';
+	$link = new Link;
+	// $link->setHref('#'.$cap->name);
+
+	echo '<a href="#'.$cap->name.'" >'.$cap->name.'</a><br />';
+}
+
+$body->line('<hr />');
+
+// content
+
+foreach($xml->item->caption as $cap) {
+
+	echo '<h3><a name="'.$cap->name.'">'.$cap->name.'</a></h3>';
 	foreach($cap->para as $paraf) {
 		echo '<p>'.$paraf.'</p>';
 	}
+	$body->line('<a href="#top">&lt;==</a><br /><br />');
 }
 
 $body->line('</div></div>');

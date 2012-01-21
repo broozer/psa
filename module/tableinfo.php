@@ -30,6 +30,7 @@ $head = new Head;
 $head->setCharset('UTF-8');
 $head->setTitle('PSA - show table info for '.$req->get('table'));
 $head->setCss('./css/psa.css');
+$head->setJs('./js/PSA.js');
 $head->build();
 
 $body = new Body;
@@ -49,6 +50,7 @@ $th->addElement('type');
 $th->addElement('size');
 $th->addElement('null allowed');
 $th->addElement('default');
+$th->addElement('remove');
 $th->build();
 
 $odd = TRUE;
@@ -104,6 +106,26 @@ foreach($res as $item) {
 	$tr->setClas('center');
 	$tr->addElement($nn);
 	$tr->addElement($dflt);
+
+	$test = 'haai';
+	
+	$dellink = new Link;
+	$dellink->setHref('index.php?cmd=drop_column&amp;table='.$req->get('table').'&amp;col='.$item->name);
+	$dellink->setName('[ del ]');
+	$dellink->setJs(' onclick="return PSA.really_drop(\' column ['.$item->name.']\');" ');
+
+	/*
+	.$sessie->getS('psa-db').'.'
+	.$sessie->getS('psa-ext').'');
+
+$q = "PRAGMA table_info('".$req->get('table')."')";
+
+
+	$drop = new Link;
+	$drop->setHref('index.php?cmd=drop_db&amp;db='.urlencode($files[$i]));
+	$drop->setName('[drop]');
+	*/
+	$tr->addElement($dellink->dump());
 	$tr->build();
 }
 
