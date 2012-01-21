@@ -5,14 +5,11 @@
 
 Changelog for psa
 
+
 current version 0.02
 
-debug : 
-- jade + urldecode-encode
-- try catch in qs
-- click on queries -> eol
-
-- check valid sqlite3 database file
+[2012.01.21]
+- drop_column.php added
 
 [2010.12.29]
 - edit_do.php : first working trial
