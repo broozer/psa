@@ -72,6 +72,8 @@ $link->setHref('index.php?cmd=table_add');
 $link->setName('Add table');
 $link->build();
 
+$body->line();
+
 if(!$res) {
 	$body->line('No tables defined.');
 } else {

@@ -26,6 +26,15 @@ $q = "PRAGMA table_info('".$req->get('table')."')";
 $sql->qo($q);
 $rescols = $sql->fo();
 
+if(sizeof($rescols) === 1) {
+	$q = "DROP TABLE ".$req->get('table')." ";
+	$sql->qo($q);
+	
+	$sessie->setS('psa-error','Table "'.$req->get('table').'" dropped. No more columns');
+	header('location: index.php?cmd=table');
+	exit;
+}
+
 $string = '';
 $begin = true;
 $colums = '';

@@ -8,6 +8,12 @@ Changelog for psa
 
 current version 0.02
 
+[2012.01.26]
+- table add continue working : needs a temporary table fields table
+- drop column : if only 1 field -> drop table
+- queries : escaped " sign
+- cleanup faulty css declarations
+
 [2012.01.21]
 - drop_column.php added
 

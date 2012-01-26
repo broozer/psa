@@ -11,6 +11,12 @@ include_once('autoload.php');
 
 if($req->is('cmd') && $req->get('cmd') !== 'nodatabase')
 {
+	/* prevents direct linking after index.php has run */
+	if(!$sessie->isS('psa-dir') && $req->get('cmd') !== 'base') {
+		header('location: index.php');
+		exit;
+	}
+	
 	// clear bottom -> paging in table_browse
 	if($req->get('cmd') !== 'table_browse' && $sessie->isS('bottom')) {
 		$sessie->unsetS('bottom');
@@ -26,6 +32,8 @@ if($req->is('cmd') && $req->get('cmd') !== 'nodatabase')
 }
 else
 {
+	/* HACK: cleanup temporary table add fields */
+	
 	$sessie->unsetS('psa-dir');
 	$sessie->unsetS('psa-ext');
 	$sessie->unsetS('psa-db');

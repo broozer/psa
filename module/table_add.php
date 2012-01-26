@@ -32,9 +32,9 @@ $body->build();
 include_once('./inc/menubar.php');
 
 $body->line('<h2>ONLY DISPLAY !!</h2>');
-
+// TODO: check if table name already exists
 $name = new Input;
-$name->setName('name');
+$name->setName('tblname');
 $name->setSize(50);
 $name->setMaxlength(128);
 $name->setId('tblname');
@@ -124,6 +124,8 @@ $table = new Table();
 $table->setId('tfields');
 
 unset($table);
+
+$body->line('<div id="ttshow"></div>');
 
 $body->line('</div>');
 

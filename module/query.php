@@ -79,7 +79,7 @@ if(!$res) {
 		$tr->addElement($item['datum']);
 		$tr->addElement('<div class="qs">
 			<a href="#" 
-			onClick="PSA.to_text(\''.str_replace("'","##",trim(str_replace("\r\n"," ",$item['qs']))).'\');">'.nl2br($item['qs']).'</a></div>');
+			onClick="PSA.to_text(\''.str_replace('"',"&&",str_replace("'","##",trim(str_replace("\r\n"," ",$item['qs'])))).'\');">'.nl2br($item['qs']).'</a></div>');
 		$tr->build();
 	}
 	unset($table);
