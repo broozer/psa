@@ -59,12 +59,8 @@ if(!$res) {
 		}
 		
 		foreach($item as $data) {
-			/* if(strlen($data) > 25) {
-				$tr->addElement(substr($data,0,25).'...');
-			} else {
-			*/
-				$tr->addElement($data);
-			// }
+			// display odd characters
+			$tr->addElement(htmlentities($data));
 		}
 		$tr->build();
 	}
