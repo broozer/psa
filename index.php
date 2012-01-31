@@ -12,7 +12,7 @@ include_once('autoload.php');
 if($req->is('cmd') && $req->get('cmd') !== 'nodatabase')
 {
 	/* prevents direct linking after index.php has run */
-	if(!$sessie->isS('psa-dir') && $req->get('cmd') !== 'base') {
+	if(!$sessie->isS('psa-dir') && $req->get('cmd') !== 'base' && $req->get('cmd') !== 'bts') {
 		header('location: index.php');
 		exit;
 	}
@@ -87,17 +87,20 @@ else
 		<li>create database</li>
 		<li>drop database</li>
 		<li>vacuum database</li>
+		<li>create table</li>
+		<li>drop column</li>
+		<li>dump sql statements per table</li>
 	</ul>
 	<p>Roadmap :</p>
 	<ul>
-		<li>create table</li> 
 		<li>drop table</li>
 		<li>insert rows</li>
 		<li>list indexes</li>
 		<li>create indexes</li>
 		<li>drop indexes</li>
 		<li>CRUD views</li>
-		<li>dump table/database</li>
+		<li>dump database structure</li>
+		<li>dump table data to csv et al</li>
 	</ul>
 	<p>Not yet planned :</p>
 	<ul>

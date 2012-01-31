@@ -27,6 +27,7 @@ if($req->get('tblname') === '') {
 		$coltype = $req->get('coltype');
 		$colprime = $req->get('colprime');
 		$colnull = $req->get('colnull');
+		$colsize = $req->get('colsize');
 		$coldefault = $req->get('coldefault');
 
 		
@@ -36,6 +37,7 @@ if($req->get('tblname') === '') {
 			,coltype
 			,colprime
 			,colnull
+			,colsize
 			,coldefault)
 			VALUES (
 			:tblname
@@ -43,6 +45,7 @@ if($req->get('tblname') === '') {
 			,:coltype
 			,:colprime
 			,:colnull
+			,:colsize
 			,:coldefault)";
 		
 		$ajax_sql->binder('tblname',$tblname);
@@ -50,6 +53,7 @@ if($req->get('tblname') === '') {
 		$ajax_sql->binder('colprime',$colprime);
 		$ajax_sql->binder('coltype',$coltype);
 		$ajax_sql->binder('colnull',$colnull);
+		$ajax_sql->binder('colsize',$colsize);
 		$ajax_sql->binder('coldefault',$coldefault);
 		
 		$ajax_sql->qo($q);
@@ -60,10 +64,25 @@ if($req->get('tblname') === '') {
 		$res = $ajax_sql->fo();
 
 		$tab = '<table>';
-		$tab .= '<thead><th>name</th><th>type</th></thead><tbody>';
+		$tab .= '<thead>
+			<th>name</th>
+			<th>type</th>
+			<th>size</th>
+			<th>prime</th>
+			<th>null</th>
+			<th>default</th>
+			</thead><tbody>';
 		
 		foreach ($res as $item) {
-			$tab .= '<tr><td>'.$item->colname.'</td><td>'.$item->coltype.'</td></tr>';
+			$tab .= '
+				<tr><td>'.$item->colname.
+				'</td><td>'.$item->coltype.
+				'</td><td>'.$item->colsize.
+				'</td><td>'.$item->colprime.
+				'</td><td>'.$item->colnull.
+				'</td><td>'.$item->coldefault.
+				'</td><td><a href="#" onclick="PSA.tablerow_delete('.$item->id.');"><button>delete</button></a>'.
+				'</td></tr>';
 		}
 		$tab .= '</tbody></table>';
 		echo $tab;

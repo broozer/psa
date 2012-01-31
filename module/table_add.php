@@ -8,6 +8,13 @@
 */
 
 // $req->dump();
+// begin with a fresh state
+
+$base_sql = new LitePDO('sqlite:./data/base.sqlite');
+$base_q = "DELETE FROM temp_table_fields";
+$base_sql->qo($base_q);
+
+unset($base_sql);
 
 $sql = new LitePDO('sqlite:'
 	.$sessie->getS('psa-dir').'/'
@@ -41,6 +48,11 @@ $name->setId('tblname');
 
 $body->line('<span class="vet">Table name</span><br /> ');
 $body->line($name->dump());
+
+$create = new Link;
+$create->setHref('index.php?cmd=table_add_action');
+$create->setName('<button>Create</button>');
+$body->line($create->dump());
 
 $body->line('<hr />');
 

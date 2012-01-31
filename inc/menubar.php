@@ -28,7 +28,7 @@ if($sessie->isS('psa-message')) {
 if($sessie->isS('sqler')) {
 	$body->line('<div id="error">');
 	$class = $sessie->getS('sqler');
-	var_dump($class);
+	// var_dump($class);
 	foreach($class->errorInfo as $key => $value) {
 		if($key == '2') {
 	   			print "$value";

@@ -116,7 +116,31 @@ var PSA = {
 			xmlhttp.send(null);
 		}
 	},
+
+	tablerow_delete: function(id) {
+		// alert('about to delete : ' + id);
+		if (window.XMLHttpRequest) {
+				xmlhttp = new XMLHttpRequest();
+		}
+		else
+		{
+			xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+			
+		xmlhttp.open("GET", './action/ajax_delete_field.php?field=' + id, false);
 	
+		xmlhttp.onreadystatechange = function() {
+			
+			if(xmlhttp.readyState == 4)	{
+				var calform = xmlhttp.responseText;
+				var ttshow = PSA.getId('ttshow');
+				ttshow.innerHTML = calform;
+			}
+			
+		}
+		xmlhttp.send(null);
+		
+	},
 	
 	to_text: function (data) {
 		/* TODO : clean up data (newlines etc) */
