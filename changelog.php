@@ -5,10 +5,9 @@
 
 Changelog for psa
 
-
 current version 0.02
 [2012.01.31]
-- table_add finished (draft version)
+- table_add finished (draft version) - in local branch table_add
 
 [2012.01.26]
 - table add continue working : needs a temporary table fields table
