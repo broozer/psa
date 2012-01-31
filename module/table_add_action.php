@@ -59,6 +59,13 @@ foreach($res as $item) {
 
 $createstring = substr($createstring,0,-2).')';
 
+unset($sql);
+
+$sql = new LitePDO('sqlite:'
+	.$sessie->getS('psa-dir').'/'
+	.$sessie->getS('psa-db').'.'
+	.$sessie->getS('psa-ext').'');
+	
 if($sql->qo($createstring)){
 	$sessie->setS('psa-message','Table created succesfully.');
 } else {
