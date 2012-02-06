@@ -38,7 +38,6 @@ $body->build();
 
 include_once('./inc/menubar.php');
 
-$body->line('<h2>ONLY DISPLAY !!</h2>');
 // TODO: check if table name already exists
 $name = new Input;
 $name->setName('tblname');

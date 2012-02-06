@@ -73,7 +73,7 @@ if($req->get('tblname') === '') {
 			<th>default</th>
 			</thead><tbody>';
 		
-		foreach ($res as $item) {
+		foreach($res as $item) {
 			$tab .= '
 				<tr><td>'.$item->colname.
 				'</td><td>'.$item->coltype.

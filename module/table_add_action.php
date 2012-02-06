@@ -51,14 +51,20 @@ foreach($res as $item) {
 
 	
 	
-	$createstring .= ', ';
+	$createstring .= ', '; 
+
+	/*
 	echo $createstring;
 	echo '<br>';
-	
+	/**/
 }
 
 $createstring = substr($createstring,0,-2).')';
-
+/*
+	echo $createstring;
+	echo '<br>';
+	/**/
+	
 unset($sql);
 
 $sql = new LitePDO('sqlite:'
@@ -71,7 +77,8 @@ if($sql->qo($createstring)){
 } else {
 	$sessie->setS('psa-error','Table \''.$tablename.'\' could not be created.');
 }
-
+/**/
 header('location: index.php?cmd=table');
 exit;
+/**/
 ?>
