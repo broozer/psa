@@ -26,7 +26,12 @@ $psa->qo($q);
 $q = "INSERT INTO base (directory,extension) VALUES ('./data','sqlite')";
 $psa->qo($q);
 
-$q = "CREATE TABLE temp_table_fields (tblname VARCHAR(128), colname VARCHAR(128), coltype VARCHAR(48), colprime INT(1), colnull INT(1), coldefault VARCHAR(128))";
+$q = "CREATE TABLE temp_table_fields (
+		tblname VARCHAR(128), 
+		colname VARCHAR(128), 
+		coltype VARCHAR(48), 
+		colsize INT(10)
+		colprime INT(1), colnull INT(1), coldefault VARCHAR(128))";
 $psa->qo($q);
 
 /* 2011.02.10 - do I use this log file ??
