@@ -7,13 +7,36 @@
 * [since] 2010.09.22 - ok
 */
 
-$body->line('<span id="top"></span><div id="header"> current directory : '
-	.$sessie->getS('psa-dir'). ' - current extension : '.$sessie->getS('psa-ext'));
-if($sessie->isS('psa-db')) {
-	$body->line(' - current database : '.$sessie->getS('psa-db'));
-}
+$body->line('<div id="header">php-sqlite-admin');
+
 
 $body->line('</div>');
+
+
+$body->line('<div id="menu">
+	dir : <br><span class="ref">'.$sessie->getS('psa-dir').'</span><br>
+	ext : <br><span class="ref">'.$sessie->getS('psa-ext').'</span>');
+	
+if($sessie->isS('psa-db')) {
+	$body->line('</span><br>
+	dba : <br><span class="ref">'.$sessie->getS('psa-db')).'</span>';
+}
+$body->line('<hr>
+<ul>
+	<li><a href="index.php">[home]</a></li>
+	<li><a href="index.php?cmd=base">[databases]</a></li>');
+	if($sessie->isS('psa-db')) {
+		$body->line('
+		<li><a href="index.php?cmd=table">[tables]</a></li>
+		<li><a href="index.php?cmd=query">[query]</a></li>');
+	}
+	$body->line('<li><a href="index.php?cmd=bts">[more]</a></li>
+</ul>
+<hr>
+</div>');
+
+$body->line('<div id="content">');
+
 
 if($sessie->isS('psa-error')) {
 	$body->line('<div id="error">'.$sessie->getS('psa-error').'</div>');
@@ -34,27 +57,9 @@ if($sessie->isS('sqler')) {
 	   			print "$value";
 		}
 	}
-	/*
-	echo '<hr />';
-	echo $class->errorInfo->2;
-	echo '<hr />';
-	*/
+	
 	$body->line('</div>');
 	$sessie->unsetS('sqler');
 }
 
-$body->line('<div id="menu">
-<ul>
-	<li><a href="index.php">[home]</a></li>
-	<li><a href="index.php?cmd=base">[databases]</a></li>');
-	if($sessie->isS('psa-db')) {
-		$body->line('
-		<li><a href="index.php?cmd=table">[tables]</a></li>
-		<li><a href="index.php?cmd=query">[query]</a></li>');
-	}
-	$body->line('<li><a href="index.php?cmd=bts">[more]</a></li>
-</ul>
-</div>');
-
-$body->line('<div id="content">');
 ?>

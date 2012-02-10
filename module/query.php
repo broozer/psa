@@ -45,7 +45,7 @@ $form->build();
 
 $inp_text = new Textarea;
 $inp_text->setRows(15);
-$inp_text->setCols(100);
+$inp_text->setCols(70);
 $inp_text->setName('qs');
 $inp_text->setId('to_text');
 
@@ -88,6 +88,7 @@ unset($psa);
 
 /**/
 $body->line('</div>');
+include_once('./inc/footer.php');
 unset($body);
 unset($html);
 ?>

@@ -134,6 +134,7 @@ $backlink->setHref('index.php?cmd=table_browse&table='.$req->get('table'));
 $backlink->setName('Back to list');
 $backlink->build();
 
+include_once('./inc/footer.php');
 unset($body);
 unset($html);
 

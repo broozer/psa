@@ -69,6 +69,7 @@ if(!$res) {
 }
 
 $body->line('</div>');
+include_once('./inc/footer.php');
 unset($body);
 unset($html);
 ?>

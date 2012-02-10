@@ -57,13 +57,8 @@ else
 	$body = new Body;
 	$body->build();
 
-	$body->line('<div id="header">php-sqlite-admin homepage</div>');
-	if($sessie->isS('psa-error')) {
-		$body->line('<div id="error">'.$sessie->getS('psa-error').'</div>');
-		$sessie->unsetS('psa-error');
-	}
-	
-	$body->line('<div id="content">');
+	include_once('./inc/menubar.php');
+
 
 	$body->line('
 	<p>Databases will be selected based on the preset directory and extension. 
@@ -110,6 +105,7 @@ else
 	
 
 	$body->line('</div>');
+	include_once('./inc/footer.php');
 	unset($body);
 	unset($html);
 }

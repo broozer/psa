@@ -139,6 +139,7 @@ $res = $sql->fo_one();
 echo $res->sql;
 
 $body->line('</div>');
+include_once('./inc/footer.php');
 unset($body);
 unset($html);
 ?>

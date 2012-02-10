@@ -72,7 +72,7 @@ $link->setHref('index.php?cmd=table_add');
 $link->setName('Add table');
 $link->build();
 
-$body->line();
+$body->line('<hr>');
 
 if(!$res) {
 	$body->line('No tables defined.');
@@ -109,6 +109,8 @@ if(!$res) {
 	
 	unset($table);
 }
+
+include_once('./inc/footer.php');
 
 unset($body);
 unset($html);

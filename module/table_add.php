@@ -72,7 +72,7 @@ $th->build();
 
 $colname = new Input;
 $colname->setName('colname');
-$colname->setSize(30);
+$colname->setSize(25);
 $colname->setMaxlength(128);
 $colname->setId('colname');
 
@@ -105,7 +105,7 @@ $colnull->setId('colnull');
 
 $coldefault = new Input;
 $coldefault->setName('coldefault');
-$coldefault->setSize(30);
+$coldefault->setSize(25);
 $coldefault->setMaxlength(128);
 $coldefault->setId('coldefault');
 
@@ -139,7 +139,7 @@ unset($table);
 $body->line('<div id="ttshow"></div>');
 
 $body->line('</div>');
-
+include_once('./inc/footer.php');
 unset($body);
 unset($html);
 ?>

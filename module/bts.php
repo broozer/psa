@@ -59,6 +59,7 @@ foreach($xml->item->caption as $cap) {
 }
 
 $body->line('</div></div>');
+include_once('./inc/footer.php');
 unset($body);
 unset($html);
 
