@@ -10,8 +10,8 @@
 $res = unserialize($sessie->getS('psa-results'));
 $sessie->unsetS('psa-results');
 
-$html = new Html;
-$html->setDoctype('xhtml-strict');
+$html = new Page;
+ 
 $html->setLanguage('nl_NL');
 $html->build();
 
@@ -44,7 +44,7 @@ if(!$res) {
 			$tr = new Th;
 			$names = array_keys(get_object_vars($item));
 			foreach($names as $title) {
-				$tr->addElement($title);
+				$tr->add($title);
 			}
 			$tr->build();
 			$titles = TRUE;
@@ -60,7 +60,7 @@ if(!$res) {
 		
 		foreach($item as $data) {
 			// display odd characters
-			$tr->addElement(htmlentities($data));
+			$tr->add(htmlentities($data));
 		}
 		$tr->build();
 	}

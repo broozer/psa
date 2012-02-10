@@ -43,8 +43,8 @@ $res = $sql->fo_one();
 
 // var_dump($res);
 
-$html = new Html;
-$html->setDoctype('xhtml-strict');
+$html = new Page;
+ 
 $html->setLanguage('nl_NL');
 $html->build();
 
@@ -80,9 +80,9 @@ $data_table->setValue($req->get('table'));
 $data_table->setType('hidden');
 
 $tr = new Tr;
-$tr->addElement($inp->dump());
-$tr->addElement($data_table->dump());
-$tr->addElement($cmd->dump());
+$tr->add($inp->dump());
+$tr->add($data_table->dump());
+$tr->add($cmd->dump());
 $tr->build();
 
 
@@ -112,8 +112,8 @@ foreach($res as $item) {
 	/**/
 	
 	$tr = new Tr;
-	$tr->addElement($colname);
-	$tr->addElement($inp->dump());
+	$tr->add($colname);
+	$tr->add($inp->dump());
 	$tr->build();
 	++$i;
 	/**/
@@ -121,8 +121,8 @@ foreach($res as $item) {
 }
 
 $tr = new Tr;
-$tr->addElement('&nbsp;');
-$tr->addElement($submit->dump());
+$tr->add('&nbsp;');
+$tr->add($submit->dump());
 $tr->build();
 
 unset($table);

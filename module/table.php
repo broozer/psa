@@ -51,8 +51,8 @@ $sql->qo($q);
 $res = $sql->fo();
 unset($sql);
 
-$html = new Html;
-$html->setDoctype('xhtml-strict');
+$html = new Page;
+ 
 $html->setLanguage('nl_NL');
 $html->build();
 
@@ -100,10 +100,10 @@ if(!$res) {
 		$dump->setName('Dump');
 		
 		$tr = new Tr;
-		$tr->addElement($item->name);
-		$tr->addElement($struct->dump());
-		$tr->addElement($browse->dump());
-		$tr->addElement($dump->dump());
+		$tr->add($item->name);
+		$tr->add($struct->dump());
+		$tr->add($browse->dump());
+		$tr->add($dump->dump());
 		$tr->build();
 	}
 	

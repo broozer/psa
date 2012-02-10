@@ -41,8 +41,8 @@ if($sessie->isS('psa-db')) {
 	$sessie->unsetS('psa-db');
 }
 
-$html = new Html;
-$html->setDoctype('xhtml-strict');
+$html = new Page;
+ 
 $html->setLanguage('nl_NL');
 $html->build();
 
@@ -75,10 +75,10 @@ $table = new Table;
 $table->build();
 
 $tr = new Tr;
-$tr->addElement('New database : ');
-$tr->addElement($inp_db->dump());
-$tr->addElement($submit->dump());
-$tr->addElement($cmd->dump());
+$tr->add('New database : ');
+$tr->add($inp_db->dump());
+$tr->add($submit->dump());
+$tr->add($cmd->dump());
 $tr->build();
 
 unset($table);
@@ -133,9 +133,9 @@ if(!$files) {
 			$tr->setGlobalClass('odd');
 			$odd = TRUE;
 		}
-		$tr->addElement($link->dump());
-		$tr->addElement($vacuum->dump());
-		$tr->addElement($drop->dump());
+		$tr->add($link->dump());
+		$tr->add($vacuum->dump());
+		$tr->add($drop->dump());
 		$tr->build();
 		
 	} 

@@ -21,8 +21,8 @@ $sql = new LitePDO('sqlite:'
 	.$sessie->getS('psa-db').'.'
 	.$sessie->getS('psa-ext').'');
 
-$html = new Html;
-$html->setDoctype('xhtml-strict');
+$html = new Page;
+ 
 $html->setLanguage('nl_NL');
 $html->build();
 
@@ -62,12 +62,12 @@ $table->setClas('result');
 $table->build();
 
 $th = new Th;
-$th->addElement('name');
-$th->addElement('type');
-$th->addElement('primary');
-$th->addElement('size');
-$th->addElement('null');
-$th->addElement('default');
+$th->add('name');
+$th->add('type');
+$th->add('primary');
+$th->add('size');
+$th->add('null');
+$th->add('default');
 $th->build();
 
 $colname = new Input;
@@ -81,11 +81,11 @@ $coltype->setName('coltype');
 $coltype->setSize(1);
 $coltype->setId('coltype');
 
-$coltype->addElement('VARCHAR','VARCHAR');
-$coltype->addElement('INTEGER','INTEGER');
-$coltype->addElement('FLOAT','FLOAT');
-$coltype->addElement('TEXT','TEXT');
-$coltype->addElement('DATETIME','DATETIME');
+$coltype->add('VARCHAR','VARCHAR');
+$coltype->add('INTEGER','INTEGER');
+$coltype->add('FLOAT','FLOAT');
+$coltype->add('TEXT','TEXT');
+$coltype->add('DATETIME','DATETIME');
 
 $colprime = new Input;
 $colprime->setName('colprime');
@@ -116,16 +116,16 @@ $fieldadd->setValue('add');
 $fieldadd->setJs(' onclick="PSA.addField();" ');
 
 $tr = new Tr;
-$tr->addElement($colname->dump());
-$tr->addElement($coltype->dump());
+$tr->add($colname->dump());
+$tr->add($coltype->dump());
 $tr->setClas('center');
-$tr->addElement($colprime->dump());
+$tr->add($colprime->dump());
 $tr->setClas('center');
-$tr->addElement($colsize->dump());
+$tr->add($colsize->dump());
 $tr->setClas('center');
-$tr->addElement($colnull->dump());
-$tr->addElement($coldefault->dump());
-$tr->addElement($fieldadd->dump());
+$tr->add($colnull->dump());
+$tr->add($coldefault->dump());
+$tr->add($fieldadd->dump());
 $tr->build();
 
 unset($table);

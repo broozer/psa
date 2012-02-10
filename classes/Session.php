@@ -65,8 +65,8 @@ class Session
 	*/
     public function setS($name,$value)
     {
-	$this->name = $name;
-	$this->value = $value;
+		$this->name = $name;
+		$this->value = $value;
         $_SESSION[$this->name] = $this->value;
     }
 	/**

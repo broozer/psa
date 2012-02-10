@@ -22,8 +22,8 @@ if(!$sessie->isS('psa-db')) {
 $cmd->setValue('qs');
 $submit->setValue('Go!');
 
-$html = new Html;
-$html->setDoctype('xhtml-strict');
+$html = new Page;
+ 
 $html->setLanguage('nl_NL');
 $html->build();
 
@@ -75,9 +75,9 @@ if(!$res) {
 	
 	foreach($res as $item) {
 		$tr = new Tr;
-		$tr->addElement($item['db']);
-		$tr->addElement($item['datum']);
-		$tr->addElement('<div class="qs">
+		$tr->add($item['db']);
+		$tr->add($item['datum']);
+		$tr->add('<div class="qs">
 			<a href="#" 
 			onClick="PSA.to_text(\''.str_replace('"',"&&",str_replace("'","##",trim(str_replace("\r\n"," ",$item['qs'])))).'\');">'.nl2br($item['qs']).'</a></div>');
 		$tr->build();

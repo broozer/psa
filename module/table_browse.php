@@ -73,8 +73,8 @@ $sql->qo($q);
 $res = $sql->fo();
 
 // echo "BOTTOM WAARDE  : <b><h1>".$sessie->getS('bottom')."</h1></b>"; 
-$html = new Html;
-$html->setDoctype('xhtml-strict');
+$html = new Page;
+ 
 $html->setLanguage('nl_NL');
 $html->build();
 
@@ -141,14 +141,14 @@ if(!$res) {
 		/**/
 		if(!$titles) {
 			$tr = new Th;
-			$tr->addElement('edit');
-			$tr->addElement('delete');
+			$tr->add('edit');
+			$tr->add('delete');
 			if(!$pk) {
-				$tr->addElement('ROWID');
+				$tr->add('ROWID');
 			}
 			// $names = array_keys(get_object_vars($item));
 			for($i=0;$i<sizeof($col);++$i) {
-				$tr->addElement($col[$i]);
+				$tr->add($col[$i]);
 			}
 			$tr->build();
 			$titles = TRUE;
@@ -172,11 +172,11 @@ if(!$res) {
 		$del->setName('[del]');
 		$del->setJs(' onclick="return PSA.really_drop(\'record\');" ');
 		
-		$tr->addElement($edit->dump());
-		$tr->addElement($del->dump());
+		$tr->add($edit->dump());
+		$tr->add($del->dump());
 		
 		foreach($item as $data) {
-			$tr->addElement(htmlentities($data));
+			$tr->add(htmlentities($data));
 		}
 		$tr->build();
 	}

@@ -5,90 +5,44 @@
 * [name] Tr.php
 * [package] Web
 * [author] Wim Paulussen
-* [since] 2007-01-05
-* [update] 2007-05-21 added new functionality for getId and getClas (needs testing)
-* [update] 2009-01-22 : exception
-* [update] 2009-10-08 : display with <eol> (\r\n)
-* [update] 2011-02-06 : global tr
-* [todo] documentation (partly)
 */
 
-/**
-* [name] Tr
-* [type] class
-* [extend] Web
-*/
-
-class Tr extends Web
+class Tr extends Base
 {
-	/**
-	* [type] attribute
-	* [name] _array
-	* [scope] private
-	* [expl] array for tr elements
-	*/
+	
 	private $_array;
-
-	/**
-	* [type] attribute
-	* [name] _pointer
-	* [scope] private
-	* [expl] holds last number for array starting value is 0
-	*/
 	private $_pointer = 0;
-
-	/**
-	* [type] attribute
-	* [name] _globalClass
-	* [scope] private
-	* [expl] global class on row
-	*/
 	private $_globalClass = '';
-
-
-	/**
-	* [name] __construct
-	* [type] method
-	* [scope] public
-	* [expl] checks for html-head-body
-	*/
+	private $_tbodyId = '';
+	
 	public function __construct()
 	{
 		try
 		{
-			if(!HTML::$html_set || !HTML::$head_set || !HTML::$body_set )
+			if(!Page::$html_set || !Page::$head_set || !Page::$body_set )
 			{
-				throw new WebException("<b>Tr class exception.</b><br />Either &lt;html&gt; or &lt;head&gt; or &lt;body&gt; is not set.</b><br />
+				throw new PageException("<b>Tr class exception.</b><br />Either &lt;html&gt; or &lt;head&gt; or &lt;body&gt; is not set.</b><br />
 					All these tags need to be set in this order to generate valid html forms.");
 			}
 			if(!Table::$table_set)
 			{
-				throw new WebException("<b>Tr class exception.</b><br />Table line (tr) set without &lt;table&gt; set.<br />");
+				throw new PageException("<b>Tr class exception.</b><br />Table line (tr) set without &lt;table&gt; set.<br />");
 			}
 		}
-		catch(WebException $e)
+		catch(PageException $e)
 		{
 			echo $e->getMessage();
 		}
 	}
 	
-	/**
-	* [type] method
-	* [name] addElement
-	* [scope] public
-	* [expl] adds elements in an array
-	* [expl] expects 1 parameter
-	*/
-	function addElement($name='')
+	function add($name='')
 	{
 		try
 		{
 			
 			if ($name == '')
 			{
-				// 2010.09.23 : empty fields in db possible
 				$name = '&nbsp;';
-				// throw new WebException("<b>Tr class exception</b><br />AddElement without data.");
 			}
 			$this->_pointer = sizeof($this->_array);
 			$this->_array[$this->_pointer]['name']	= $name;
@@ -109,17 +63,15 @@ class Tr extends Web
 		}
 	}
 	
-	/**
-	* [type] method
-	* [name] build
-	* [scope] public
-	* [expl] after all tags are set , you run this function
-	*/
 	function build()
 	{
 		if (!Table::$tbody_set)
 		{
-			$this->html = '<tbody>';
+			$this->html = '<tbody';
+			if($this->_tbodyId != '') {
+				$this->html .= ' id="'.$this->_tbodyId.'"';
+			}
+			$this->html .= ">";
 			Table::$tbody_set = TRUE;
 		}
 		if($this->_globalClass == '') {
@@ -148,14 +100,13 @@ class Tr extends Web
 		$this->html .= "</tr>"."\r\n";
 		$this->display();
 	}
-	/**
-	* [type] method
-	* [name] setGlobalClass
-	* [scope] public
-	* [expl] set global tag
-	*/
+	
 	public function setGlobalClass($data) {
 		$this->_globalClass = $data;
+	}
+	
+	public function setTbodyId($data) {
+		$this->_tbodyId = $data;
 	}
 	
 }

@@ -21,8 +21,8 @@ $res = $sql->fo();
 
 // var_dump($res);
 
-$html = new Html;
-$html->setDoctype('xhtml-strict');
+$html = new Page;
+ 
 $html->setLanguage('nl_NL');
 $html->build();
 
@@ -45,12 +45,12 @@ $table->setId('listing');
 $table->build();
 
 $th = new Th;
-$th->addElement('name');
-$th->addElement('type');
-$th->addElement('size');
-$th->addElement('null allowed');
-$th->addElement('default');
-$th->addElement('remove');
+$th->add('name');
+$th->add('type');
+$th->add('size');
+$th->add('null allowed');
+$th->add('default');
+$th->add('remove');
 $th->build();
 
 $odd = TRUE;
@@ -99,13 +99,13 @@ foreach($res as $item) {
 		$tr->setGlobalClass('odd');
 		$odd = TRUE;
 	}
-	$tr->addElement($name);
-	$tr->addElement($type);
+	$tr->add($name);
+	$tr->add($type);
 	$tr->setClas('rechts');
-	$tr->addElement($size);
+	$tr->add($size);
 	$tr->setClas('center');
-	$tr->addElement($nn);
-	$tr->addElement($dflt);
+	$tr->add($nn);
+	$tr->add($dflt);
 
 	$test = 'haai';
 	
@@ -125,7 +125,7 @@ $q = "PRAGMA table_info('".$req->get('table')."')";
 	$drop->setHref('index.php?cmd=drop_db&amp;db='.urlencode($files[$i]));
 	$drop->setName('[drop]');
 	*/
-	$tr->addElement($dellink->dump());
+	$tr->add($dellink->dump());
 	$tr->build();
 }
 

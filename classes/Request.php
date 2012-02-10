@@ -94,12 +94,15 @@ class Request
 	public function dump()
 	{
 		// echo 'in dump';
-		var_dump($this->request);
-	}
-
-	public function set($name,$value)
-	{
-		$this->reqiest[$name] = $value;
+		// var_dump($this->request);
+		$keys = array_keys($this->request);
+		
+		echo 'Request dump :<br />';
+		echo '--------------<br />';
+		for($i=0;$i<sizeof($this->request);++$i) {
+			echo $keys[$i].' -- '.$this->request[$keys[$i]].'<br />';
+		}
+		echo '--------------<br />';
 	}
 }
 

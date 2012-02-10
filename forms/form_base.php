@@ -15,19 +15,19 @@ $table = new Table;
 $table->build();
 
 $tr = new Tr;
-$tr->addElement('Directory : ');
-$tr->addElement($inp_dir->dump());
-$tr->addElement($cmd->dump());
+$tr->add('Directory : ');
+$tr->add($inp_dir->dump());
+$tr->add($cmd->dump());
 $tr->build();
 
 $tr = new Tr;
-$tr->addElement('Extension : ');
-$tr->addElement($inp_ext->dump());
+$tr->add('Extension : ');
+$tr->add($inp_ext->dump());
 $tr->build();
 
 $tr = new Tr;
-$tr->addElement('&nbsp;');
-$tr->addElement($submit->dump());
+$tr->add('&nbsp;');
+$tr->add($submit->dump());
 $tr->build();
 
 unset($table);
