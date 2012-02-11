@@ -1,7 +1,7 @@
 <?php
 
 /**
-*¨[type] file
+* [type] file
 * [name] qs.php
 * [package] psa
 * [since] 2010.09.22 - o
@@ -50,19 +50,13 @@ $q = stripslashes($req->get('qs'));
 
 $q_ar = explode(";",$q);
 
-// var_dump($q_ar);
-// echo '<hr />';
-// die('check multiple');
-
-// $sql->qo("BEGIN TRANSACTION");
-
 $error = FALSE;
 
 for($i=0;$i<sizeof($q_ar);++$i) {
 	if(trim($q_ar[$i]) === '') {
 		continue;
 	}
-	// echo $q_ar[$i].'<hr />';
+	
 	if(!$sql->qo($q_ar[$i])) {
 		$error = TRUE;
 		break;
@@ -72,7 +66,7 @@ for($i=0;$i<sizeof($q_ar);++$i) {
 	}
 	
 	if(stristr($q_ar[$i],"NSERT INTO")) {
-		// echo 'insert statement -> check falsy';
+		// void
 	} else {
 		if(!$res) {
 			$error = TRUE;
@@ -84,11 +78,11 @@ for($i=0;$i<sizeof($q_ar);++$i) {
 if($error) {
 	header('location: index.php?cmd=query');
 	exit;
-	
 } else {
 	$sessie->setS('psa-results',serialize($res));
 	$sessie->setS('psa-query-results',$q);
 	header('location: index.php?cmd=query_results');
 	exit;
 }
+
 ?>

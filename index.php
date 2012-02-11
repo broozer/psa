@@ -32,7 +32,6 @@ if($req->is('cmd') && $req->get('cmd') !== 'nodatabase')
 }
 else
 {
-	/* HACK: cleanup temporary table add fields */
 	
 	$sessie->unsetS('psa-dir');
 	$sessie->unsetS('psa-ext');
@@ -44,12 +43,10 @@ else
 	include_once('./inputs/inp_base.php');
 	
 	$html = new Page;
-	 
 	$html->setLanguage('nl_NL');
 	$html->build();
 	
 	$head = new Head;
-	$head->setCharset('UTF-8');
 	$head->setTitle('PSA - homepage');
 	$head->setCss('./css/psa.css');
 	$head->build();

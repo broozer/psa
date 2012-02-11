@@ -26,6 +26,7 @@ $result = $psa->fo_one();
 unset($psa);
 
 $sessie = new Session;
+
 date_default_timezone_set('Europe/Paris');
 
 $req = new Request;

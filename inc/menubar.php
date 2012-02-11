@@ -7,19 +7,14 @@
 * [since] 2010.09.22 - ok
 */
 
-$body->line('<div id="header">php-sqlite-admin');
-
-
-$body->line('</div>');
-
+$body->line('<div id="header">php-sqlite-admin</div>');
 
 $body->line('<div id="menu">
 	dir : <br><span class="ref">'.$sessie->getS('psa-dir').'</span><br>
 	ext : <br><span class="ref">'.$sessie->getS('psa-ext').'</span>');
 	
 if($sessie->isS('psa-db')) {
-	$body->line('</span><br>
-	dba : <br><span class="ref">'.$sessie->getS('psa-db')).'</span>';
+	$body->line('<br>dba : <br><span class="ref">'.$sessie->getS('psa-db').'</span>');
 }
 $body->line('<hr>
 <ul>
@@ -37,7 +32,6 @@ $body->line('<hr>
 
 $body->line('<div id="content">');
 
-
 if($sessie->isS('psa-error')) {
 	$body->line('<div id="error">'.$sessie->getS('psa-error').'</div>');
 	$sessie->unsetS('psa-error');
@@ -47,14 +41,16 @@ if($sessie->isS('psa-message')) {
 	$body->line('<div id="message">'.$sessie->getS('psa-message').'</div>');
 	$sessie->unsetS('psa-message');
 }
-
+// LITEPDO errors
 if($sessie->isS('sqler')) {
 	$body->line('<div id="error">');
 	$class = $sessie->getS('sqler');
-	// var_dump($class);
+	
 	foreach($class->errorInfo as $key => $value) {
+		//print $value;
+		//print '<hr>';
 		if($key == '2') {
-	   			print "$value";
+	   		$body->line($value);
 		}
 	}
 	

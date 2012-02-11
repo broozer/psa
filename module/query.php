@@ -18,22 +18,19 @@ if(!$sessie->isS('psa-db')) {
 }
 
 
-
 $cmd->setValue('qs');
 $submit->setValue('Go!');
 
 $html = new Page;
- 
-$html->setLanguage('nl_NL');
+$html->setLanguage('en_EN');
 $html->build();
 
 $head = new Head;
-$head->setCharset('UTF-8');
 $head->setTitle('PSA - query');
 $head->setCss('./css/psa.css');
 $head->setJs('./js/PSA.js');
 $head->build();
-
+	
 $body = new Body;
 $body->build();
 
@@ -61,7 +58,7 @@ unset($form);
 $body->line('<hr />');
 
 $psa =  new PDO("sqlite:./data/base.sqlite");
-$q = "SELECT * FROM queries ORDER BY datum DESC LIMIT 20";
+$q = "SELECT * FROM queries ORDER BY datum DESC LIMIT 10";
 $tps = $psa->prepare($q);
 $tps->execute();
 $res = $tps->fetchAll();
@@ -87,7 +84,6 @@ if(!$res) {
 unset($psa);
 
 /**/
-$body->line('</div>');
 include_once('./inc/footer.php');
 unset($body);
 unset($html);
