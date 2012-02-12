@@ -92,6 +92,13 @@ include_once('./inc/menubar.php');
 
 $body->line('<h3>Table : '.$req->get('table').'</h3>');
 
+$link = new Link;
+$link->setHref('index.php?cmd=record_add&amp;table='.$req->get('table'));
+$link->setName('Add record');
+
+$body->line($link->dump());
+$body->line('<hr>');
+
 $odd = FALSE;
 if(!$res) {
 	$body->line('Table does not contain records');

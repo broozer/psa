@@ -72,6 +72,10 @@ class Request
 		if(!array_key_exists($name,$this->request)) { return false; }
 		return $this->request[$name];
 	}
+
+	public function set($name,$value)	{
+		$this->request[$name] = $value;
+	}
 	
 	public function is($name)
 	{

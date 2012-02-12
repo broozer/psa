@@ -10,7 +10,7 @@
 # TODO: submit and cmd 
 
 $submit->setValue('Update');
-$cmd->setValue('add_do');
+$cmd->setValue('record_add_do');
 
 /**/
 $sql = new LitePDO('sqlite:'
@@ -32,6 +32,7 @@ foreach($res as $item) {
 	$col[] = $item->name;
 }
 
+/*
 if($pk) {
 	$q = "SELECT * FROM ".$req->get('table')." WHERE id = ".$req->get('id');
 } else {
@@ -40,7 +41,7 @@ if($pk) {
 
 $sql->qo($q);
 $res = $sql->fo_one();
-
+*/
 // var_dump($res);
 
 $html = new Page;
@@ -67,12 +68,13 @@ $table = new Table;
 $table->build();
 
 $i = 0;
-
+/**/
 
 $inp = new Input;
 $inp->setName('data_id');
-$inp->setValue($req->get('id'));
+$inp->setValue(-1);
 $inp->setType('hidden');
+/**/
 
 $data_table = new Input;
 $data_table->setName('data_table');
@@ -86,11 +88,10 @@ $tr->add($cmd->dump());
 $tr->build();
 
 
-foreach($res as $item) {
+foreach($col as $item) {
 
-	$colname = $col[$i];
 	
-	if($colname == 'id') {
+	if($item == 'id') {
 		++$i;
 		continue;
 	}
@@ -104,15 +105,15 @@ foreach($res as $item) {
 	*/
 	
 	$inp = new Input;
-	$inp->setName($colname);
-	$inp->setValue($item);
+	$inp->setName($item);
+	// $inp->setValue($item);
 	$inp->setSize(50);
 	$inp->setMaxlength(128);
 	
 	/**/
 	
 	$tr = new Tr;
-	$tr->add($colname);
+	$tr->add($item);
 	$tr->add($inp->dump());
 	$tr->build();
 	++$i;
@@ -128,11 +129,6 @@ $tr->build();
 unset($table);
 unset($form);
 
-$body->line('<hr />');
-$backlink = new Link;
-$backlink->setHref('index.php?cmd=table_browse&table='.$req->get('table'));
-$backlink->setName('Back to list');
-$backlink->build();
 
 include_once('./inc/footer.php');
 unset($body);

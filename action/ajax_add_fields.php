@@ -8,7 +8,7 @@ $ajax_sql = new LitePDO('sqlite:../data/base.sqlite');
 
 // var_dump($ajax_sql);
 
-$req->set('tblname','');
+// $req->set('tblname','');
 
 if($req->get('tblname') === '') {
 	echo 'Table name may not be blank.';
