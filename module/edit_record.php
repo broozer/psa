@@ -10,7 +10,7 @@
 # TODO: submit and cmd 
 
 $submit->setValue('Update');
-$cmd->setValue('add_do');
+$cmd->setValue('edit_do');
 
 /**/
 $sql = new LitePDO('sqlite:'

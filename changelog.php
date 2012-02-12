@@ -9,6 +9,7 @@ current version 0.02
 [2012.02.06]
 - record add
 - table drop
+- menu hide
 
 [2012.02.06]
 - issue 7 : debugging on table create - wrong table creation (left colsize out of table definition) 

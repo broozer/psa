@@ -26,13 +26,6 @@ $body->build();
 
 include_once('./inc/menubar.php');
 
-/*
-$link = new Link;
-
-$link->setHref('index.php');
-$link->setName('&nbsp;&nbsp;[Home]');
-$link->build();
-*/
 $body->line('<div class="xemel">');
 
 $xml = simplexml_load_file('./inc/bts.xml');
