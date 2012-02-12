@@ -136,7 +136,7 @@ $q = "SELECT sql FROM sqlite_master WHERE type = 'table' AND name = '".$req->get
 $sql->qo($q);
 $res = $sql->fo_one();
 
-echo $res->sql;
+$body->line($res->sql);
 
 $body->line('</div>');
 include_once('./inc/footer.php');

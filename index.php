@@ -82,12 +82,12 @@ else
 		<li>create table</li>
 		<li>drop column</li>
 		<li>dump sql statements per table</li>
+		<li>insert rows</li>
+		<li>drop table</li>
 	</ul>
 	<p>Roadmap :</p>
 	<ul>
-		<li>drop table</li>
-		<li>insert rows</li>
-		<li>list indexes</li>
+		<li>list indexes (part of table info)</li>
 		<li>create indexes</li>
 		<li>drop indexes</li>
 		<li>CRUD views</li>

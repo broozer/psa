@@ -60,6 +60,7 @@ $head = new Head;
 $head->setCharset('UTF-8');
 $head->setTitle('PSA - show tables');
 $head->setCss('./css/psa.css');
+$head->setjs('./js/PSA.js');
 $head->build();
 
 $body = new Body;
@@ -98,12 +99,18 @@ if(!$res) {
 		$dump = new Link;
 		$dump->setHref('index.php?cmd=table_dump&table='.$item->name);
 		$dump->setName('Dump');
+
+		$drop = new Link;
+		$drop->setHref('index.php?cmd=drop_table&table='.$item->name);
+		$drop->setName('Drop');
+		$drop->setJs(' onclick="return PSA.really_drop(\'table\');" ');
 		
 		$tr = new Tr;
 		$tr->add($item->name);
 		$tr->add($struct->dump());
 		$tr->add($browse->dump());
 		$tr->add($dump->dump());
+		$tr->add($drop->dump());
 		$tr->build();
 	}
 	
