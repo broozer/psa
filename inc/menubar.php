@@ -7,10 +7,15 @@
 * [since] 2010.09.22 - ok
 */
 
-$body->line('<div id="header">php-sqlite-admin</div>');
+$body->line('<div id="header">php-sqlite-admin
+	<p id="menushow">
+		<a href="#" onclick="PSA.menutoggle();">[ Show menu ]</a></p> 
+	</div>');
 
-$body->line('<div id="menu">
-	dir : <br><span class="ref">'.$sessie->getS('psa-dir').'</span><br>
+$body->line('<div id="menu">');
+
+$body->line('<a href="#" onclick="PSA.menutoggle();">Hide menu</a><hr>');
+$body->line('dir : <br><span class="ref">'.$sessie->getS('psa-dir').'</span><br>
 	ext : <br><span class="ref">'.$sessie->getS('psa-ext').'</span>');
 	
 if($sessie->isS('psa-db')) {

@@ -164,6 +164,14 @@ a:hover {
 	clear: both;
 }
 
+#header p {
+	display: none;
+}
+
+#header a {
+	color: navajowhite;
+}
+
 #error {
 	color: white;
 	font-size: 1.3em;
@@ -202,6 +210,7 @@ a:hover {
 	border-left: 2px dotted #4682B4;
 	min-height: 500px;
 }
+
 
 #footer {
 	text-align: right;

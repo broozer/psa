@@ -53,6 +53,7 @@ $head = new Head;
 $head->setCharset('UTF-8');
 $head->setTitle('PSA - edit record');
 $head->setCss('./css/psa.css');
+$head->setJs('./js/PSA.js');
 $head->build();
 
 $body = new Body;

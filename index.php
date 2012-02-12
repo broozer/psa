@@ -49,6 +49,7 @@ else
 	$head = new Head;
 	$head->setTitle('PSA - homepage');
 	$head->setCss('./css/psa.css');
+	$head->setJs('./js/PSA.js');
 	$head->build();
 	
 	$body = new Body;

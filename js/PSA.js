@@ -155,6 +155,21 @@ var PSA = {
 		cop.innerHTML = data;
 	},
 
+	menutoggle: function() {
+		var menutoggle = PSA.getId('menu');
+		var menushow = PSA.getId('menushow');
+		
+		if(menutoggle.style.display == 'none') {
+			menutoggle.style.display = 'block';
+			menushow.style.display = 'none';
+			return false;
+		} else {
+			menutoggle.style.display = 'none';
+			menushow.style.display = 'inline';
+			return false;
+		}
+	},
+	
 	really_drop: function (data) {
 		var answer = confirm('Really drop ' + data + ' ?');
 		if (!answer) {

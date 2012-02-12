@@ -86,7 +86,7 @@ if(!$res) {
 		}
 		$insert = substr($insert,0,-2).");";
 		// echo '<hr />';
-		echo $insert.'<br />';
+		$body->line($insert.'<br />');
 		$insert = '';
 		unset($vals);
 		// echo '<hr />';

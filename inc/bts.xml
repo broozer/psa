@@ -97,7 +97,10 @@
 	<caption>
 	<name>Changelog</name>
 	<para><![CDATA[
-	[2012.01.21] drop column added
+	[2012.02.12] drop table added<br />
+	[2012.02.12] add record added<br />
+	[2012.02.10] to Pages (html5)<br />
+	[2012.01.21] drop column added<br /><br />
 	]]>
 	</para>
 	</caption>

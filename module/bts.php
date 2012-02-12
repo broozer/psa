@@ -42,7 +42,7 @@ foreach($xml->item->caption as $cap) {
 	$link = new Link;
 	// $link->setHref('#'.$cap->name);
 
-	echo '<a href="#'.$cap->name.'" >'.$cap->name.'</a><br />';
+	$body->line('<a href="#'.$cap->name.'" >'.$cap->name.'</a><br />');
 }
 
 $body->line('<hr />');
@@ -51,9 +51,9 @@ $body->line('<hr />');
 
 foreach($xml->item->caption as $cap) {
 
-	echo '<h3><a name="'.$cap->name.'">'.$cap->name.'</a></h3>';
+	$body->line('<h3><a name="'.$cap->name.'">'.$cap->name.'</a></h3>');
 	foreach($cap->para as $paraf) {
-		echo '<p>'.$paraf.'</p>';
+		$body->line('<p>'.$paraf.'</p>');
 	}
 	$body->line('<a href="#top">&lt;==</a><br /><br />');
 }
