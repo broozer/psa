@@ -108,6 +108,19 @@ class Request
 		}
 		echo '--------------<br />';
 	}
+
+	// filter extension
+	public function to_arr($filter='') {
+		$ar = Array();
+		$keys = array_keys($this->request);
+
+		for($i=0;$i<sizeof($this->request);++$i) {
+			if(strpos($keys[$i],$filter) > 0) {
+				$ar[$keys[$i]] = $this->request[$keys[$i]];
+			}
+		}
+		return $ar;
+	}
 }
 
 ?>

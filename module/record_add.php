@@ -1,7 +1,7 @@
 <?php
 
 /**
-*¨[type] file
+* [type] file
 * [name] record_add.php
 * [package] psa
 * [since] 2012.02.12

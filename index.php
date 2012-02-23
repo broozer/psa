@@ -85,12 +85,12 @@ else
 		<li>dump sql statements per table</li>
 		<li>insert rows</li>
 		<li>drop table</li>
+		<li>list indexes (part of table info)</li>
+		<li>drop indexes</li>
+		<li>create indexes</li>
 	</ul>
 	<p>Roadmap :</p>
 	<ul>
-		<li>list indexes (part of table info)</li>
-		<li>create indexes</li>
-		<li>drop indexes</li>
 		<li>CRUD views</li>
 		<li>dump database structure</li>
 		<li>dump table data to csv et al</li>

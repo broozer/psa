@@ -38,7 +38,7 @@ $body->build();
 
 include_once('./inc/menubar.php');
 
-$body->line('<p class="struct">Structure for table : <b>'.$req->get('table').'</b></p>');
+$body->line('<h3>Structure for table : <b>'.$req->get('table').'</b></h3>');
 $table = new Table;
 $table->setClas('result');
 $table->setId('listing');
@@ -114,17 +114,7 @@ foreach($res as $item) {
 	$dellink->setName('[ del ]');
 	$dellink->setJs(' onclick="return PSA.really_drop(\' column ['.$item->name.']\');" ');
 
-	/*
-	.$sessie->getS('psa-db').'.'
-	.$sessie->getS('psa-ext').'');
-
-$q = "PRAGMA table_info('".$req->get('table')."')";
-
-
-	$drop = new Link;
-	$drop->setHref('index.php?cmd=drop_db&amp;db='.urlencode($files[$i]));
-	$drop->setName('[drop]');
-	*/
+	
 	$tr->add($dellink->dump());
 	$tr->build();
 }
@@ -132,11 +122,87 @@ $q = "PRAGMA table_info('".$req->get('table')."')";
 unset($table);
 
 $body->line('<hr />');
+
+$body->line('<h3>SQL create statement</h3>');
+
 $q = "SELECT sql FROM sqlite_master WHERE type = 'table' AND name = '".$req->get('table')."' ";
 $sql->qo($q);
 $res = $sql->fo_one();
 
 $body->line($res->sql);
+
+$body->line('<hr>');
+// $body->line('create indexes - overview indexes');
+$body->line('<h3>Indexes</h3>');
+
+$idxadd = new Link;
+$idxadd->setHref('index.php?cmd=index_add&table='.$req->get('table'));
+$idxadd->setName('Add index');
+$idxadd->build();
+
+$body->line();
+
+$q = "PRAGMA index_list(".$req->get('table').")";
+$sql->qo($q);
+$res = $sql->fo();
+
+if(!$res) {
+	$body->line('No indexes defined<br>');
+} else {
+	$table = new Table;
+	$table->setClas('result');
+	$table->build();
+
+	$th = new Th;
+	$th->add('Name');
+	$th->add('Unique ?');
+	$th->add('Columns');
+	$th->add('&nbsp;');
+	$th->build();
+	
+	foreach($res as $item) {
+
+		if($item->unique == 1 ) {
+			$uniq = 'Y';
+		} else {
+			$uniq = 'N';
+		}
+
+		$drop = new Link;
+		$drop->setHref('index.php?cmd=drop_idx&idxname='.$item->name.'&table='.$req->get('table'));
+		$drop->setName('[ drop ]');
+		$drop->setJs(' onclick="return PSA.really_drop(\' index ['.$item->name.']\');" ');
+		
+		$tr = new Tr;
+		if($odd) {
+			$tr->setGlobalClass('even');
+			$odd = FALSE;
+		} else {
+			$tr->setGlobalClass('odd');
+			$odd = TRUE;
+		}
+
+		
+		$tr->add($item->name);
+		$tr->setClas('center');
+		$tr->add($uniq);
+		
+		$q = "PRAGMA index_info(".$item->name.")";
+		$sql->qo($q);
+		$rescol = $sql->fo();
+		$list = '';
+		
+		foreach($rescol as $itcol) {
+			$list = $list.$itcol->name.' ,';
+		}
+
+		$tr->add(substr($list,0,-2));
+		$tr->add($drop->dump());
+		$tr->build();
+		
+	}
+	unset($table);
+}
 
 $body->line('</div>');
 include_once('./inc/footer.php');

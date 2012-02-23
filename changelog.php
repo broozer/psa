@@ -4,6 +4,19 @@
 ?>
 
 Changelog for psa
+todolist 17.02.2012
+
+- index drop
+- index create
+
+- show all performed queries and also hold result
+- create table : UNIQUE (Foreign key)
+- Pragma values : check set 
+- version via exec (which options are available eg WAL)
+- preserve row value for browsing
+- export CSV , xml , sql create table
+- views : overview + creation (maybe via queries)
+
 
 current version 0.02
 [2012.02.06]

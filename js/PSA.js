@@ -141,6 +141,17 @@ var PSA = {
 		xmlhttp.send(null);
 		
 	},
+
+	indexcol: function() {
+		var idxname = document.getElementById('idxname').value;
+		idxname.replace(/^\s+|\s+$/g,"");
+		if(idxname === '') {
+
+			alert('Please fill in index name !');
+			return false;
+		}
+		return true;
+	},
 	
 	to_text: function (data) {
 		/* TODO : clean up data (newlines etc) */
