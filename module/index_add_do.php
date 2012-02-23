@@ -7,7 +7,7 @@
 * [since] 2012.02.22
 * [expl] 
 */
-$req->dump();
+// $req->dump();
 
 $ar = $req->to_arr('ol');
 
