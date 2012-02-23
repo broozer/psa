@@ -71,7 +71,7 @@ for($i=0;$i<sizeof($datafields);++$i) {
 $q = substr($q,0,-1);
 $q .= ")";
 
-echo $q;
+// echo $q;
 
 for($i=0;$i<sizeof($datafields);++$i) {
 	$sql->binder($datafields[$i]['field'],$datafields[$i]['value']);
