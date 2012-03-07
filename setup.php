@@ -27,7 +27,8 @@ $q = "INSERT INTO base (directory,extension) VALUES ('./data','sqlite')";
 $psa->qo($q);
 
 $q = "CREATE TABLE temp_table_fields (
-		tblname VARCHAR(128) 
+		id INTEGER PRIMARY KEY
+		,tblname VARCHAR(128) 
 		,colname VARCHAR(128) 
 		,coltype VARCHAR(48) 
 		,colsize INT(10)

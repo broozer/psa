@@ -4,7 +4,7 @@
 *¨[type] file
 * [name] inp_base.php
 * [package] psa
-* [since] 2010.09.22 - ok
+* [since] 2010.09.22 - ok is it ?
 */
 
 $inp_dir =  new Input;
