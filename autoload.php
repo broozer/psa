@@ -17,7 +17,7 @@ if(!file_exists('./data/base.sqlite')) {
 	exit;
 }
 
-define('LIMIT',100);
+define('LIMIT',20);
 
 $psa = new LitePDO('sqlite:./data/base.sqlite');
 $q = "SELECT * FROM base";

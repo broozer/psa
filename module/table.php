@@ -49,7 +49,7 @@ $q = "SELECT name FROM sqlite_master WHERE type = 'table' ORDER BY name";
 
 $sql->qo($q);
 $res = $sql->fo();
-unset($sql);
+// unset($sql);
 
 $html = new Page;
  
@@ -104,6 +104,56 @@ if(!$res) {
 		$drop->setHref('index.php?cmd=drop_table&table='.$item->name);
 		$drop->setName('Drop');
 		$drop->setJs(' onclick="return PSA.really_drop(\'table\');" ');
+		
+		$tr = new Tr;
+		$tr->add($item->name);
+		$tr->add($struct->dump());
+		$tr->add($browse->dump());
+		$tr->add($dump->dump());
+		$tr->add($drop->dump());
+		$tr->build();
+	}
+	
+	unset($table);
+}
+
+$body->line('<hr>');
+
+$q = "SELECT name FROM sqlite_master WHERE type = 'view' ORDER BY name";
+$sql->qo($q);
+$res = $sql->fo();
+
+if(!$res) {
+	$body->line('No views defined.');
+} else {
+
+	$body->line('<h3>List views</h3>');
+	
+	$table = new Table;
+	$table->setClas('result');
+	$table->build();
+	
+	foreach($res as $item) {
+
+		if($item->name == 'sqlite_sequence') {
+			continue;
+		}
+		$struct = new Link;
+		$struct->setHref('index.php?cmd=tableinfo&table='.$item->name.'&view=true');
+		$struct->setName('Structure');
+		
+		$browse = new Link;
+		$browse->setHref('index.php?cmd=table_browse&table='.$item->name);
+		$browse->setName('Browse');
+
+		$dump = new Link;
+		$dump->setHref('index.php?cmd=table_dump&table='.$item->name);
+		$dump->setName('Dump');
+
+		$drop = new Link;
+		$drop->setHref('index.php?cmd=drop_view&table='.$item->name);
+		$drop->setName('Drop');
+		$drop->setJs(' onclick="return PSA.really_drop(\'view\');" ');
 		
 		$tr = new Tr;
 		$tr->add($item->name);
