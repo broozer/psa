@@ -88,12 +88,14 @@ else
 		<li>list indexes (part of table info)</li>
 		<li>drop indexes</li>
 		<li>create indexes</li>
+		<li>list views</li>
+		<li>drop views</li>
 	</ul>
 	<p>Roadmap :</p>
 	<ul>
-		<li>CRUD views</li>
 		<li>dump database structure</li>
 		<li>dump table data to csv et al</li>
+		- show all performed queries and also hold result
 	</ul>
 	<p>Not yet planned :</p>
 	<ul>

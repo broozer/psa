@@ -6,7 +6,7 @@
 	<para>
 	<![CDATA[
 	Php-sqlite-admin (I refer to it as PSA also) is an attempt to get an web-based
-	view on your sqlite databases, written in PHP.<br /><br />
+	view on your sqlite databases, written in PHP.<br><br>
 	This information assumes you have already a good foundation in PHP and SQLite-based
 	SQL syntax.
 	]]>
@@ -18,10 +18,10 @@
 	<para><![CDATA[
 	Obviously you will need a webserver (I only have experience with Apache) and 
 	PHP. All development is done with PHP 5.3. You will need to have the PDO extension
-	activated.<br /><br />
+	activated.<br><br>
 	I try to test as much as possible with different browsers, but usually the code will
 	be tested using either Firefox or Chrome. As of this writing [2012.02.12], I successfully 
-	used Firefox, Chrome, Opera and Safari.<br /><br />
+	used Firefox, Chrome, Opera and Safari.<br><br>
 	<p id="error">CAUTION : some (critical) operations rely on Javascript , most notably 
 	dropping databases. Running this program without Javascript enabled, will take 
 	immediate effect ie. drop your database without further notice ! </p>
@@ -33,12 +33,12 @@
 	<para>
 	<![CDATA[
 	After you copied the files in the directory of your liking, the program will
-	run a small setup script (runs in the background).<br /><br />
+	run a small setup script (runs in the background).<br><br>
 	It will create a subdirectory 'data' and will create in this directory a 
 	database called 'base.sqlite'. The database has two tables, one for storing the
 	active directory and extension and another for storing queries executed.
 	After the installation process, the homepage will be opened and the entered 
-	values point to the directory	and extension just created.<br /><br />
+	values point to the directory	and extension just created.<br><br>
 	]]>
 	</para>
 	</caption>
@@ -54,18 +54,18 @@
 		in a directory which does not fall under the directory structure of the 
 		webserver. Under linux and comparable you need to make sure that the
 		directory and files have the appropriate rights, in order to be able to 
-		work on them.<br /><br />
+		work on them.<br><br>
 		You can enter relative or absolute directories and PSA will check whether
 		the directory exists. If it exists, it will use the 'extension' value to
-		scan for all databases in the given directory.<br /><br />
-		On Windows both back- and forward slashes work.<br /><br />
+		scan for all databases in the given directory.<br><br>
+		On Windows both back- and forward slashes work.<br><br>
 		</li>
 		<li>
 		Extension: I usually give my databases '.sqlite' as extension. PSA will
-		assume automatically a trailing dot.<br /><br />
+		assume automatically a trailing dot.<br><br>
 		E.g. to find the databases with the extension '.sqlite' under directory
 		/var/sqlitedb, you enter '/var/sqlitedb' in the 'directory' box and 
-		'sqlite' (NO DOT!) in the 'extension' box.<br /><br />
+		'sqlite' (NO DOT!) in the 'extension' box.<br><br>
 		</li>
 	</ul>
 	]]>
@@ -84,13 +84,13 @@
 	<![CDATA[
 	The menu on top appears when you click 'Go' on the homepage and show you to possible 
 	values : home (homepage) and databases. In addition, you will see the selected directory 
-	and extension value.<br /><br />
+	and extension value.<br><br>
 	PSA will scan for existing databases and list them. Clicking on the name of the database
 	'opens' the database and will switch to the 'Tables' page. In addition you can create a
 	new database, vacuum and drop existing ones. When you click on the 'drop' link,
 	you will be asked for confirmation first (javascript based !! if you run your browser 
 	with Javascript disabled, the database will be dropped without further notice ).
-	<br /><br />
+	<br><br>
 	]]>
 	</para>
 	</caption>
@@ -100,6 +100,7 @@
 	<![CDATA[
 	Various options are possible on tables :
 	<ul>
+	<li>add table : create new table</li>
 	<li>structure : look at the table structure, checks whether you have a primary key and shows
 	the SQL creation information. In addition you can drop columns (unordinary for most sqlite
 	administration systems)</li>
@@ -109,18 +110,53 @@
 	<li>drop : drops a table after a confirmation (javascript based !! if you run your browser 
 	with Javascript disabled, the table will be dropped without further notice ).</li>
 	</ul>
-	<br /><br />
+	<br><br>
+	]]>
+	</para>
+	</caption>
+	<caption>
+	<name>Table info</name>
+	<para>
+	<![CDATA[
+	When clicking table structure, you will get the following :
+	<ul>
+	<li>structure for the selected table (primary keys are indicated wil PK in red).
+	You can also drop columns here. If you drop the last existing column for a table, 
+	the table will be dropped.</li>
+	<li>the 'create' statement for the table</li>
+	<li>a list of existing indexes and a button to create new indexes. Indexes can be created
+	and dropped. Updates are not yet possible.</li>
+	</ul>
+	<br><br>
+	]]>
+	</para>
+	</caption>
+	<caption>
+	<name>Queries</name>
+	<para><![CDATA[
+	In this module you can enter query statements and have them executed. It 
+	will take any query you will enter and execute it. When succesfull, it will
+	return to this screen silently or give you a result set. <br>
+	If the query is not succesfull, an SQLite error message will indicate what is
+	wrong with your query.<br>
+	The last ten queries entered are displayed and by clicking the query, it will
+	be copied to the textarea so you can eventually alter it and run it again.<br>
+	In the database maintained for psa you can find a  list of all executed queries.
+	This information is stored in the 'base.sqlite' database.
+	<br><br> 
 	]]>
 	</para>
 	</caption>
 	<caption>
 	<name>Changelog</name>
 	<para><![CDATA[
-	[2012.02.12] menu hide<br />
-	[2012.02.12] drop table added<br />
-	[2012.02.12] add record added<br />
-	[2012.02.10] to Pages (html5)<br />
-	[2012.01.21] drop column added<br /><br />
+	[2012.03.15] crd views<br>
+	[2012.02.22] crd indexes<br>
+	[2012.02.12] menu hide<br>
+	[2012.02.12] drop table added<br>
+	[2012.02.12] add record added<br>
+	[2012.02.10] to Pages (html5)<br>
+	[2012.01.21] drop column added<br><br>
 	]]>
 	</para>
 	</caption>
@@ -129,16 +165,16 @@
 	<para><![CDATA[
 	I started working on a Sqlite PHP interface back in 2006. At that moment
 	only Sqlite2 type databases were supported. I still use this first version
-	for a few databases that are sqlite2 based.<br /><br />
+	for a few databases that are sqlite2 based.<br><br>
 	With the advent of Sqlite3 and the improved functionality (think ALTER TABLE etc)
 	I restarted the project and hosted it on google code. Due to the usual time
 	constraints, I never really fully implemented the basic functionality. Also,
-	the setup at that time reflected my somewhat limited capabilities..<br /><br />
+	the setup at that time reflected my somewhat limited capabilities..<br><br>
 	Along came the sqlite-manager plugin for Firefox. I immediately found out that
-	this tool fullfilled all your needs when developing on a local machine.<br /><br />
+	this tool fullfilled all your needs when developing on a local machine.<br><br>
 	Since my needs to be able to work on remote databases grew, I recently restarted
 	with yet another project. By coincidence I found out that you can use git in
-	combination with subversion as a VCS. Et voila, I restarted this project.<br /><br />
+	combination with subversion as a VCS. Et voila, I restarted this project.<br><br>
 	]]>
 	</para>
 	</caption>

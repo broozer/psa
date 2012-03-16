@@ -4,21 +4,22 @@
 ?>
 
 Changelog for psa
-todolist 17.02.2012
-
-- index drop
-- index create
+todolist 15.03.2012
 
 - show all performed queries and also hold result
 - create table : UNIQUE (Foreign key)
 - Pragma values : check set 
 - version via exec (which options are available eg WAL)
-- preserve row value for browsing
+- preserve row value for browsing 
+- set default number of rows to display
+- if a database has 100 records , newxxt page button is present but not relevant
 - export CSV , xml , sql create table
-- views : overview + creation (maybe via queries)
-
 
 current version 0.02
+[2012.03.15]
+- indexes
+- views
+
 [2012.02.06]
 - record add
 - table drop
