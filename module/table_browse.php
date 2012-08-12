@@ -7,10 +7,21 @@
 * [since] 2010.10.20 -ok 
 */
 
+// 2012-08-12 : browse Limit at end - false no data message
+// 2012-08-12 : views cannot be edited !
+
 // PAGING
 if(!$sessie->isS('bottom')) {
 	$sessie->setS('bottom',0);
 }
+
+// if view type , no editing
+if($req->is('view')) {
+	$is_view = $req->get('view');
+} else {
+	$is_view = false;
+}
+
 
 $sql = new LitePDO('sqlite:'
 	.$sessie->getS('psa-dir').'/'
@@ -23,10 +34,20 @@ $res = $sql->fo_one();
 $records = $res->count;
 $pages = floor($records/LIMIT);
 $lastpage = round($pages,0)*LIMIT;
+// if LIMIT lastpage == $records : false mention no data workaround
+if($records > 0) {
+	// echo 'data exist';
+
+	if($records == $lastpage) {
+		// echo $records.'-'.$lastpage;
+		$lastpage = $lastpage - LIMIT;
+	}
+}
 
 $q = "PRAGMA table_info('".$req->get('table')."')";
 $sql->qo($q);
 $res = $sql->fo();
+
 
 $pk = false;
 
@@ -90,19 +111,27 @@ $body->build();
 
 include_once('./inc/menubar.php');
 
-$body->line('<h3>Table : '.$req->get('table').'</h3>');
+$body->line('<h2>Table : '.$req->get('table').'</h2>');
+if($is_view) {
+	$body->line('This is a view and individual data cannot be altered.<br />');
+}
 
-$link = new Link;
-$link->setHref('index.php?cmd=record_add&amp;table='.$req->get('table'));
-$link->setName('Add record');
+if(!$is_view) {
+	$link = new Link;
+	$link->setHref('index.php?cmd=record_add&amp;table='.$req->get('table'));
+	$link->setClas('butter');
+	$link->setName('Add record');
 
-$body->line($link->dump());
+	$body->line($link->dump());
+}
+
 $body->line('<hr>');
 
 $odd = FALSE;
 if(!$res) {
 	$body->line('Table does not contain records');
 } else {
+	
 	$firstlink = new Link;
 	$firstlink->setHref('index.php?cmd=table_browse&amp;table='.$req->get('table').'&amp;direction=first');
 	$firstlink->setName('[&lt;&lt;--]');
@@ -148,8 +177,10 @@ if(!$res) {
 		/**/
 		if(!$titles) {
 			$tr = new Th;
-			$tr->add('edit');
-			$tr->add('delete');
+			if(!$is_view) {
+				$tr->add('edit');
+				$tr->add('delete');
+			}
 			if(!$pk) {
 				$tr->add('ROWID');
 			}
@@ -169,18 +200,20 @@ if(!$res) {
 			$tr->setGlobalClass('odd');
 			$odd = TRUE;
 		}
-		$edit = new Link;
-		$edit->setHref('index.php?cmd=edit_record&amp;table='.$req->get('table').'&amp;id='.$item->id);
-		$edit->setName('[edit]');
-		// $edit->setTarget('edit_del');
-	
-		$del = new Link;
-		$del->setHref('index.php?cmd=drop_record&amp;table='.$req->get('table').'&amp;id='.$item->id);
-		$del->setName('[del]');
-		$del->setJs(' onclick="return PSA.really_drop(\'record\');" ');
+		if(!$is_view) {
+			$edit = new Link;
+			$edit->setHref('index.php?cmd=edit_record&amp;table='.$req->get('table').'&amp;id='.$item->id);
+			$edit->setName('[edit]');
+			// $edit->setTarget('edit_del');
 		
-		$tr->add($edit->dump());
-		$tr->add($del->dump());
+			$del = new Link;
+			$del->setHref('index.php?cmd=drop_record&amp;table='.$req->get('table').'&amp;id='.$item->id);
+			$del->setName('[del]');
+			$del->setJs(' onclick="return PSA.really_drop(\'record\');" ');
+			
+			$tr->add($edit->dump());
+			$tr->add($del->dump());
+		}
 		
 		foreach($item as $data) {
 			$tr->add(htmlentities($data));

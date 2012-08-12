@@ -63,6 +63,14 @@ a:hover {
 	color: #FFA500;
 }
 
+.butter {
+	border: 1px solid navy;
+	padding: 3px;
+	background-color: aliceblue;
+	color: navy;
+	font-weight: bold;
+}
+
 /**/
 .xemel {
 	padding-left: 50px;

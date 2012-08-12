@@ -68,8 +68,11 @@ $body->build();
 
 include_once('./inc/menubar.php');
 
+$body->line();
+
 $link = new Link;
 $link->setHref('index.php?cmd=table_add');
+$link->setClas('butter');
 $link->setName('Add table');
 $link->build();
 
@@ -79,6 +82,8 @@ if(!$res) {
 	$body->line('No tables defined.');
 } else {
 
+	$body->line('<h3>List tables</h3>');
+	
 	$table = new Table;
 	$table->setClas('result');
 	$table->build();
@@ -143,15 +148,15 @@ if(!$res) {
 		$struct->setName('Structure');
 		
 		$browse = new Link;
-		$browse->setHref('index.php?cmd=table_browse&table='.$item->name);
+		$browse->setHref('index.php?cmd=table_browse&table='.$item->name.'&view=true');
 		$browse->setName('Browse');
 
 		$dump = new Link;
-		$dump->setHref('index.php?cmd=table_dump&table='.$item->name);
+		$dump->setHref('index.php?cmd=table_dump&table='.$item->name.'&view=true');
 		$dump->setName('Dump');
 
 		$drop = new Link;
-		$drop->setHref('index.php?cmd=drop_view&table='.$item->name);
+		$drop->setHref('index.php?cmd=drop_view&table='.$item->name.'&view==true');
 		$drop->setName('Drop');
 		$drop->setJs(' onclick="return PSA.really_drop(\'view\');" ');
 		
