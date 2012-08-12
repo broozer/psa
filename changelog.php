@@ -4,7 +4,7 @@
 ?>
 
 Changelog for psa
-todolist 15.03.2012
+todolist 11.08.2012
 
 - show all performed queries and also hold result
 - create table : UNIQUE (Foreign key)
@@ -12,8 +12,12 @@ todolist 15.03.2012
 - version via exec (which options are available eg WAL)
 - preserve row value for browsing 
 - set default number of rows to display
-- if a database has 100 records , newxxt page button is present but not relevant
 - export CSV , xml , sql create table
+
+current version 0.02.1
+[2012.08.12]
+- table browse : odd problem of size = limit and no records solved
+- views : no edit/delete possible
 
 current version 0.02
 [2012.03.15]
