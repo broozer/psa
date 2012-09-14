@@ -93,23 +93,28 @@ var PSA = {
 			
 				if(xmlhttp.readyState == 4)	{
 					var calform = xmlhttp.responseText;
-					var ttshow = PSA.getId('ttshow');
-				
-					ttshow.innerHTML = calform;
+
+					if(calform.substr(0,4) == 'oeps') {
+						alert(calform.substr(7));
+					} else {
+						var ttshow = PSA.getId('ttshow');
 					
-					var colname = PSA.getId('colname');
-					colname.value = '';
-					var colprime = PSA.getId('colprime');
-					colprime.checked = false;
-
-					var colsize = PSA.getId('colsize');
-					colsize.value = '';
-
-					var colnull = PSA.getId('colnull');
-					colnull.checked = false;
-					/* colnull.checked = false; */
-					var coldefault = PSA.getId('coldefault');
-					coldefault.value = '';
+						ttshow.innerHTML = calform;
+						
+						var colname = PSA.getId('colname');
+						colname.value = '';
+						var colprime = PSA.getId('colprime');
+						colprime.checked = false;
+	
+						var colsize = PSA.getId('colsize');
+						colsize.value = '';
+	
+						var colnull = PSA.getId('colnull');
+						colnull.checked = false;
+						/* colnull.checked = false; */
+						var coldefault = PSA.getId('coldefault');
+						coldefault.value = '';
+					}
 				}
 				
 			} 
