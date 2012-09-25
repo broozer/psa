@@ -5,6 +5,8 @@ After initial startup the necessary database will be created in the ./data subdi
 This database only contains the history of 'raw' queries and a placeholder and extension
 for the directory containing databases.
 
+In addition it contains a small set of tables for temporary data management.
+
 More information
 ----------------
 
