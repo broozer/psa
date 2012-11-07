@@ -105,6 +105,10 @@ if(!$res) {
 		$dump->setHref('index.php?cmd=table_dump&table='.$item->name);
 		$dump->setName('Dump');
 
+		$csv = new Link;
+		$csv->setHref('index.php?cmd=table_csv&table='.$item->name);
+		$csv->setName('CSV');
+		
 		$drop = new Link;
 		$drop->setHref('index.php?cmd=drop_table&table='.$item->name);
 		$drop->setName('Drop');
@@ -115,6 +119,7 @@ if(!$res) {
 		$tr->add($struct->dump());
 		$tr->add($browse->dump());
 		$tr->add($dump->dump());
+		$tr->add($csv->dump());
 		$tr->add($drop->dump());
 		$tr->build();
 	}

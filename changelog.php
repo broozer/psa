@@ -14,6 +14,9 @@ todolist 11.08.2012
 - set default number of rows to display
 - export CSV , xml , sql create table
 
+[2012.11.07]
+CSV export
+
 current version 0.02.1
 [2012.08.12]
 - table browse : odd problem of size = limit and no records solved
