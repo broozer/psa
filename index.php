@@ -38,7 +38,7 @@ else
 	$sessie->unsetS('psa-db');
 	
 	$cmd->setValue('base');
-	$submit->setValue('Go!');
+	$submit->setValue('Go');
 	
 	include_once('./inputs/inp_base.php');
 	
@@ -95,7 +95,7 @@ else
 	<ul>
 		<li>dump database structure</li>
 		<li>dump table data to csv et al</li>
-		- show all performed queries and also hold result
+		<li>show all performed queries and also hold result</li>
 	</ul>
 	<p>Not yet planned :</p>
 	<ul>
@@ -110,4 +110,3 @@ else
 	unset($html);
 }
 
-?>

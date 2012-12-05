@@ -14,6 +14,11 @@ todolist 11.08.2012
 - set default number of rows to display
 - export CSV , xml , sql create table
 
+[2012.12.05]
+- default number of rows
+- layout
+- if integer primary is chosen NO size -> otherwise column does not act as autoicrement
+
 [2012.11.07]
 CSV export
 

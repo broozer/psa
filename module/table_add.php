@@ -91,12 +91,14 @@ $colprime = new Input;
 $colprime->setName('colprime');
 $colprime->setType('checkbox');
 $colprime->setId('colprime');
+$colprime->setJs(' onclick="PSA.checkprimary();" ');
 
 $colsize = new Input;
 $colsize->setName('colsize');
 $colsize->setSize(7);
 $colsize->setMaxlength(7);
 $colsize->setId('colsize');
+$colsize->setJs(' onblur="PSA.checknumeric();" ');
 
 $colnull = new Input;
 $colnull->setName('colnull');

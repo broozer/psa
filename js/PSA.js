@@ -26,6 +26,37 @@ var PSA = {
 		return fieldid;
 	},
 	
+	/* if primary is indicated - disallow size */
+	checkprimary: function() {
+		var checkprim = PSA.getId('colprime');
+		var nosize = PSA.getId('colsize');
+		
+		if(checkprim.checked) {
+			// alert('i am checked');
+			nosize.readOnly = true;
+			nosize.style.backgroundColor = 'steelBlue';
+		} else {
+			// alert('i am not checked');
+			nosize.removeAttribute('readonly',true);
+			nosize.style.backgroundColor = 'white'; // will not change immediatley to lightYellow ???
+			nosize.style.backgroundColor = 'lightYellow';
+		}
+	},
+
+	checknumeric: function() {
+		var checksize = PSA.getId('colsize').value;
+		var colsize = PSA.getId('colsize');
+		if(!isNaN(parseFloat(checksize))) {
+				colsize.value = checksize;
+		} else {
+			if(checksize !== '') {
+				alert('Only numeric values allowed');
+				colsize.value = '';
+			}
+		}
+
+	},
+
 	/* table_add get field content and add it */
 	addField: function() {
 		var err_check = '';
