@@ -50,15 +50,21 @@ for($i=0;$i<sizeof($keys);++$i) {
 $q = "UPDATE ".$req->get('data_table')." SET ";
 
 for($i=0;$i<sizeof($datafields);++$i) {
-	$q .= $datafields[$i]['field']." = '".$datafields[$i]['value']."' ,";
+	$q .= $datafields[$i]['field']." = :".$datafields[$i]['field']." ,";
 }
 
 $q = substr($q,0,-1);
+
 
 if($pk) {
 	$q .= " WHERE id = ".$req->get('data_id')." ";
 } else {
 	$q .= " WHERE ROWID = ".$req->get('data_id')." ";
+}
+
+
+for($i=0;$i<sizeof($datafields);++$i) {
+	$sql->binder($datafields[$i]['field'],$datafields[$i]['value']);
 }
 
 $sql->qo($q);
