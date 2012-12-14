@@ -16,12 +16,12 @@
 	<caption>
 	<name>Requirements</name>
 	<para><![CDATA[
-	Obviously you will need a webserver (I only have experience with Apache) and 
-	PHP. All development is done with PHP 5.3. You will need to have the PDO extension
+		Obviously you will need a webserver and PHP. All development is done with PHP 5.3. 
+		You will need to have the PDO extension
 	activated.<br><br>
 	I try to test as much as possible with different browsers, but usually the code will
-	be tested using either Firefox or Chrome. As of this writing [2012.02.12], I successfully 
-	used Firefox, Chrome, Opera and Safari.<br><br>
+	be tested using either Firefox or Chrome. As of this writing [2012.12.14], I successfully 
+	used Firefox, Chrome, Opera, Safari and IE (8).<br><br>
 	<p id="error">CAUTION : some (critical) operations rely on Javascript , most notably 
 	dropping databases. Running this program without Javascript enabled, will take 
 	immediate effect ie. drop your database without further notice ! </p>
@@ -108,7 +108,8 @@
 	from here</li>
 	<li>dump : creates a dump of all records in the table in SQL format</li>
 	<li>drop : drops a table after a confirmation (javascript based !! if you run your browser 
-	with Javascript disabled, the table will be dropped without further notice ).</li>
+		with Javascript disabled, the table will be dropped without further notice ).</li>
+	<li>csv : basic semicolon dump (needs improvement off course)</li>
 	</ul>
 	<br><br>
 	]]>
@@ -150,6 +151,7 @@
 	<caption>
 	<name>Changelog</name>
 	<para><![CDATA[
+		[2012.12.14] views : cannot alter records - checks when creating table<br>	
 	[2012.03.15] crd views<br>
 	[2012.02.22] crd indexes<br>
 	[2012.02.12] menu hide<br>

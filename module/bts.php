@@ -56,4 +56,3 @@ include_once('./inc/footer.php');
 unset($body);
 unset($html);
 
-?>
