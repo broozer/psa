@@ -133,22 +133,38 @@ if(!$res) {
 } else {
 	
 	$firstlink = new Link;
-	$firstlink->setHref('index.php?cmd=table_browse&amp;table='.$req->get('table').'&amp;direction=first');
+	if($is_view) {
+		$firstlink->setHref('index.php?cmd=table_browse&amp;table='.$req->get('table').'&amp;direction=first&view=true');
+	} else {
+		$firstlink->setHref('index.php?cmd=table_browse&amp;table='.$req->get('table').'&amp;direction=first');
+	}	
 	$firstlink->setName('[&lt;&lt;--]');
 	$firstlink->build();
 	
 	$previous = new Link;
-	$previous->setHref('index.php?cmd=table_browse&amp;table='.$req->get('table').'&amp;direction=previous');
+	if($is_view) {
+		$previous->setHref('index.php?cmd=table_browse&amp;table='.$req->get('table').'&amp;direction=previous&view=true');
+	} else {
+		$previous->setHref('index.php?cmd=table_browse&amp;table='.$req->get('table').'&amp;direction=previous&view=true');
+	}
 	$previous->setName('[&lt;]');
 	$previous->build();
 	
 	$next = new Link;
-	$next->setHref('index.php?cmd=table_browse&amp;table='.$req->get('table').'&amp;direction=next');
+	if($is_view) {
+		$next->setHref('index.php?cmd=table_browse&amp;table='.$req->get('table').'&amp;direction=next&view=true');
+	} else {
+		$next->setHref('index.php?cmd=table_browse&amp;table='.$req->get('table').'&amp;direction=next');
+	}	
 	$next->setName('[&gt;]');
 	$next->build();
 	
 	$lastlink = new Link;
-	$lastlink->setHref('index.php?cmd=table_browse&amp;table='.$req->get('table').'&amp;direction=last');
+	if($is_view) {
+		$lastlink->setHref('index.php?cmd=table_browse&amp;table='.$req->get('table').'&amp;direction=last&view=true');
+	} else {
+		$lastlink->setHref('index.php?cmd=table_browse&amp;table='.$req->get('table').'&amp;direction=last');
+	}	
 	$lastlink->setName('[--&gt;&gt;]');
 	$lastlink->build();
 	
