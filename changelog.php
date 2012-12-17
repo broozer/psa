@@ -14,6 +14,9 @@ todolist 11.08.2012
 - set default number of rows to display
 - export CSV , xml , sql create table
 
+[2012.12.17]
+- small bug in table_browse previous solved (always view)
+
 [2012.12.14]
 - view browse links with view=true
 

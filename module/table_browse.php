@@ -145,7 +145,7 @@ if(!$res) {
 	if($is_view) {
 		$previous->setHref('index.php?cmd=table_browse&amp;table='.$req->get('table').'&amp;direction=previous&view=true');
 	} else {
-		$previous->setHref('index.php?cmd=table_browse&amp;table='.$req->get('table').'&amp;direction=previous&view=true');
+		$previous->setHref('index.php?cmd=table_browse&amp;table='.$req->get('table').'&amp;direction=previous');
 	}
 	$previous->setName('[&lt;]');
 	$previous->build();
