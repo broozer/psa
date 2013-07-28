@@ -30,9 +30,18 @@ if($req->is('extension')) {
 	$sessie->setS('psa-ext',$req->get('extension'));
 	
 	$psa = new LitePDO('sqlite:./data/base.sqlite');
-	$q = "UPDATE base SET directory = :directory, extension = :extension";
+	
+	$q = "UPDATE 
+		base 
+	SET 
+		directory = :directory
+		, extension = :extension
+		, nr_rows = :nr_rows 
+	";
+	
 	$psa->binder('directory',$req->get('directory'));
 	$psa->binder('extension',$req->get('extension'));
+	$psa->binder('nr_rows',$req->get('nr_rows'));
 	$psa->qo($q);
 	unset($psa);
 }

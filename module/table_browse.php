@@ -5,14 +5,24 @@
 * [name] table_browse.php
 * [package] psa
 * [since] 2010.10.20 -ok 
+* [update] 2012-08-12 : browse Limit at end - false no data message
+			 2012-08-12 : views cannot be edited !
 */
 
-// 2012-08-12 : browse Limit at end - false no data message
-// 2012-08-12 : views cannot be edited !
-
 // PAGING
+
+// bottom : low end record
+// bottom_table : table last viewed 
 if(!$sessie->isS('bottom')) {
 	$sessie->setS('bottom',0);
+	$sessie->setS('bottom_table',$req->get('table'));
+}
+
+// if table not the same , reset pointer
+
+if($sessie->getS('bottom_table') !== $req->get('table')) {
+	$sessie->setS('bottom',0);
+	$sessie->setS('bottom_table',$req->get('table'));
 }
 
 // if view type , no editing
@@ -47,7 +57,6 @@ if($records > 0) {
 $q = "PRAGMA table_info('".$req->get('table')."')";
 $sql->qo($q);
 $res = $sql->fo();
-
 
 $pk = false;
 
@@ -93,7 +102,8 @@ $sql->qo($q);
 
 $res = $sql->fo();
 
-// echo "BOTTOM WAARDE  : <b><h1>".$sessie->getS('bottom')."</h1></b>"; 
+// echo "BOTTOM WAARDE  : <b><h1>".$sessie->getS('bottom')."</h1></b>";
+
 $html = new Page;
  
 $html->setLanguage('nl_NL');
@@ -189,6 +199,7 @@ if(!$res) {
 	$table->setClas('result');
 	$table->setId('listing');
 	$table->build();
+	
 	foreach($res as $item) {
 		/**/
 		if(!$titles) {
@@ -244,4 +255,3 @@ $body->line('</div>');
 include_once('./inc/footer.php');
 unset($body);
 unset($html);
-?>

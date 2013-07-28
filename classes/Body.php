@@ -72,5 +72,3 @@ class Body extends Base
 		}
 	}
 }
-
-?>

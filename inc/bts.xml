@@ -139,7 +139,8 @@
 	will take any query you will enter and execute it. When succesfull, it will
 	return to this screen silently or give you a result set. <br>
 	If the query is not succesfull, an SQLite error message will indicate what is
-	wrong with your query.<br>
+	wrong with your query. In addition the query willbe stored , but will show in red with a grey
+	background and is not \'clickable\'.<br>
 	The last ten queries entered are displayed and by clicking the query, it will
 	be copied to the textarea so you can eventually alter it and run it again.<br>
 	In the database maintained for psa you can find a  list of all executed queries.
@@ -151,7 +152,18 @@
 	<caption>
 	<name>Changelog</name>
 	<para><![CDATA[
-		[2012.12.14] views : cannot alter records - checks when creating table<br>	
+	[2013.07.28]
+	version : 0.1.0.0<br>
+	<ul>
+		<li>number of rows in table view</li>
+		<li> stay at current rowview in table (add bottom_table in table_view) - alter number of rows shown (fixed on 20 now)</li>
+		<li> cleanup comments in files</li>
+		<li> performed queries hold result</li>
+		<li>table dump : result in textarea</li>
+		<li> tabel csv : result in textarea</li>
+	</ul>
+
+	[2012.12.14] views : cannot alter records - checks when creating table<br>	
 	[2012.03.15] crd views<br>
 	[2012.02.22] crd indexes<br>
 	[2012.02.12] menu hide<br>

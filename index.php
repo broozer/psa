@@ -18,9 +18,11 @@ if($req->is('cmd') && $req->get('cmd') !== 'nodatabase')
 	}
 	
 	// clear bottom -> paging in table_browse
+	/*
 	if($req->get('cmd') !== 'table_browse' && $sessie->isS('bottom')) {
 		$sessie->unsetS('bottom');
 	}
+	*/
 	if(!file_exists('./module/'.$req->get('cmd').'.php')) {
 		$sessie->setS('psa-error','Module <b>"'.$req->get('cmd').'"</b> does not exists (yet) !');
 		header('location: index.php');
@@ -39,8 +41,6 @@ else
 	
 	$cmd->setValue('base');
 	$submit->setValue('Go');
-	
-	include_once('./inputs/inp_base.php');
 	
 	$html = new Page;
 	$html->setLanguage('nl_NL');
@@ -61,7 +61,9 @@ else
 	$body->line('
 	<p>Databases will be selected based on the preset directory and extension. 
 	Currently the following are stored : </p>');
+	
 	include_once('./forms/form_base.php');
+	
 	$body->line('<hr />
 	<p>PSA stands for PHP - SQLite - Administration. This application lets you 
 	do the basic operations with SQLite3 databases. The current version only
@@ -109,4 +111,3 @@ else
 	unset($body);
 	unset($html);
 }
-

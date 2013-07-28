@@ -25,15 +25,18 @@ try {
 $qar = stripslashes($req->get('qs'));
 /**/
 
-$q = "INSERT INTO queries (qs,datum,db) VALUES (:qs,:datum,:db)";
+$q = "INSERT INTO queries (qs,datum,db,fine) VALUES (:qs,:datum,:db,:fine)";
 $tps = $psa->prepare($q);
 
 $datum = date('Y-m-d H:i:s');
 $db = $sessie->getS('psa-db');
+$fine = 1;
+
 try {
 	$tps->bindparam(':qs',$qar);
 	$tps->bindparam(':datum',$datum);
 	$tps->bindparam(':db',$db);
+	$tps->bindparam(':fine',$fine);
 	$tps->execute();
 } catch (PDOException $e) {
     echo 'Connection failed: ' . $e->getMessage();
@@ -57,14 +60,32 @@ for($i=0;$i<sizeof($q_ar);++$i) {
 		continue;
 	}
 	
-	if(!$sql->qo($q_ar[$i])) {
+	$sql->qo($q_ar[$i]);
+	
+	if($sessie->isS('sqler')) {
+		/*
+	
+		echo 'sqler is set : '.$sessie->getS('sqler');
+		echo '<hr>';
+		$class = $sessie->getS('sqler');
+		
+		foreach($class->errorInfo as $key => $value) {
+			//print $value;
+			//print '<hr>';
+			if($key == '2') {
+		   		echo $value;
+			}
+		}
+		die();
 		$error = TRUE;
+		*/
 		break;
 	} else {
 		$res = $sql->fo();
 		/* */
 	}
-	
+
+	/*
 	if(stristr($q_ar[$i],"NSERT INTO")) {
 		// void
 	} else {
@@ -73,9 +94,51 @@ for($i=0;$i<sizeof($q_ar);++$i) {
 			break;
 		}
 	}
+	*/
 }
 
-if($error) {
+if($sessie->isS('sqler')) {
+	/*
+	echo 'sqler is set : '.$sessie->getS('sqler');
+	echo '<hr>';
+	$class = $sessie->getS('sqler');
+	
+	foreach($class->errorInfo as $key => $value) {
+		//print $value;
+		//print '<hr>';
+		if($key == '2') {
+	   		echo $value;
+		}
+	}
+	*/
+	try {
+	   $psa = new PDO('sqlite:./data/base.sqlite');
+	} catch (PDOException $e) {
+	    echo 'Connection failed: ' . $e->getMessage();
+	}
+	$qar = stripslashes($req->get('qs'));
+	/**/
+
+	$q = "SELECT max(id) as id from queries";
+	$tps = $psa->prepare($q);
+	$db = $sessie->getS('psa-db');
+	$fine = 0;
+	$tps->execute();
+
+	$resid = $tps->fetch();
+
+	$q = "UPDATE queries SET fine = ".$fine." WHERE id = ".$resid['id']." ";
+	$tps = $psa->prepare($q);
+	$tps->execute();
+	
+	unset($psa);
+
+	header('location: index.php?cmd=query');
+	exit;
+}
+
+/**/
+if($error == true) {
 	header('location: index.php?cmd=query');
 	exit;
 } else {
@@ -84,5 +147,3 @@ if($error) {
 	header('location: index.php?cmd=query_results');
 	exit;
 }
-
-?>

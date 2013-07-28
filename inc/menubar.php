@@ -62,5 +62,3 @@ if($sessie->isS('sqler')) {
 	$body->line('</div>');
 	$sessie->unsetS('sqler');
 }
-
-?>

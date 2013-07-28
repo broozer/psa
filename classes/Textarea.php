@@ -60,7 +60,7 @@ class Textarea extends Base
 			}
 		
 			if ($this->getName() == '') {
-				throw new WebException("<b>Textarea class exception.</b><br />Name is not set.");
+				throw new PageException("<b>Textarea class exception.</b><br />Name is not set.");
 			}
 	
 			$this->html	 = '<textarea name="';
@@ -87,5 +87,3 @@ class Textarea extends Base
 		}
 	}
 }
-
-?>

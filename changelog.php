@@ -4,15 +4,27 @@
 ?>
 
 Changelog for psa
+
+version : 
+
 todolist 11.08.2012
 
-- show all performed queries and also hold result
+- show all performed queries and also hold result (can be done by dumping queries table of base)
 - create table : UNIQUE (Foreign key)
 - Pragma values : check set 
 - version via exec (which options are available eg WAL)
-- preserve row value for browsing 
-- set default number of rows to display
+
+
+[2013.07.28]
+- number of rows in table view
+- stay at current rowview in table (add bottom_table in table_view) - alter number of rows shown (fixed on 20 now)
+- cleanup comments in files
+- performed queries hold result
+- table dump : result in textarea
+- tabel csv : result in textarea
 - export CSV , xml , sql create table
+- set default number of rows to display
+- preserve row value for browsing 
 
 [2012.12.17]
 - small bug in table_browse previous solved (always view)

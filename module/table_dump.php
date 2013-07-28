@@ -67,6 +67,7 @@ $odd = FALSE;
 if(!$res) {
 	$body->line('Table does not contain records');
 } else {
+	$resultset = '';
 	
 	foreach($res as $item) {
 		$insert = 'INSERT INTO '.$req->get('table').' (';
@@ -84,9 +85,10 @@ if(!$res) {
 			$insert .= $vals[$i]."','";
 			// $vals[] = $item->$col[$i];
 		}
-		$insert = substr($insert,0,-2).");";
+		$insert = substr($insert,0,-2).");\r\n";
 		// echo '<hr />';
-		$body->line($insert.'<br />');
+		// $body->line($insert.'<br />');
+		$resultset .= $insert;
 		$insert = '';
 		unset($vals);
 		// echo '<hr />';
@@ -94,11 +96,17 @@ if(!$res) {
 		
 	}
 	
-	unset($table);
+	$restext = new Textarea;
+	$restext->setName('queries');
+	$restext->setRows(20);
+	$restext->setCols(85);
+	$restext->setValue($resultset);
+	// $restext->setSelected('true');
+
+	$restext->build();
 }
 
 $body->line('</div>');
 include_once('./inc/footer.php');
 unset($body);
 unset($html);
-?>

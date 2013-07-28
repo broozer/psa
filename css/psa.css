@@ -149,6 +149,13 @@ a:hover {
 	background-color: lightyellow;
 }
 
+.query_error {
+	background-color: lightgrey;
+	color: red;
+	font-style: italic;
+	font-size: 1em;
+}
+
 #listing tr.even {
 	background-color: #f8f8f8;
 	border-bottom: 1px solid #eee;

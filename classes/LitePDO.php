@@ -217,7 +217,7 @@ class LitePDO extends PDO
 
 			if(!$this->stmt = $this->sql->prepare($this->qo)) {
 				throw new PDOException("<hr />LitePDO prepare error<hr />");
-			}
+			} 
 
 
 			if(isset($this->bindField))
@@ -287,6 +287,3 @@ class LitePDO extends PDO
 	}
 
 }
-
-
-?>

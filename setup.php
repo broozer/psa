@@ -16,14 +16,14 @@ if(!file_exists('data')) {
 }
 
 $psa = new LitePDO('sqlite:./data/base.sqlite');
-$q = "CREATE TABLE queries (id INTEGER PRIMARY KEY, qs TEXT , datum DATETIME(20), db VARCHAR(50))";
+$q = "CREATE TABLE queries (id INTEGER PRIMARY KEY, qs TEXT , datum DATETIME(20), db VARCHAR(50), fine INTEGER(1))";
 
 $psa->qo($q);
 
-$q = "CREATE TABLE base (directory VARCHAR(128) , extension VARCHAR(20))";
+$q = "CREATE TABLE base (directory VARCHAR(128) , extension VARCHAR(20) , nr_rows INTEGER(7))";
 $psa->qo($q);
 
-$q = "INSERT INTO base (directory,extension) VALUES ('./data','sqlite')";
+$q = "INSERT INTO base (directory,extension, nr_rows) VALUES ('./data','sqlite',20)";
 $psa->qo($q);
 
 $q = "CREATE TABLE temp_table_fields (
@@ -37,14 +37,8 @@ $q = "CREATE TABLE temp_table_fields (
 		, coldefault VARCHAR(128))";
 $psa->qo($q);
 
-/* 2011.02.10 - do I use this log file ??
-if(!file_exists('psa.log')) {
-	$file = new File('psa.log','w');
-	unset($file);
-}
-*/ 
+
 unset($psa);
 
 header('location: index.php?cmd=bts');
 exit;
-?>

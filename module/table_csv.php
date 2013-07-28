@@ -66,6 +66,7 @@ $odd = FALSE;
 if(!$res) {
 	$body->line('Table does not contain records');
 } else {
+	$resultset = '';
 	$string = '';
 	foreach($res as $item) {
 		$linear = (array)$item;
@@ -75,12 +76,19 @@ if(!$res) {
 			$string .= "'".$linear[$keyar[$i]]."';";
 		}
 		
-		$string .= '<br>';
-		$body->line($string);
+		$string .= "\r\n";
+		// $body->line($string);
+		$resultset .= $string;
 		$string = '';
+		
 	}
-	
-	unset($table);
+	$restext = new Textarea;
+	$restext->setName('queries');
+	$restext->setRows(20);
+	$restext->setCols(85);
+	$restext->setValue($resultset);
+
+	$restext->build();
 }
 
 $body->line('</div>');

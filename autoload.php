@@ -5,6 +5,7 @@
 * [type] file
 * [expl] autoload.php voor psa
 * [since] 2010-09-22
+* [update] 2013.07.28 : LIMIT removed
 */
 
 function __autoload($class_name)
@@ -17,12 +18,14 @@ if(!file_exists('./data/base.sqlite')) {
 	exit;
 }
 
-define('LIMIT',20);
 
 $psa = new LitePDO('sqlite:./data/base.sqlite');
 $q = "SELECT * FROM base";
 $psa->qo($q);
 $result = $psa->fo_one();
+
+define('LIMIT',$result->nr_rows);
+
 unset($psa);
 
 $sessie = new Session;
@@ -39,5 +42,3 @@ $cmd = new Input;
 $cmd->setName('cmd');
 $cmd->setType('hidden');
 
-
-?>

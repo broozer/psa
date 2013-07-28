@@ -17,7 +17,6 @@ if(!$sessie->isS('psa-db')) {
 	}
 }
 
-
 $cmd->setValue('qs');
 $submit->setValue('Go!');
 
@@ -35,6 +34,8 @@ $body = new Body;
 $body->build();
 
 include_once('./inc/menubar.php');
+
+$body->line('Insert raw sql query : ');
 
 $form = new Form;
 $form->setAction('index.php');
@@ -69,14 +70,30 @@ if(!$res) {
 	$table = new Table;
 	$table->setClas('result');
 	$table->build();
+
+	$th = new Th;
+	$th->add('database');
+	$th->add('date - time');
+	$th->add('query (click to copy in execution field)');
+	$th->build();
 	
 	foreach($res as $item) {
 		$tr = new Tr;
-		$tr->add($item['db']);
-		$tr->add($item['datum']);
-		$tr->add('<div class="qs">
-			<a href="#" 
-			onClick="PSA.to_text(\''.str_replace('"',"&&",str_replace("'","##",trim(str_replace("\r\n"," ",$item['qs'])))).'\');">'.nl2br($item['qs']).'</a></div>');
+		if($item['fine'] == 0) {
+			$tr->setGlobalClass('query_error');
+
+			$tr->add($item['db']);
+			$tr->add($item['datum']);
+			$tr->add(str_repeat("&nbsp;",2).$item['qs']);
+			
+		} else {
+		
+			$tr->add($item['db']);
+			$tr->add($item['datum']);
+			$tr->add('<div class="qs">
+				<a href="#" 
+				onClick="PSA.to_text(\''.str_replace('"',"&&",str_replace("'","##",trim(str_replace("\r\n"," ",$item['qs'])))).'\');">'.nl2br($item['qs']).'</a></div>');
+		}
 		$tr->build();
 	}
 	unset($table);
@@ -87,4 +104,3 @@ unset($psa);
 include_once('./inc/footer.php');
 unset($body);
 unset($html);
-?>
