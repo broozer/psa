@@ -7,6 +7,8 @@ for the directory containing databases.
 
 In addition it contains a small set of tables for temporary data management.
 
+version : 0.1.0.0 - 2013.07.28
+
 More information
 ----------------
 
