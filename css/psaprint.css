@@ -1,7 +1,7 @@
 /* psa.css */
 body {
 	margin: 0;
-	color: #4682B4;
+	color: black;
 	font-family: monospace;
 }
 
@@ -26,54 +26,55 @@ th,td {
 }
 
 input {
-	background-color: lightyellow;
+	background-color: white;
 	font-size: 1em;
 }
 
 input[type="submit"] {
-	background-color: #B0C4DE;
-	border: 1px solid #6A5ACD;
+	background-color: black;
+	border: 1px solid black;
 	padding-left: 5px;
 	padding-right: 5px;
 	margin-left: 10px;
 }
 
 input[type="submit"]:hover {
-	background-color: #FFA500;
-	border: 1px solid #6A5ACD;
+	background-color: black;
+	border: 1px solid black;
 }
 
 input[readonly] {
-	background-color: silver;
+	background-color: white;
 }
 
 /**/
 textarea {
-	background-color: lightyellow;
+	background-color: white;
 	font-size: 1.3em;
 }
 
 a {
-	color: #000080;
+	color: black;
 	text-decoration: none;
+	font-style: italic;
 	font-size: 1.1em;
 }
 
 a:hover {
-	color: #FFA500;
+	color: black;
 }
 
 .butter {
-	border: 1px solid navy;
+	border: 1px solid black;
 	padding: 3px;
-	background-color: aliceblue;
-	color: navy;
+	background-color: white;
+	color: black;
 	font-weight: bold;
 }
 
 .schema {
 	margin: 20px;
-	border: 1px solid green;
+	border: 1px solid black;
 	padding: 10px;
 	width: 600px;
 }
@@ -82,6 +83,15 @@ a:hover {
 	margin: 20px;
 }
 
+.result_schema th {
+	white-space: nowrap;
+	padding: 3px;
+	border-left: 1px solid white;
+	border-right: 1px solid 	white;
+	background-color: black;
+	color: white;
+	font-weight: bold;
+}
 /**/
 .xemel {
 	padding-left: 50px;
@@ -95,8 +105,8 @@ a:hover {
 }
 
 .ref {
-	color: navy;
-	background-color: aliceblue;
+	color: black;
+	background-color: white;
 	padding: 2px;
 	font-weight: bold;
 }
@@ -118,13 +128,13 @@ a:hover {
 /* p in tableinfo */
 .struct { 
 	padding: 10px;
-	color: steelblue;
+	color: black;
 	background-color: white;
 	text-decoration: underline;
 	border: none;
 }
 .red {
-	color: red;
+	color: black;
 }
 
 .result table {
@@ -134,9 +144,9 @@ a:hover {
 .result th {
 	white-space: nowrap;
 	padding: 3px;
-	border-left: 1px solid #4682B4;
-	border-right: 1px solid 	#4682B4;
-	background-color: steelblue;
+	border-left: 1px solid black;
+	border-right: 1px solid 	black;
+	background-color: black;
 	color: white;
 	font-weight: bold;
 }
@@ -157,12 +167,12 @@ a:hover {
 	border-right: 1px solid 	#4682B4;
 	vertical-align: top;
 	border-bottom: 1px solid 	#4682B4;
-	background-color: lightyellow;
+	background-color: white;
 }
 
 .query_error {
-	background-color: lightgrey;
-	color: red;
+	background-color: white;
+	color: black;
 	font-style: italic;
 	font-size: 1em;
 }
@@ -235,6 +245,7 @@ a:hover {
     margin-left: 75%;
     padding: 5px;
     z-index: 100;
+    display: none;
 }
 
 #menu ul li {
@@ -254,6 +265,7 @@ a:hover {
 	font-size: 0.6em;
 	clear: both;
 	border-top: 1px dotted #4682B4;
+	color: black;
 }
 
 .grey {

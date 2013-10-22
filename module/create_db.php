@@ -19,5 +19,3 @@ if($req->get('newdb') == '') {
 }
 header('location: index.php?cmd=base');
 exit;
-
-?>

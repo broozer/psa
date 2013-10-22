@@ -133,6 +133,10 @@ if(!$files) {
 		$drop->setHref('index.php?cmd=drop_db&amp;db='.urlencode($files[$i]));
 		$drop->setName('[drop]');
 		$drop->setJs(' onclick="return PSA.really_drop(\'database\');" ');
+
+		$schema = new Link;
+		$schema->setHref('index.php?cmd=schema_db&amp;db='.urlencode($files[$i]));
+		$schema->setName('[schema]');
 		
 		$tr = new Tr;
 		if($odd) {
@@ -145,6 +149,7 @@ if(!$files) {
 		$tr->add($link->dump());
 		$tr->add($vacuum->dump());
 		$tr->add($drop->dump());
+		$tr->add($schema->dump());
 		$tr->build();
 		
 	} 
