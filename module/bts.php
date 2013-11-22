@@ -1,7 +1,7 @@
 <?php
 
 /**
-*¨[type] file
+* [type] file
 * [name] bts.php
 * [package] psa
 * [since] 2011.02.10
