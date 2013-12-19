@@ -7,7 +7,9 @@ for the directory containing databases.
 
 In addition it contains a small set of tables for temporary data management.
 
-version : 0.1.0.0 - 2013.07.28
+version : 0.1.0.1 - 2013.12.19
+
+In order to get connected use 'admin' and 'asp' to get further after login.
 
 More information
 ----------------
