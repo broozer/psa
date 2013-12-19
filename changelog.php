@@ -13,7 +13,10 @@ todolist 11.08.2012
 - create table : UNIQUE (Foreign key)
 - Pragma values : check set 
 - version via exec (which options are available eg WAL)
+- goto record by (ROW)id
 
+[2013.12.19]
+- login added (admin - asp)
 
 [2013.07.28]
 - number of rows in table view
