@@ -23,14 +23,15 @@ if($sessie->isS('psa-db')) {
 }
 $body->line('<hr>
 <ul>
-	<li><a href="index.php">[home]</a></li>
-	<li><a href="index.php?cmd=base">[databases]</a></li>');
+	<li><a href="controller.php">[home]</a></li>
+	<li><a href="controller.php?cmd=base">[databases]</a></li>');
 	if($sessie->isS('psa-db')) {
 		$body->line('
-		<li><a href="index.php?cmd=table">[tables]</a></li>
-		<li><a href="index.php?cmd=query">[query]</a></li>');
+		<li><a href="controller.php?cmd=table">[tables]</a></li>
+		<li><a href="controller.php?cmd=query">[query]</a></li>');
 	}
-	$body->line('<li><a href="index.php?cmd=bts">[more]</a></li>
+	$body->line('<li><a href="controller.php?cmd=bts">[more]</a></li>');
+	$body->line('<li><a href="index.php">[log out]</a></li>
 </ul>
 <hr>
 </div>');

@@ -20,10 +20,10 @@ $q = "CREATE TABLE queries (id INTEGER PRIMARY KEY, qs TEXT , datum DATETIME(20)
 
 $psa->qo($q);
 
-$q = "CREATE TABLE base (directory VARCHAR(128) , extension VARCHAR(20) , nr_rows INTEGER(7))";
+$q = "CREATE TABLE base (directory VARCHAR(128) , extension VARCHAR(20) , nr_rows INTEGER(7) , user VARCHAR(128) , pass VARCHAR(128))";
 $psa->qo($q);
 
-$q = "INSERT INTO base (directory,extension, nr_rows) VALUES ('./data','sqlite',20)";
+$q = "INSERT INTO base (directory,extension, nr_rows , user, pass) VALUES ('./data','sqlite',20,'admin','9451810adcc13a25e610332880cc447a')";
 $psa->qo($q);
 
 $q = "CREATE TABLE temp_table_fields (
@@ -40,5 +40,5 @@ $psa->qo($q);
 
 unset($psa);
 
-header('location: index.php?cmd=bts');
+header('location: login.php');
 exit;

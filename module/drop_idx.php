@@ -22,7 +22,7 @@ $q = "DROP INDEX ".$req->get('idxname')." ";
 $sql->qo($q);
 	
 $sessie->setS('psa-error','Index "'.$req->get('idxname').'" dropped.');
-header('location: index.php?cmd=tableinfo&table='.$req->get('table'));
+header('location: controller.php?cmd=tableinfo&table='.$req->get('table'));
 exit;
 
 ?>

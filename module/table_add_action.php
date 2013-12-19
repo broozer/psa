@@ -10,7 +10,7 @@ $res = $sql->fo();
 
 if(!$res) {
 	$sessie->setS('psa-error','No data found to create table');
-	header('location: index.php?cmd=table');
+	header('location: controller.php?cmd=table');
 	exit;
 }
 
@@ -78,7 +78,7 @@ if($sql->qo($createstring)){
 	$sessie->setS('psa-error','Table \''.$tablename.'\' could not be created.');
 }
 /**/
-header('location: index.php?cmd=table');
+header('location: controller.php?cmd=table');
 exit;
 /**/
 ?>

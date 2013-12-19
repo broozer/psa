@@ -31,7 +31,7 @@ if(sizeof($rescols) === 1) {
 	$sql->qo($q);
 	
 	$sessie->setS('psa-error','Table "'.$req->get('table').'" dropped. No more columns');
-	header('location: index.php?cmd=table');
+	header('location: controller.php?cmd=table');
 	exit;
 }
 
@@ -120,7 +120,7 @@ if(!$sql->qo($q)) {
 	$q = "ROLLBACK";
 	$sql->qo($q);
 	// $sessie->setS('psa_error','Problem creating temporary table in [drop_column.php]');
-	header('location: index.php?cmd=tableinfo&table='.$req->get('table'));
+	header('location: controller.php?cmd=tableinfo&table='.$req->get('table'));
 	exit;
 }
 
@@ -129,7 +129,7 @@ $q = "INSERT INTO tmp_".$req->get('table')." SELECT ".$columns." FROM ".$req->ge
 if(!$sql->qo($q)) {
 	$q = "ROLLBACK";
 	$sql->qo($q);
-	header('location: index.php?cmd=tableinfo&table='.$req->get('table'));
+	header('location: controller.php?cmd=tableinfo&table='.$req->get('table'));
 	exit;
 }
 
@@ -137,7 +137,7 @@ $q = "DROP TABLE ".$req->get('table')." ";
 if(!$sql->qo($q)) {
 	$q = "ROLLBACK";
 	$sql->qo($q);
-	header('location: index.php?cmd=tableinfo&table='.$req->get('table'));
+	header('location: controller.php?cmd=tableinfo&table='.$req->get('table'));
 	exit;
 }
 
@@ -145,7 +145,7 @@ $q = 'CREATE TABLE '.$req->get('table').' ('.$string.') ';
 if(!$sql->qo($q)) {
 	$q = "ROLLBACK";
 	$sql->qo($q);
-	header('location: index.php?cmd=tableinfo&table='.$req->get('table'));
+	header('location: controller.php?cmd=tableinfo&table='.$req->get('table'));
 	exit;
 }
 
@@ -153,7 +153,7 @@ $q = "INSERT INTO ".$req->get('table')." SELECT ".$columns." FROM tmp_".$req->ge
 if(!$sql->qo($q)) {
 	$q = "ROLLBACK";
 	$sql->qo($q);
-	header('location: index.php?cmd=tableinfo&table='.$req->get('table'));
+	header('location: controller.php?cmd=tableinfo&table='.$req->get('table'));
 	exit;
 }
 
@@ -161,7 +161,7 @@ $q = "DROP TABLE tmp_".$req->get('table')." ";
 if(!$sql->qo($q)) {
 	$q = "ROLLBACK";
 	$sql->qo($q);
-	header('location: index.php?cmd=tableinfo&table='.$req->get('table'));
+	header('location: controller.php?cmd=tableinfo&table='.$req->get('table'));
 	exit;
 }
 /**/
@@ -169,7 +169,7 @@ $q = "COMMIT";
 $sql->qo($q);
 /**/
 /**/
-header('location: index.php?cmd=tableinfo&table='.$req->get('table'));
+header('location: controller.php?cmd=tableinfo&table='.$req->get('table'));
 exit;
 /**/
 

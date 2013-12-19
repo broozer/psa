@@ -35,7 +35,7 @@ if($pk) {
 $sql->qo($q);
 
 /**/
-header('location: index.php?cmd=table_browse&table='.$req->get('table'));
+header('location: controller.php?cmd=table_browse&table='.$req->get('table'));
 exit;
 /**/
 

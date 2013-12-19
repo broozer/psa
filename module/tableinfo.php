@@ -110,7 +110,7 @@ foreach($res as $item) {
 	$test = 'haai';
 	
 	$dellink = new Link;
-	$dellink->setHref('index.php?cmd=drop_column&amp;table='.$req->get('table').'&amp;col='.$item->name);
+	$dellink->setHref('controller.php?cmd=drop_column&amp;table='.$req->get('table').'&amp;col='.$item->name);
 	$dellink->setName('[ del ]');
 	$dellink->setJs(' onclick="return PSA.really_drop(\' column ['.$item->name.']\');" ');
 
@@ -143,7 +143,7 @@ if(!$req->is('view')) {
 	$body->line('<h3>Indexes</h3>');
 	
 	$idxadd = new Link;
-	$idxadd->setHref('index.php?cmd=index_add&table='.$req->get('table'));
+	$idxadd->setHref('controller.php?cmd=index_add&table='.$req->get('table'));
 	$idxadd->setName('Add index');
 	$idxadd->build();
 	
@@ -176,7 +176,7 @@ if(!$req->is('view')) {
 			}
 	
 			$drop = new Link;
-			$drop->setHref('index.php?cmd=drop_idx&idxname='.$item->name.'&table='.$req->get('table'));
+			$drop->setHref('controller.php?cmd=drop_idx&idxname='.$item->name.'&table='.$req->get('table'));
 			$drop->setName('[ drop ]');
 			$drop->setJs(' onclick="return PSA.really_drop(\' index ['.$item->name.']\');" ');
 			

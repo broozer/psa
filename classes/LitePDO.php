@@ -197,6 +197,7 @@ class LitePDO extends PDO
 		}
 		catch(PDOException $e) {
 			$_SESSION['sqler'] = $e;
+			// echo $e;
 			return false;
 		}
 

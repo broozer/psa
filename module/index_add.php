@@ -47,7 +47,7 @@ include_once('./inc/menubar.php');
 $body->line("Index creation on table : <b>".$req->get('table')."</b><br>");
 
 $form = new Form;
-$form->setAction('index.php');
+$form->setAction('controller.php');
 $form->setJs(' onsubmit="return PSA.indexcol();" ');
 $form->build();
 

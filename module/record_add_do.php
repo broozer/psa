@@ -82,7 +82,7 @@ $sql->qo($q);
 
 $sessie->setS('psa-message','Record updated.');
 /**/
-header('location: index.php?cmd=table_browse&table='.$req->get('data_table'));
+header('location: controller.php?cmd=table_browse&table='.$req->get('data_table'));
 exit;
 /**/
 

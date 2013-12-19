@@ -62,7 +62,7 @@ $body->build();
 include_once('./inc/menubar.php');
 
 $form = new Form;
-$form->setAction('index.php');
+$form->setAction('controller.php');
 $form->build();
 
 $table = new Table;
@@ -132,7 +132,7 @@ unset($form);
 
 $body->line('<hr />');
 $backlink = new Link;
-$backlink->setHref('index.php?cmd=table_browse&table='.$req->get('table'));
+$backlink->setHref('controller.php?cmd=table_browse&table='.$req->get('table'));
 $backlink->setName('Back to list');
 $backlink->build();
 

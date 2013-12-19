@@ -17,7 +17,7 @@ unlink($sessie->getS('psa-dir').'/'
 echo 'in drop';
 /**/
 $sessie->setS('psa-message','Database "'.$req->get('db').'" dropped.');
-header('location: index.php?cmd=base');
+header('location: controller.php?cmd=base');
 exit;
 /**/
 

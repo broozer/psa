@@ -10,7 +10,7 @@
 if(!$sessie->isS('psa-ext')) {
 	if($req->get('extension') == '') {
 		$sessie->setS('psa-error','Extension name cannot be blank.');
-		header('location: index.php');
+		header('location: controller.php');
 		exit;
 	}
 	
@@ -19,7 +19,7 @@ if(!$sessie->isS('psa-ext')) {
 	} else {
 		if(!is_dir($req->get('directory'))) {
 			$sessie->setS('psa-error','Directory does not exist.');
-			header('location: index.php');
+			header('location: controller.php');
 			exit;
 		}
 	}	
@@ -77,7 +77,7 @@ $submit->setClas('button');
 $cmd->setValue('create_db');
 
 $form = new Form;
-$form->setAction('index.php');
+$form->setAction('controller.php');
 $form->build();
 
 $table = new Table;
@@ -122,20 +122,20 @@ if(!$files) {
 
 	for($i=0;$i<sizeof($files);++$i) {
 		$link = new Link;
-		$link->setHref('index.php?cmd=table&amp;db='.urlencode($files[$i]));
+		$link->setHref('controller.php?cmd=table&amp;db='.urlencode($files[$i]));
 		$link->setName('['.$files[$i].']');
 
 		$vacuum = new Link;
-		$vacuum->setHref('index.php?cmd=vacuum_db&amp;db='.urlencode($files[$i]));
+		$vacuum->setHref('controller.php?cmd=vacuum_db&amp;db='.urlencode($files[$i]));
 		$vacuum->setName('[vacuum]');
 		
 		$drop = new Link;
-		$drop->setHref('index.php?cmd=drop_db&amp;db='.urlencode($files[$i]));
+		$drop->setHref('controller.php?cmd=drop_db&amp;db='.urlencode($files[$i]));
 		$drop->setName('[drop]');
 		$drop->setJs(' onclick="return PSA.really_drop(\'database\');" ');
 
 		$schema = new Link;
-		$schema->setHref('index.php?cmd=schema_db&amp;db='.urlencode($files[$i]));
+		$schema->setHref('controller.php?cmd=schema_db&amp;db='.urlencode($files[$i]));
 		$schema->setName('[schema]');
 		
 		$tr = new Tr;

@@ -23,7 +23,7 @@ $inp_lines->setSize(7);
 $inp_lines->setValue($result->nr_rows);
 
 $form = new Form;
-$form->setAction('index.php');
+$form->setAction('controller.php');
 $form->build();
 
 $table = new Table;

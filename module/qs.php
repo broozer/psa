@@ -12,7 +12,7 @@ set_time_limit('600');
 
 if(trim($req->get('qs')) == '') {
 	$sessie->setS('psa-error','Query cannot be blank.');
-	header('location: index.php?cmd=query');
+	header('location: controller.php?cmd=query');
 	exit;
 }
 
@@ -133,17 +133,17 @@ if($sessie->isS('sqler')) {
 	
 	unset($psa);
 
-	header('location: index.php?cmd=query');
+	header('location: controller.php?cmd=query');
 	exit;
 }
 
 /**/
 if($error == true) {
-	header('location: index.php?cmd=query');
+	header('location: controller.php?cmd=query');
 	exit;
 } else {
 	$sessie->setS('psa-results',serialize($res));
 	$sessie->setS('psa-query-results',$q);
-	header('location: index.php?cmd=query_results');
+	header('location: controller.php?cmd=query_results');
 	exit;
 }

@@ -71,6 +71,6 @@ $sql->qo($q);
 
 $sessie->setS('psa-message','Record updated.');
 /**/
-header('location: index.php?cmd=edit_record&table='.$req->get('data_table').'&id='.$req->get('data_id'));
+header('location: controller.php?cmd=edit_record&table='.$req->get('data_table').'&id='.$req->get('data_id'));
 exit;
 /**/

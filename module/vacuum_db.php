@@ -27,7 +27,7 @@ $size_after = filesize($sessie->getS('psa-dir').'/'
 */
 
 $sessie->setS('psa-message','Vacuum performed on "'.$req->get('db').'".');
-header('location: index.php?cmd=base');
+header('location: controller.php?cmd=base');
 exit;
 /**/
 

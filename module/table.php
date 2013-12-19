@@ -11,7 +11,7 @@ if(!$sessie->isS('psa-db')) {
 		$sessie->setS('psa-db',urldecode($req->get('db')));
 	} else {
 		$sessie->setS('psa-error','No database set.');
-		header('location: index.php?cmd=base');
+		header('location: controller.php?cmd=base');
 		exit;
 	}
 }
@@ -19,7 +19,7 @@ if(!$sessie->isS('psa-db')) {
 if($req->is('db')) {
 	if($req->get('db') == '') {
 		$sessie->setS('psa-error','No database set.');
-		header('location: index.php?cmd=base');
+		header('location: controller.php?cmd=base');
 		exit;
 	}
 	$sessie->setS('psa-db',urldecode($req->get('db')));
@@ -71,7 +71,7 @@ include_once('./inc/menubar.php');
 $body->line();
 
 $link = new Link;
-$link->setHref('index.php?cmd=table_add');
+$link->setHref('controller.php?cmd=table_add');
 $link->setClas('butter');
 $link->setName('Add table');
 $link->build();
@@ -94,23 +94,23 @@ if(!$res) {
 			continue;
 		}
 		$struct = new Link;
-		$struct->setHref('index.php?cmd=tableinfo&table='.$item->name);
+		$struct->setHref('controller.php?cmd=tableinfo&table='.$item->name);
 		$struct->setName('Structure');
 
 		$browse = new Link;
-		$browse->setHref('index.php?cmd=table_browse&table='.$item->name);
+		$browse->setHref('controller.php?cmd=table_browse&table='.$item->name);
 		$browse->setName('Browse');
 
 		$dump = new Link;
-		$dump->setHref('index.php?cmd=table_dump&table='.$item->name);
+		$dump->setHref('controller.php?cmd=table_dump&table='.$item->name);
 		$dump->setName('Dump');
 
 		$csv = new Link;
-		$csv->setHref('index.php?cmd=table_csv&table='.$item->name);
+		$csv->setHref('controller.php?cmd=table_csv&table='.$item->name);
 		$csv->setName('CSV');
 		
 		$drop = new Link;
-		$drop->setHref('index.php?cmd=drop_table&table='.$item->name);
+		$drop->setHref('controller.php?cmd=drop_table&table='.$item->name);
 		$drop->setName('Drop');
 		$drop->setJs(' onclick="return PSA.really_drop(\'table\');" ');
 		
@@ -149,19 +149,19 @@ if(!$res) {
 			continue;
 		}
 		$struct = new Link;
-		$struct->setHref('index.php?cmd=tableinfo&table='.$item->name.'&view=true');
+		$struct->setHref('controller.php?cmd=tableinfo&table='.$item->name.'&view=true');
 		$struct->setName('Structure');
 		
 		$browse = new Link;
-		$browse->setHref('index.php?cmd=table_browse&table='.$item->name.'&view=true');
+		$browse->setHref('controller.php?cmd=table_browse&table='.$item->name.'&view=true');
 		$browse->setName('Browse');
 
 		$dump = new Link;
-		$dump->setHref('index.php?cmd=table_dump&table='.$item->name.'&view=true');
+		$dump->setHref('controller.php?cmd=table_dump&table='.$item->name.'&view=true');
 		$dump->setName('Dump');
 
 		$drop = new Link;
-		$drop->setHref('index.php?cmd=drop_view&table='.$item->name.'&view==true');
+		$drop->setHref('controller.php?cmd=drop_view&table='.$item->name.'&view==true');
 		$drop->setName('Drop');
 		$drop->setJs(' onclick="return PSA.really_drop(\'view\');" ');
 		

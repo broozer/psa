@@ -28,7 +28,7 @@ foreach($ar as $item) {
 
 if(trim($collist) === '') {
 	$sessie->setS('psa-error','No indexable columns given, no index created.');
-	header('location: index.php?cmd=tableinfo&table='.$req->get('tblname'));
+	header('location: controller.php?cmd=tableinfo&table='.$req->get('tblname'));
 	exit;
 } else {
 	$collist = substr($collist,0,-1);
@@ -37,7 +37,7 @@ if(trim($collist) === '') {
 	$sql->qo($q);
 	
 	$sessie->setS('psa-error','Index "'.$req->get('idxname').'" created.');
-	header('location: index.php?cmd=tableinfo&table='.$req->get('tblname'));
+	header('location: controller.php?cmd=tableinfo&table='.$req->get('tblname'));
 	exit;
 }
 

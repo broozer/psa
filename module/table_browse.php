@@ -1,7 +1,7 @@
 <?php
 
 /**
-*¨[type] file
+* [type] file
 * [name] table_browse.php
 * [package] psa
 * [since] 2010.10.20 -ok 
@@ -98,10 +98,15 @@ if($pk) {
 	$q = "SELECT ROWID as id,* FROM ".$req->get('table')." LIMIT ".$sessie->getS('bottom').",".LIMIT." ";
 }
 
+// echo $q;
+
 $sql->qo($q);
 
 $res = $sql->fo();
-
+/*
+var_dump($_SESSION);
+var_dump($res);
+*/
 // echo "BOTTOM WAARDE  : <b><h1>".$sessie->getS('bottom')."</h1></b>";
 
 $html = new Page;
@@ -128,7 +133,7 @@ if($is_view) {
 
 if(!$is_view) {
 	$link = new Link;
-	$link->setHref('index.php?cmd=record_add&amp;table='.$req->get('table'));
+	$link->setHref('controller.php?cmd=record_add&amp;table='.$req->get('table'));
 	$link->setClas('butter');
 	$link->setName('Add record');
 
@@ -144,36 +149,36 @@ if(!$res) {
 	
 	$firstlink = new Link;
 	if($is_view) {
-		$firstlink->setHref('index.php?cmd=table_browse&amp;table='.$req->get('table').'&amp;direction=first&view=true');
+		$firstlink->setHref('controller.php?cmd=table_browse&amp;table='.$req->get('table').'&amp;direction=first&view=true');
 	} else {
-		$firstlink->setHref('index.php?cmd=table_browse&amp;table='.$req->get('table').'&amp;direction=first');
+		$firstlink->setHref('controller.php?cmd=table_browse&amp;table='.$req->get('table').'&amp;direction=first');
 	}	
 	$firstlink->setName('[&lt;&lt;--]');
 	$firstlink->build();
 	
 	$previous = new Link;
 	if($is_view) {
-		$previous->setHref('index.php?cmd=table_browse&amp;table='.$req->get('table').'&amp;direction=previous&view=true');
+		$previous->setHref('controller.php?cmd=table_browse&amp;table='.$req->get('table').'&amp;direction=previous&view=true');
 	} else {
-		$previous->setHref('index.php?cmd=table_browse&amp;table='.$req->get('table').'&amp;direction=previous');
+		$previous->setHref('controller.php?cmd=table_browse&amp;table='.$req->get('table').'&amp;direction=previous');
 	}
 	$previous->setName('[&lt;]');
 	$previous->build();
 	
 	$next = new Link;
 	if($is_view) {
-		$next->setHref('index.php?cmd=table_browse&amp;table='.$req->get('table').'&amp;direction=next&view=true');
+		$next->setHref('controller.php?cmd=table_browse&amp;table='.$req->get('table').'&amp;direction=next&view=true');
 	} else {
-		$next->setHref('index.php?cmd=table_browse&amp;table='.$req->get('table').'&amp;direction=next');
+		$next->setHref('controller.php?cmd=table_browse&amp;table='.$req->get('table').'&amp;direction=next');
 	}	
 	$next->setName('[&gt;]');
 	$next->build();
 	
 	$lastlink = new Link;
 	if($is_view) {
-		$lastlink->setHref('index.php?cmd=table_browse&amp;table='.$req->get('table').'&amp;direction=last&view=true');
+		$lastlink->setHref('controller.php?cmd=table_browse&amp;table='.$req->get('table').'&amp;direction=last&view=true');
 	} else {
-		$lastlink->setHref('index.php?cmd=table_browse&amp;table='.$req->get('table').'&amp;direction=last');
+		$lastlink->setHref('controller.php?cmd=table_browse&amp;table='.$req->get('table').'&amp;direction=last');
 	}	
 	$lastlink->setName('[--&gt;&gt;]');
 	$lastlink->build();
@@ -229,12 +234,12 @@ if(!$res) {
 		}
 		if(!$is_view) {
 			$edit = new Link;
-			$edit->setHref('index.php?cmd=edit_record&amp;table='.$req->get('table').'&amp;id='.$item->id);
+			$edit->setHref('controller.php?cmd=edit_record&amp;table='.$req->get('table').'&amp;id='.$item->id);
 			$edit->setName('[edit]');
 			// $edit->setTarget('edit_del');
 		
 			$del = new Link;
-			$del->setHref('index.php?cmd=drop_record&amp;table='.$req->get('table').'&amp;id='.$item->id);
+			$del->setHref('controller.php?cmd=drop_record&amp;table='.$req->get('table').'&amp;id='.$item->id);
 			$del->setName('[del]');
 			$del->setJs(' onclick="return PSA.really_drop(\'record\');" ');
 			

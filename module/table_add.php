@@ -49,7 +49,7 @@ $body->line('<span class="vet">Table name</span><br /> ');
 $body->line($name->dump());
 
 $create = new Link;
-$create->setHref('index.php?cmd=table_add_action');
+$create->setHref('controller.php?cmd=table_add_action');
 $create->setName('<button>Create</button>');
 $body->line($create->dump());
 

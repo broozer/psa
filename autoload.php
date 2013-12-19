@@ -18,7 +18,39 @@ if(!file_exists('./data/base.sqlite')) {
 	exit;
 }
 
+if(isset($_COOKIE['testcookie'])) {
+    $elapsed = $_COOKIE['testcookie'];
+    $now = time();
+    /*
+    echo 'now : '.$now.'<br>';
+    echo $now-$elapsed;
+    echo '<br>';
+    */
+    if($now > ($elapsed+300)) {
+        setcookie('testcookie','gone',time()-3600);
+        header('location: login.php');
+        exit;
+    } else {
+        setcookie( 'testcookie', time(), time()+300);
+    }
+    
+}
+else {
+    setcookie('testcookie','gone',time()-3600);
+    header('location: login.php');
+    exit;
+}
 
+// Kint::dump($_SERVER);
+// Kint::dump($_COOKIE);
+$sessie = new Session;
+
+$valgeld = $sessie->getS('psa-valid');
+
+if($valgeld !== 'jaja') {
+	header('location: login.php');
+	exit;
+} 
 $psa = new LitePDO('sqlite:./data/base.sqlite');
 $q = "SELECT * FROM base";
 $psa->qo($q);
@@ -28,7 +60,6 @@ define('LIMIT',$result->nr_rows);
 
 unset($psa);
 
-$sessie = new Session;
 
 date_default_timezone_set('Europe/Paris');
 

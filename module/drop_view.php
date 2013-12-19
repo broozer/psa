@@ -22,7 +22,7 @@ $q = "DROP VIEW ".$req->get('table')." ";
 $sql->qo($q);
 	
 $sessie->setS('psa-error','Table "'.$req->get('table').'" dropped.');
-header('location: index.php?cmd=table');
+header('location: controller.php?cmd=table');
 exit;
 
 ?>

@@ -12,7 +12,7 @@ if(!$sessie->isS('psa-db')) {
 		$sessie->setS('psa-db',urldecode($req->get('db')));
 	} else {
 		$sessie->setS('psa-error','No database set.');
-		header('location: index.php?cmd=base');
+		header('location: controller.php?cmd=base');
 		exit;
 	}
 }
@@ -38,7 +38,7 @@ include_once('./inc/menubar.php');
 $body->line('Insert raw sql query : ');
 
 $form = new Form;
-$form->setAction('index.php');
+$form->setAction('controller.php');
 $form->build();
 
 $inp_text = new Textarea;

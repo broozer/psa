@@ -12,7 +12,7 @@ if(!$sessie->isS('psa-db')) {
 		$sessie->setS('psa-db',urldecode($req->get('db')));
 	} else {
 		$sessie->setS('psa-error','No database set.');
-		header('location: index.php?cmd=base');
+		header('location: controller.php?cmd=base');
 		exit;
 	}
 }
@@ -20,7 +20,7 @@ if(!$sessie->isS('psa-db')) {
 if($req->is('db')) {
 	if($req->get('db') == '') {
 		$sessie->setS('psa-error','No database set.');
-		header('location: index.php?cmd=base');
+		header('location: controller.php?cmd=base');
 		exit;
 	}
 	$sessie->setS('psa-db',urldecode($req->get('db')));

@@ -17,5 +17,5 @@ if($req->get('newdb') == '') {
 		.$sessie->getS('psa-ext').'');
 	$sessie->setS('psa-message','Database "'.$req->get('newdb').'" created.');
 }
-header('location: index.php?cmd=base');
+header('location: controller.php?cmd=base');
 exit;
