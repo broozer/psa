@@ -1,7 +1,7 @@
 {
     "name": "broozer/psa",
     "type": "library",
-    "description": "SQLite admin tool",
+    "description": "SQLite PHP admin tool ",
     "keywords": ["sqlite","admin"],
     "homepage": "http://github.com/broozer/psa",
     "license": "MIT",
@@ -15,8 +15,5 @@
     ],
     "require": {
         "php": ">=5.3.0"
-    },
-    "autoload": {
-        "classmap": ["classes/"]
     }
 }
