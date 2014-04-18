@@ -1,3 +1,4 @@
+:wq
 {
     "name": "broozer/psa",
     "type": "library",
@@ -8,7 +9,7 @@
     "authors": [
         {
             "name": "Wim Paulussen",
-            "email": "wim@asgc.be   ",
+            "email": "wim@asgc.be",
             "homepage": "http://www.asgc.be",
             "role": "Developer"
         }
