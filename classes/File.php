@@ -1,55 +1,48 @@
 <?php
 
-/*
-** [file] File.php
-** [author] Wim Paulussen
-** [since] 2007-05-08
-** [update] 2009-03-02 rewinder added
-** [todo] alles (ongeveer)
-** [end]
-*/
+/**
+ * [file] File.php
+ * [author] Wim Paulussen
+ * [since] 2007-05-08
+ * [update] 2009-03-02 rewinder added
+ */
 
-/*
-** [class] File
-** [extend] Session
-*/
+/**
+ * [class] File
+ * [extend] Session
+ */
 class File extends Session
 {
-	/* 
-	** [var] fp
-	** [scope] public
-	** [expl] file handle
-	** [end]
-	*/
+	/**
+	 * [var] fp
+	 * [scope] public
+	 * [expl] file handle
+	 */
 	public $fp;
-	/* 
-	** [var] file
-	** [scope] public
-	** [expl] filename
-	** [end]
-	*/
+	/**
+	 * [var] file
+	 * [scope] public
+	 * [expl] filename
+	 */
 	public $file;
-	/* 
-	** [var] mode
-	** [scope] public
-	** [expl] read (r) , write (w), append (a)
-	** [end]
-	*/
+	/**
+	 * [var] mode
+	 * [scope] public
+	 * [expl] read (r) , write (w), append (a)
+	 */
 	public $mode;
-	/* 
-	** [var] line
-	** [scope] public
-	** [expl] one line out of file
-	** [end]
-	*/
+	/**
+	 * [var] line
+	 * [scope] public
+	 * [expl] one line out of file
+	 */
 	public $line;
 
-	/* 
-	** [function] __construct
-	** [scope] global
-	** [expl] tries to open file
-	** [end]
-	*/
+	/**
+	 * [function] __construct
+	 * [scope] global
+	 * [expl] tries to open file
+	 */
 	public function __construct($file,$mode='rb')
 	{
 		$this->file 	= $file;
@@ -64,23 +57,21 @@ class File extends Session
 		}
 	}
 	
-	/* 
-	** [function] __destruct
-	** [scope] global
-	** [expl] closes file via filehandle
-	** [end]
-	*/
+	/**
+	 * [function] __destruct
+	 * [scope] global
+	 * [expl] closes file via filehandle
+	 */
 	public function __destruct()
 	{
 		fclose($this->fp);
 	}
 
-	/* 
-	** [function] readlines
-	** [scope] public
-	** [expl] returns one line
-	** [end]
-	*/
+	/**
+	 * [function] readlines
+	 * [scope] public
+	 * [expl] returns one line
+	 */
 	public function readlines()
 	{
 		if (!feof($this->fp))
@@ -94,24 +85,22 @@ class File extends Session
 		}
 	}
 
-	/* 
-	** [function] line_to_array
-	** [scope] public
-	** [expl] turns a line into an array by splitting via de separator
-	** [end]
-	*/
+	/**
+	 * [function] line_to_array
+	 * [scope] public
+	 * [expl] turns a line into an array by splitting via de separator
+	 */
 	public function line_to_array($sep="	")
 	{
 		$this->ar = explode($sep,$this->line);
 		return $this->ar;
 	}
 	
-	/* 
-	** [function] writeline
-	** [scope] global
-	** [expl] tries to write a line to a file
-	** [end]
-	*/
+	/**
+	 * [function] writeline
+	 * [scope] global
+	 * [expl] tries to write a line to a file
+	 */
 	public function writelines($data)
 	{
 		if(!fwrite($this->fp,$data))
@@ -121,15 +110,13 @@ class File extends Session
 		return TRUE;
 	}
 
-    /*
-	** [function] rewinder
-	** [scope] global
-	** [expl] returns file pointer to start
-	** [end]
-	*/
+    /**
+	 * [function] rewinder
+	 * [scope] global
+	 * [expl] returns file pointer to start
+	 */
     public function rewinder()
 	{
 		rewind($this->fp);
 	}
 }
-?>

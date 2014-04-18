@@ -10,5 +10,3 @@ class PageException extends Exception {
 	}
 	
 }
-
-?>

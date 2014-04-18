@@ -93,7 +93,7 @@ class Select extends Base
 			}
             
 			if ($this->getName() == '') {
-				throw new ¨PageException("<b>Select class exception.</b><br />Name is not set.");
+				throw new PageException("<b>Select class exception.</b><br />Name is not set.");
 			}
 	
 			if(sizeof($this->_arOpt) == "0") {
@@ -153,5 +153,3 @@ class Select extends Base
 	}
 	
 }
-
-?>

@@ -1,37 +1,35 @@
 <?php
 
-/*
-** [file] Pict.php
-** [author] Wim Paulussen
-** [since] 2006-12-22
-** [update] 2011.11.03 to pages
-*/
+/**
+ * [file] Pict.php
+ * [author] Wim Paulussen
+ * [since] 2006-12-22
+ * [update] 2011.11.03 to pages
+ */
 
-/*
-** [class] Pict
-** [extend] Body
-** [extend] Html
-*/
+/**
+ * [class] Pict
+ * [extend] Body
+ * [extend] Html
+ */
 
 
 class Pict extends Base
 {
-	/* 
-	** [var] source
-	** [scope] private
-	** [expl] source for picture
-	** [end]
-	*/
+	/**
+	 * [var] source
+	 * [scope] private
+	 * [expl] source for picture
+     */
 	private $_source;
 	private $_width;
 	private $_heigth;
 	private $_alt = 'nn';
-	/*
-	** [function] setSource
-	** [scope] public
-	** [expl] set source for picture
-	** [end]
-	*/
+	/**
+	 * [function] setSource
+	 * [scope] public
+	 * [expl] set source for picture
+	 */
 	public function setSource($data) { $this->_source	= $data; }
 	function setWidth($data) { $this->_width = $data; }
 	function setHeigth($data) { $this->_heigth = $data; }
@@ -43,11 +41,11 @@ class Pict extends Base
 	function getAlt() { return $this->_alt; }
 
     /**
-	* [name] __construct
-	* [type] method
-	* [scope] public
-	* [expl] checks for html-head-body
-	*/
+	 * [name] __construct
+	 * [type] method
+	 * [scope] public
+	 * [expl] checks for html-head-body
+	 */
 	public function __construct()
 	{
 		try
@@ -65,11 +63,11 @@ class Pict extends Base
 	}
 	
 	/**
-	* [name] build
-	* [type] method
-	* [scope] public
-	* [expl] display built string
-	*/
+	 * [name] build
+	 * [type] method
+	 * [scope] public
+	 * [expl] display built string
+	 */
 	public function build()
 	{
 		$this->_prepare();
@@ -77,11 +75,11 @@ class Pict extends Base
 	}
     
     /**
-	* [type] method
-	* [name] dump
-	* [scope] public
-	* [expl] returns the html-string instead of printing it
-	*/
+	 * [type] method
+	 * [name] dump
+	 * [scope] public
+	 * [expl] returns the html-string instead of printing it
+	 */
 	public function dump()
 	{
 		$this->_prepare();
@@ -89,11 +87,11 @@ class Pict extends Base
 	}
 
     /**
-	* [type] method
-	* [name] prepare
-	* [scope] public
-	* [expl] prepares string for dump or build
-	*/
+	 * [type] method
+	 * [name] prepare
+	 * [scope] public
+	 * [expl] prepares string for dump or build
+	 */
 	private function _prepare()
 	{
 		try
@@ -120,5 +118,3 @@ class Pict extends Base
 	}
 
 }
-
-?>

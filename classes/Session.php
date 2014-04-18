@@ -8,7 +8,6 @@
 * [since] 2006-12-02
 * [update] 2006-12-03 : documentation
 * [update] 2007-05-15 : new parsedoc parameters
-* [todo] none
 * [package] web
 */
 
@@ -33,7 +32,7 @@ class Session
 	* [expl] holds name set in session
 	*/
 	private $name;
-	/** 
+	/**
 	* [type] attribute
 	* [name] value
 	* [scope] private
@@ -44,7 +43,7 @@ class Session
 	* [type] method
 	* [name] __construct
 	* [scope] global
-	* [expl] check existence of variable 
+	* [expl] check existence of variable
 	* [expl] $_SESSION if it does not exist , start session
 	*/
 	
@@ -60,7 +59,7 @@ class Session
 	* [type] method
 	* [name] setS
 	* [scope] public
-	* [expl] setting a value in $_SESSION 
+	* [expl] setting a value in $_SESSION
 	* [expl] usage : $session->setS(name,value)
 	*/
     public function setS($name,$value)
@@ -122,5 +121,3 @@ class Session
 	    }
     }
 }
-
-?>

@@ -30,7 +30,7 @@ $body->build();
 
 $body->line('
 <h3>PHP SQLite Admin tool - PSA in short...</h3>
-<p>PSA stands for PHP - SQLite - Administration. This application lets you 
+<p>PSA stands for PHP - SQLite - Administration. This application lets you
 do the basic operations with SQLite3 databases. The current version only
 supports the very basics. Check out the manual for
 more information.</p>
@@ -58,12 +58,9 @@ more information.</p>
 	<li>create indexes</li>
 	<li>list views</li>
 	<li>drop views</li>
-</ul>
-<p>Roadmap :</p>
-<ul>
-	<li>dump database structure</li>
 	<li>dump table data to csv et al</li>
 	<li>show all performed queries and also hold result</li>
+	<li>dump database structure</li>
 </ul>
 <p>Not yet planned :</p>
 <ul>

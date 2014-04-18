@@ -1,16 +1,16 @@
 <?php
 
 /**
-* [name] Base.php
-* [author] Wim Paulussen
-* [since] 2011.05.28
-*/
+ * [name] Base.php
+ * [author] Wim Paulussen
+ * [since] 2011.05.28
+ */
 
 abstract class Base
 {
     protected $html ='';
     
-    /** 
+    /**
     *  determines where the data is written
     *  if empty ->output to browser
     *  if set -> output to file with that name

@@ -1,11 +1,11 @@
 <?php
 
 /**
-*¨[type] file
-* [name] form_base.php
-* [package] psa
-* [since] 2010.09.22 -ok
-*/
+ * [type] file
+ * [name] form_base.php
+ * [package] psa
+ * [since] 2010.09.22 -ok
+ */
 
 $inp_dir =  new Input;
 $inp_dir->setName('directory');

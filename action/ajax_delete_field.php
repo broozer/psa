@@ -1,14 +1,19 @@
 <?php
 
+/**
+ * [type] file
+ * [name] ./action/ajax_delete_field.php
+ * [package] psa
+ * [since]
+ */
+ 
 include_once('loader.php');
 
-// $req->dump();
 // validate received data
 $ajax_sql = new LitePDO('sqlite:../data/base.sqlite');
 
-// var_dump($ajax_sql);
 $q = "DELETE FROM temp_table_fields WHERE id = ".$req->get('field')." ";
-// echo $q;
+
 $ajax_sql->qo($q);
 
 $q = "SELECT * FROM temp_table_fields";
@@ -43,5 +48,3 @@ if(!$res) {
 	$tab .= '</tbody></table>';
 }
 echo $tab;
-	
-?>

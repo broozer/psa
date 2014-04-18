@@ -1,9 +1,11 @@
 <?php
 
 /**
-* [type] file
-*/
-
+ * [type] file
+ * [author] Wim Paulussen
+ * [since] 2007-05-08
+ */
+ 
 class Form extends Base
 {
 	private $_action	= '';
@@ -28,8 +30,8 @@ class Form extends Base
 		}
 	}
 	
-	public function setAction($data) 	
-	{ 
+	public function setAction($data)
+	{
 		try
 		{
 			if (!file_exists($data))
@@ -42,16 +44,16 @@ class Form extends Base
 		{
 			echo $e->getMessage();
 		}
-		$this->_action	= $data; 
+		$this->_action	= $data;
 	}
 	
-	public function setEnctype($data) 
-	{ 
+	public function setEnctype($data)
+	{
 		try
 		{
 			if ($data != 'application/x-www-form-urlencoded' && $data != 'multipart/form-data')
 			{
-				throw new PageException("<b>Form class exception</b><br />Enctype is either 'application/x-www-form-urlencoded' or 
+				throw new PageException("<b>Form class exception</b><br />Enctype is either 'application/x-www-form-urlencoded' or
 					'multipart/form-data'<br />");
 			}
 		}
@@ -60,16 +62,16 @@ class Form extends Base
 			echo $e->getMessage();
 		}
 		self::$enctype_set = TRUE;
-		$this->_enctype = $data; 
+		$this->_enctype = $data;
 	}
 	
-	public function setTarget($data) 
-	{ 
+	public function setTarget($data)
+	{
 		$this->_target = $data;
 	}
 	
-	public function setMethod($data)	
-	{ 
+	public function setMethod($data)
+	{
 		try
 		{
 			if ($data != 'post' && $data != 'get')
@@ -147,4 +149,3 @@ class Form extends Base
 		$this->display();
 	}
 }
-?>

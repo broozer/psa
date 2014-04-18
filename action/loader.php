@@ -1,13 +1,13 @@
 <?php
 
 /**
-* [type] file
-* [name] loader.php
-* [package] psa
-* [author] Wim Paulussen
-* [since] 2011.04.04
-* [expl] autoload for ajax requests
-*/
+ * [type] file
+ * [name] loader.php
+ * [package] psa
+ * [author] Wim Paulussen
+ * [since] 2011.04.04
+ * [expl] autoload for ajax requests
+ */
 
 function __autoload($class_name)
 {
@@ -16,6 +16,3 @@ function __autoload($class_name)
 
 // $sessie = new Session;
 $req = new Request;
-
-
-?>

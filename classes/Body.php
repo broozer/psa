@@ -1,9 +1,9 @@
 <?php
 
 /**
-* [type] file
-* [name] Body.php
-*/
+ * [type] file
+ * [name] Body.php
+ */
 
 class Body extends Base
 {
@@ -13,12 +13,12 @@ class Body extends Base
 		{
 			if(!Page::getHtml_set())
 			{
-				throw new WebException("<b>Body class exception</b><br />Html tag is not yet defined.</b><br> 
+				throw new WebException("<b>Body class exception</b><br />Html tag is not yet defined.</b><br>
 				  Please define &lt;html&gt; tag first.");
 			}
 			if(!Page::getHead_set())
 			{
-				throw new WebException("<b>Body class exception</b><br />Head tag is not yet defined.</b><br> 
+				throw new WebException("<b>Body class exception</b><br />Head tag is not yet defined.</b><br>
 				  Please define &lt;head&gt; tag first.");
 			}
 		}

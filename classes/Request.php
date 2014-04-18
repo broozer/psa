@@ -1,37 +1,37 @@
 <?php
 
 /**
-* [type] file
-* [name] Request.php
-* [package] Utilities
-* [author] Wim Paulussen
-* [since] 2007-11-10
-* [update] 2007-11-15 : in no value is set , return false
-* [update] 2009-10-30 : ook array $_FILES meenemen
-* [expl] capture POST , GET and FILES
-* [todo] all input to utf8
-*/
+ * [type] file
+ * [name] Request.php
+ * [package] Utilities
+ * [author] Wim Paulussen
+ * [since] 2007-11-10
+ * [update] 2007-11-15 : in no value is set , return false
+ * [update] 2009-10-30 : ook array $_FILES meenemen
+ * [expl] capture POST , GET and FILES
+ * [todo] all input to utf8
+ */
 
 /**
-* [name] Request
-* [type] class
-*/
+ * [name] Request
+ * [type] class
+ */
 class Request
 {
 	/**
-	* [type] attribute
-	* [name] request
-	* [scope] private
-	* [expl] array with $_POST or $_GET variables
-	*/
+	 * [type] attribute
+	 * [name] request
+	 * [scope] private
+	 * [expl] array with $_POST or $_GET variables
+	 */
 	private $request = array();
 	
 	/**
-	* [type] method
-	* [name] __construct
-	* [scope] global
-	* [expl] fills the array via _initFromHttp 
-	*/
+	 * [type] method
+	 * [name] __construct
+	 * [scope] global
+	 * [expl] fills the array via _initFromHttp
+	 */
 	public function __construct()
 	{
 		$this->request = $this->_initFromHttp();
@@ -40,7 +40,7 @@ class Request
 	private function _initFromHttp()
 	{
 		// combine $_FILES and $_POST if $_FILES exists
-		if(!empty($_FILES)) 
+		if(!empty($_FILES))
 		{
 			$file = key($_FILES);
 			$file_array = $_FILES[$file];
@@ -79,9 +79,9 @@ class Request
 	
 	public function is($name)
 	{
-		if(!array_key_exists($name,$this->request)) 
-		{ 
-			return false; 
+		if(!array_key_exists($name,$this->request))
+		{
+			return false;
 		}
 		else
 		{
@@ -90,11 +90,11 @@ class Request
 	}
 
 	/*
-	* [name] dump
-	* [type] method
-	* [expl] dumps values in $this->request array
-	* [since] 2009-10-30
-	*/
+	 * [name] dump
+	 * [type] method
+	 * [expl] dumps values in $this->request array
+	 * [since] 2009-10-30
+	 */
 	public function dump()
 	{
 		// echo 'in dump';
@@ -122,5 +122,3 @@ class Request
 		return $ar;
 	}
 }
-
-?>

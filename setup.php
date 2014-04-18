@@ -1,11 +1,11 @@
 <?php
 
 /**
-*¨[type] file
-* [name] setup.php
-* [package] psa
-* [since] 2010.09.22
-*/
+ * [type] file
+ * [name] setup.php
+ * [package] psa
+ * [since] 2010.09.22
+ */
 
 include_once('./classes/Session.php');
 include_once('./classes/LitePDO.php');
@@ -28,9 +28,9 @@ $psa->qo($q);
 
 $q = "CREATE TABLE temp_table_fields (
 		id INTEGER PRIMARY KEY
-		,tblname VARCHAR(128) 
-		,colname VARCHAR(128) 
-		,coltype VARCHAR(48) 
+		,tblname VARCHAR(128)
+		,colname VARCHAR(128)
+		,coltype VARCHAR(48)
 		,colsize INT(10)
 		,colprime INT(1)
 		, colnull INT(1)

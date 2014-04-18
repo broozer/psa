@@ -1,9 +1,14 @@
 <?php
 
+/**
+ * [type] file
+ * [name] ./action/ajax_add_fields.php
+ * [package] psa
+ * [since]
+ */
+ 
 include_once('loader.php');
 
-// $req->dump();
-// validate received data
 $ajax_sql = new LitePDO('sqlite:../data/base.sqlite');
 
 $error = FALSE;
@@ -21,7 +26,7 @@ if(!$error) {
 		$error = 'true';
 		$errmsg = 'oeps - Column name may not be blank';
 		
-	} 
+	}
 }
 // no columns with same name
 if(!$error) {
@@ -131,5 +136,3 @@ if(!$error) {
 } else {
 	echo $errmsg;
 }
-	
-?>

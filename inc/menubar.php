@@ -1,15 +1,15 @@
 <?php
 
 /**
-*¨[type] file
-* [name] menubar.php
-* [package] psa
-* [since] 2010.09.22 - ok
-*/
+ *type] file
+ * [name] menubar.php
+ * [package] psa
+ * [since] 2010.09.22 - ok
+ */
 
 $body->line('<div id="header">php-sqlite-admin
 	<p id="menushow">
-		<a href="#" onclick="PSA.menutoggle();">[ Show menu ]</a></p> 
+		<a href="#" onclick="PSA.menutoggle();">[ Show menu ]</a></p>
 	</div>');
 
 $body->line('<div id="menu">');
