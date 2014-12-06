@@ -7,13 +7,18 @@ Changelog for psa
 
 version :
 
-todolist 11.08.2012
+todolist
 
 - show all performed queries and also hold result (can be done by dumping queries table of base)
-- create table : UNIQUE (Foreign key)
+- create table : UNIQUE
+- create table : FOREIGN KEY
 - pragma values : check set
 - version via exec (which options are available eg WAL)
 - goto record by (ROW)id
+
+[2014.12.06]
+- fixed error message about extension when first clicking on databases if extension is set
+- code cleanup
 
 [2013.12.19]
 - login added (admin - asp)

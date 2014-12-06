@@ -38,14 +38,21 @@ $body->line('<hr>
 
 $body->line('<div id="content">');
 
+$error_display = 0;
+$message_display = 0;
+$sqler_display = 0;
+
 if($sessie->isS('psa-error')) {
 	$body->line('<div id="error">'.$sessie->getS('psa-error').'</div>');
 	$sessie->unsetS('psa-error');
+	$error_display = 1;
+    
 }
 
 if($sessie->isS('psa-message')) {
 	$body->line('<div id="message">'.$sessie->getS('psa-message').'</div>');
 	$sessie->unsetS('psa-message');
+	$message_display = 1;
 }
 // LITEPDO errors
 if($sessie->isS('sqler')) {
@@ -62,4 +69,9 @@ if($sessie->isS('sqler')) {
 	
 	$body->line('</div>');
 	$sessie->unsetS('sqler');
+	$sqler_display = 1;
+}
+
+if( $error_display == 0 && $message_display == 0 && $sqler_display == 0) {
+    $body->line('<div id="blank">&nbsp;</div>');
 }

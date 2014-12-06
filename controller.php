@@ -9,6 +9,9 @@
 
 include_once('autoload.php');
 
+if($sessie->isS('psa-first')) {
+    
+}
 if($req->is('cmd') && $req->get('cmd') !== 'nodatabase') {
 	/* prevents direct linking after controller.php has run */
 	if(!$sessie->isS('psa-dir') && $req->get('cmd') !== 'base' && $req->get('cmd') !== 'bts') {
@@ -47,7 +50,6 @@ if($req->is('cmd') && $req->get('cmd') !== 'nodatabase') {
 	$body->build();
 
 	include_once('./inc/menubar.php');
-
 
 	$body->line('
 	<p>Databases will be selected based on the preset directory and extension.
@@ -99,6 +101,4 @@ if($req->is('cmd') && $req->get('cmd') !== 'nodatabase') {
 
 	$body->line('</div>');
 	include_once('./inc/footer.php');
-	unset($body);
-	unset($html);
 }

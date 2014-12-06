@@ -1,11 +1,12 @@
 <?php
 
 /**
-*¨[type] file
-* [name] base.php
-* [package] psa
-* [since] 2010.09.22
-*/
+ * [type] file
+ * [name] base.php
+ * [package] psa
+ * [since] 2010.09.22
+ */
+
 
 if(!$sessie->isS('psa-ext')) {
 	if($req->get('extension') == '') {
@@ -22,7 +23,7 @@ if(!$sessie->isS('psa-ext')) {
 			header('location: controller.php');
 			exit;
 		}
-	}	
+	}
 }
 
 if($req->is('extension')) {
@@ -31,12 +32,12 @@ if($req->is('extension')) {
 	
 	$psa = new LitePDO('sqlite:./data/base.sqlite');
 	
-	$q = "UPDATE 
-		base 
-	SET 
+	$q = "UPDATE
+		base
+	SET
 		directory = :directory
 		, extension = :extension
-		, nr_rows = :nr_rows 
+		, nr_rows = :nr_rows
 	";
 	
 	$psa->binder('directory',$req->get('directory'));
@@ -152,7 +153,7 @@ if(!$files) {
 		$tr->add($schema->dump());
 		$tr->build();
 		
-	} 
+	}
 
 	unset($table);
 }

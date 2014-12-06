@@ -1,13 +1,12 @@
 <?php
 
 /**
-* [type] file
-* [name] tableinfo.php
-* [package] psa
-* [since] 2010.10.20
-*/
+ * [type] file
+ * [name] tableinfo.php
+ * [package] psa
+ * [since] 2010.10.20
+ */
 
-// $req->dump();
 
 $sql = new LitePDO('sqlite:'
 	.$sessie->getS('psa-dir').'/'
@@ -216,6 +215,3 @@ if(!$req->is('view')) {
 
 $body->line('</div>');
 include_once('./inc/footer.php');
-unset($body);
-unset($html);
-?>

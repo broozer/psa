@@ -12,6 +12,19 @@ if($sessie->isS('psa-valid')) {
 	$sessie->unsetS('psa-valid');
 }
 
+if($sessie->isS('psa-ext')) {
+    $sessie->unsetS('psa-ext');
+}
+
+if($sessie->isS('psa-dir')) {
+    $sessie->unsetS('psa-dir');
+}
+
+if($sessie->isS('psa-db')) {
+    $sessie->unsetS('psa-db');
+}
+
+	
 /**/
 if(!$sessie->isS('keren')) {
 	$sessie->setS('keren',0);
@@ -22,7 +35,7 @@ if(!$sessie->isS('keren')) {
 }
 
 if($req->is('geheim')) {
-	$q = "SELECT user FROM base WHERE user ='".$req->get('name')."' and pass = '".md5($req->get('geheim'))."' ";	
+	$q = "SELECT user FROM base WHERE user ='".$req->get('name')."' and pass = '".md5($req->get('geheim'))."' ";
 	// admin - asp
 	$sql->qo($q);
 	$res = $sql->fo_one();

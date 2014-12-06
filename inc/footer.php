@@ -9,5 +9,12 @@
  
 $body->line('
 </div>
-<div id="footer">psa - current version 0.1.0.1
+<div id="footer">');
+
+if($req->is('cmd')) {
+    $body->line($req->get('cmd')." - ");
+}
+$body->line('
+psa - current version 0.2.0.0
 </div>');
+unset($html);

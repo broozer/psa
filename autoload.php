@@ -55,6 +55,14 @@ $q = "SELECT * FROM base";
 $psa->qo($q);
 $result = $psa->fo_one();
 
+if(!$sessie->isS('psa-ext')) {
+    $sessie->setS('psa-ext',$result->extension);
+}
+
+if(!$sessie->isS('psa-dir')) {
+    $sessie->setS('psa-dir',$result->directory);
+}
+	
 define('LIMIT',$result->nr_rows);
 
 unset($psa);
