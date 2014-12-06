@@ -5,13 +5,13 @@
 
 Changelog for psa
 
-version : 
+version :
 
 todolist 11.08.2012
 
 - show all performed queries and also hold result (can be done by dumping queries table of base)
 - create table : UNIQUE (Foreign key)
-- Pragma values : check set 
+- pragma values : check set
 - version via exec (which options are available eg WAL)
 - goto record by (ROW)id
 
@@ -27,7 +27,7 @@ todolist 11.08.2012
 - tabel csv : result in textarea
 - export CSV , xml , sql create table
 - set default number of rows to display
-- preserve row value for browsing 
+- preserve row value for browsing
 
 [2012.12.17]
 - small bug in table_browse previous solved (always view)
@@ -62,7 +62,7 @@ current version 0.02
 - menu hide
 
 [2012.02.06]
-- issue 7 : debugging on table create - wrong table creation (left colsize out of table definition) 
+- issue 7 : debugging on table create - wrong table creation (left colsize out of table definition)
 
 [2012.01.31]
 - table_add finished (draft version) - in local branch table_add
@@ -105,14 +105,14 @@ current version 0.02
 - eerst databank kiezen - dan tabel
 
 [2010.10.06]
-- bug : setup script creatie tabel aangepast 
+- bug : setup script creatie tabel aangepast
 
 [2010.10.05]
 - finally hour and minute OK??
 - structure / browgse separate (browse only first 200 lines)
 - browse with ROWID (works but needs debugging)
 
-[2010.09.24] 
+[2010.09.24]
 - query_results full
 - debug minutes wrong !!
 

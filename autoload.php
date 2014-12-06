@@ -1,15 +1,14 @@
 <?php
 
 /**
-* [name] autoload.php
-* [type] file
-* [expl] autoload.php voor psa
-* [since] 2010-09-22
-* [update] 2013.07.28 : LIMIT removed
-*/
+ * [name] autoload.php
+ * [type] file
+ * [expl] autoload.php voor psa
+ * [since] 2010.09.22
+ * [update] 2013.07.28 : LIMIT removed
+ */
 
-function __autoload($class_name)
-{
+function __autoload($class_name) {
 	require_once('./classes/'.$class_name.'.php');
 }
 
@@ -36,8 +35,7 @@ if(isset($_COOKIE['testcookie'])) {
         setcookie( 'testcookie', time(), time()+600);
     }
     
-}
-else {
+} else {
     setcookie('testcookie','gone',time()-3600);
     header('location: login.php');
     exit;

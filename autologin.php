@@ -3,15 +3,13 @@
 /**
  * [type] file
  * [name] autologin.php
- * [package] btrm
+ * [package] psa
  * [since] 2012.11.17
- * [expl] autologin for btrm
- * [wings_ok]
+ * [expl] autologin
  */
 
 
-function __autoload($class_name)
-{
+function __autoload($class_name) {
 	require_once('./classes/'.$class_name.'.php');
 }
 
