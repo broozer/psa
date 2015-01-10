@@ -5,13 +5,17 @@
  * [name] controller.php
  * [package] psa
  * [since] 2010.09.22
+ * [update] 2015.01.10 - cleanup code
  */
 
 include_once('autoload.php');
 
+/* removed 2015.01.10
 if($sessie->isS('psa-first')) {
     
 }
+*/
+
 if($req->is('cmd') && $req->get('cmd') !== 'nodatabase') {
 	/* prevents direct linking after controller.php has run */
 	if(!$sessie->isS('psa-dir') && $req->get('cmd') !== 'base' && $req->get('cmd') !== 'bts') {

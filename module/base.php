@@ -5,25 +5,33 @@
  * [name] base.php
  * [package] psa
  * [since] 2010.09.22
+ * [update] 2015.01.10 - is_writable check on directory
  */
 
 
 if(!$sessie->isS('psa-ext')) {
-	if($req->get('extension') == '') {
-		$sessie->setS('psa-error','Extension name cannot be blank.');
-		header('location: controller.php');
-		exit;
-	}
+    if($req->get('extension') == '') {
+        $sessie->setS('psa-error','Extension name cannot be blank.');
+	header('location: controller.php');
+	exit;
+    }
 	
-	if($req->get('directory') == '') {
-		$req->set('directory','.');
-	} else {
-		if(!is_dir($req->get('directory'))) {
-			$sessie->setS('psa-error','Directory does not exist.');
-			header('location: controller.php');
-			exit;
-		}
-	}
+    if($req->get('directory') == '') {
+    	$req->set('directory','.');
+    } else {
+	if(!is_dir($req->get('directory'))) {
+    	    $sessie->setS('psa-error','Directory does not exist.');
+	    header('location: controller.php');
+	    exit;
+        }
+
+        // check if directory is writable
+        if(!is_writable($req->get('directory'))) {
+            $sessie->setS('psa-error',"Directory not writable.");
+            header("location: controller.php?cmd=base");
+            exit;
+            }
+    }
 }
 
 if($req->is('extension')) {
@@ -49,6 +57,12 @@ if($req->is('extension')) {
 
 if($sessie->isS('psa-db')) {
 	$sessie->unsetS('psa-db');
+}
+
+if(!is_writable($sessie->getS('psa-dir'))) {
+    $sessie->setS('psa-error',"Directory not writable.");
+    header("location: controller.php");
+    exit;
 }
 
 $html = new Page;
@@ -97,6 +111,7 @@ unset($form);
 $body->line('<hr />');
 
 $files = Array();
+
 
 if ($handle = opendir($sessie->getS('psa-dir')) ) {
     while (false !== ($file = readdir($handle))) {

@@ -1,13 +1,13 @@
 <?php
 
 /**
-*¨[type] file
-* [name] create_db.php
-* [package] psa
-* [since] 2010.10.21
-* [update] 2015.01.08 - check dir writable
-* [expl] creates database (file) if directory is writable 
-/
+ * [type] file
+ * [name] create_db.php
+ * [package] psa
+ * [since] 2010.10.21
+ * [update] 2015.01.08 - check dir writable
+ * [expl] creates database (file) if directory is writable 
+*/
 
 if($req->get('newdb') == '') {
 	$sessie->setS('psa-error','Name database cannot be blank.');
