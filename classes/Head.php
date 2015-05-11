@@ -37,8 +37,8 @@ class Head extends Base
         try
         {
             $this->html .="
-            <head>
-            <meta http-equiv=\"Refresh\" content=\"300\">";
+            <head>";
+            // <meta http-equiv=\"Refresh\" content=\"300\">";
 
             if (isset($this->charset))
             {
